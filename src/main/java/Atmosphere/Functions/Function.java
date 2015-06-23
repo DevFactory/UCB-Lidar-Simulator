@@ -6,5 +6,6 @@ package Atmosphere.Functions;
 public abstract class Function {
 
     public abstract double getY(double x);
+
     public abstract String getName();
 }

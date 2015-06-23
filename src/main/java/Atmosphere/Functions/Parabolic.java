@@ -1,7 +1,5 @@
 package Atmosphere.Functions;
 
-import Atmosphere.Functions.Function;
-
 /**
  * Created by Oscar on 6/23/15.
  */
