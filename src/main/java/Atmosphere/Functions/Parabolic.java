@@ -13,4 +13,10 @@ public class Parabolic extends Function {
     public String getName() {
         return "Parabolic";
     }
+
+    @Override
+    public void plot() {
+
+
+    }
 }

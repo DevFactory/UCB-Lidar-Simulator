@@ -6,18 +6,12 @@ import com.xeiam.xchart.XChartPanel;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
 
-/**
- * A convenience class used to display a Chart in a barebones Swing application
- *
- * @author timmolter
- */
 public class GraphPanel {
 
     private String windowTitle;
     private JFrame frame;
-    private List<Chart> charts = new ArrayList<Chart>();
+    private ArrayList<Chart> charts = new ArrayList<Chart>();
     private int numRows;
     private int numColumns;
 
@@ -35,7 +29,7 @@ public class GraphPanel {
      *
      * @param charts
      */
-    public GraphPanel(List<Chart> charts) {
+    public GraphPanel(ArrayList<Chart> charts) {
         this.charts = charts;
         this.numRows = (int) (Math.sqrt(charts.size()) + .5);
         this.numColumns = (int) ((double) charts.size() / this.numRows + 1);
@@ -49,7 +43,7 @@ public class GraphPanel {
      * @param numRows    - the number of rows
      * @param numColumns - the number of columns
      */
-    public GraphPanel(List<Chart> charts, int numRows, int numColumns) {
+    public GraphPanel(ArrayList<Chart> charts, int numRows, int numColumns) {
 
         this.charts = charts;
         this.numRows = numRows;
@@ -71,10 +65,6 @@ public class GraphPanel {
      * Display the chart in a Swing JFrame
      */
     public JFrame displayChart() {
-
-        // Create and set up the window.
-        //Toolkit tk = Toolkit.getDefaultToolkit();
-        //this.frame.setSize(((int) tk.getScreenSize().getWidth()), ((int) tk.getScreenSize().getHeight()));
 
         // Schedule a job for the event-dispatching thread:
         // creating and showing this application's GUI.
@@ -106,9 +96,7 @@ public class GraphPanel {
      * @return the JFrame
      */
     public JFrame displayChartMatrix(String windowTitle) {
-
         this.windowTitle = windowTitle;
-
         return displayChartMatrix();
     }
 

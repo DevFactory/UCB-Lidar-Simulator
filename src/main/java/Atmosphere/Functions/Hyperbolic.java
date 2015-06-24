@@ -13,4 +13,9 @@ public class Hyperbolic extends Function {
     public String getName() {
         return "Hyperbolic";
     }
+
+    @Override
+    public void plot() {
+
+    }
 }

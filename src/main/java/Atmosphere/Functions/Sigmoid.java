@@ -13,4 +13,9 @@ public class Sigmoid extends Function {
     public String getName() {
         return "Sigmoid";
     }
+
+    @Override
+    public void plot() {
+
+    }
 }

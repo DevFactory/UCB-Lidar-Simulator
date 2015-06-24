@@ -1,25 +1,28 @@
 import Atmosphere.Functions.Sigmoid;
 import Atmosphere.GUI.GraphPanel;
+import Atmosphere.Temperature;
 import com.xeiam.xchart.Chart;
 import com.xeiam.xchart.QuickChart;
+
+import java.util.ArrayList;
 
 /**
  * Created by Oscar on 6/23/15.
  */
 public class Chartis {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args){
 
         double[] xData = new double[20];
         double[] yData = new double[20];
-        Sigmoid t = new Sigmoid();
+        Temperature t = new Temperature();
         for (int i = 0; i < 20; i++) {
-            yData[i] = t.getY(i);
-            xData[i] = i;
+            xData[i] = t.getY(i);
+            yData[i] = i;
         }
 
         // Create Chartis
-        Chart chart = QuickChart.getChart(t.getName(), "Temperature", "Altitude", "y(x)", xData, yData);
+        Chart chart = QuickChart.getChart(t.getName(), t.getName(), "Altitude", "y(x)", xData, yData);
 
         // Show it
         new GraphPanel(chart).displayChart(t.getName());
