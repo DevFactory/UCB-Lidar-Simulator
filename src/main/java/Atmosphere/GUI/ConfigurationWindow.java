@@ -1,5 +1,6 @@
 package atmosphere.gui;
 
+import atmosphere.Mie;
 import atmosphere.Pressure;
 import atmosphere.Rayleigh;
 import atmosphere.Temperature;
@@ -67,14 +68,17 @@ public class ConfigurationWindow {
 //        temperature.generate();
 //        temperature.plot();
 
-        Pressure pressure = new Pressure(data);
-        pressure.generate();
-        pressure.plot();
+//        Pressure pressure = new Pressure(data);
+//        pressure.generate();
+//        pressure.plot();
 
-//        Rayleigh rayleigh = new Rayleigh(data);
-//        rayleigh.generate();
-//        rayleigh.plotAlfaScattering();
-//        rayleigh.plotBetaScattering();
+            Rayleigh rayleigh = new Rayleigh(data);
+            rayleigh.generate();
+            rayleigh.plotAlfaScattering();
+            rayleigh.plotBetaScattering();
+
+        //Mie mie = new Mie();
+        //mie.plot();
 
 
     }
