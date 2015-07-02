@@ -1,7 +1,7 @@
-package Atmosphere;
+package atmosphere;
 
-import Atmosphere.Functions.Function;
-import Atmosphere.GUI.GraphPanel;
+import atmosphere.functions.Function;
+import atmosphere.gui.GraphPanel;
 import com.xeiam.xchart.Chart;
 import com.xeiam.xchart.QuickChart;
 
@@ -26,17 +26,19 @@ public class Temperature extends Function {
     public Temperature(ArrayList<Integer> altitudes) {
         this.altitudes = altitudes;
         this.results = new ArrayList<Double>();
-        this.seaLevelTemperature = 59.0;//Fahrenheit
-        //this.seaLevelTemperature = 15.0;//Celsius
-        this.temperatureLapseRate = -0.003566; //Rankine/Foot
-        //this.temperatureLapseRate = -0.00002370858424;//Celsius/Meter
+        //this.seaLevelTemperature = 59.0;//Fahrenheit
+        //this.seaLevelTemperature = 288.15;//Kelvin
+        this.seaLevelTemperature = 15.0;//Celsius
+        //this.temperatureLapseRate = -0.003566; //Rankine/Foot
+        this.temperatureLapseRate = -0.00002370858424;//Celsius/Meter
     }
 
     public Temperature() {
-        this.seaLevelTemperature = 59.0;//Fahrenheit
-        //this.seaLevelTemperature = 15.0;//Celsius
-        this.temperatureLapseRate = -0.003566; //Rankine/Foot
-        //this.temperatureLapseRate = -0.00002370858424;//Celsius/Meter
+        //this.seaLevelTemperature = 59.0;//Fahrenheit
+        //this.seaLevelTemperature = 288.15;//Kelvin
+        this.seaLevelTemperature = 15.0;//Celsius
+        //this.temperatureLapseRate = -0.003566; //Rankine/Foot
+        this.temperatureLapseRate = -0.00002370858424;//Celsius/Meter
         this.results = new ArrayList<Double>();
     }
 
@@ -50,26 +52,27 @@ public class Temperature extends Function {
             yData[i] = this.altitudes.get(i);
         }
 
-        Chart chart = QuickChart.getChart(getName(), getName(), "Altura", "Temperatura(Altura)", xData, yData);
+        Chart chart = QuickChart.getChart(getName(), "Temperatura", "Altura(Km.)", "Temperatura(Altura)", xData, yData);
         new GraphPanel(chart).displayChart(getName());
     }
 
 
     public void generate() {
         for (int i = 0; i < this.altitudes.size(); i++) {
-            this.results.add(getY(this.altitudes.get(i)));
+            this.results.add(getY(this.altitudes.get(i) * 1000));
         }
     }
 
 
     @Override
     public double getY(double x) {
-        return (this.seaLevelTemperature + (this.temperatureLapseRate * x));
+        //return (this.seaLevelTemperature + (this.temperatureLapseRate * x));
+        return this.seaLevelTemperature - (6.5 * (x / 1000));
     }
 
     @Override
     public String getName() {
-        return "Temperature";
+        return "Temperatura";
     }
 
     public double getSeaLevelTemperature() {

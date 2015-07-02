@@ -1,10 +1,7 @@
-import Atmosphere.Functions.Sigmoid;
-import Atmosphere.GUI.GraphPanel;
-import Atmosphere.Temperature;
+import atmosphere.gui.GraphPanel;
+import atmosphere.Temperature;
 import com.xeiam.xchart.Chart;
 import com.xeiam.xchart.QuickChart;
-
-import java.util.ArrayList;
 
 /**
  * Created by Oscar on 6/23/15.

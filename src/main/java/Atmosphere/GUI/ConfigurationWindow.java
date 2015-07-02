@@ -1,7 +1,8 @@
-package Atmosphere.GUI;
+package atmosphere.gui;
 
-import Atmosphere.Pressure;
-import Atmosphere.Temperature;
+import atmosphere.Pressure;
+import atmosphere.Rayleigh;
+import atmosphere.Temperature;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
@@ -18,8 +19,6 @@ public class ConfigurationWindow {
     private JPanel panel1;
     private JLabel altitudeLabel;
     private JLabel initialAltitudeLabel;
-    private JTextArea initialAltitudeTextArea;
-    private JTextArea maxAltitudeTextArea;
     private JLabel maxAltitudeJLabel;
     private JLabel graphicsColorLabel;
     private JLabel temperatureColorLabel;
@@ -28,6 +27,8 @@ public class ConfigurationWindow {
     private JLabel pressureColorLabel;
     private JButton backButton;
     private JButton generateButton;
+    private JTextField initialAltitudeJtextField;
+    private JTextField topAltitudeJtextField;
 
     public ConfigurationWindow() {
         generateButton.addMouseListener(new MouseAdapter() {
@@ -58,17 +59,22 @@ public class ConfigurationWindow {
     private void generate() {
         ArrayList<Integer> data = new ArrayList<Integer>();
 
-        for (int i = Integer.parseInt(this.initialAltitudeTextArea.getText()); i <= Integer.parseInt(this.maxAltitudeTextArea.getText()); i++) {
+        for (int i = Integer.parseInt(this.initialAltitudeJtextField.getText()); i <= Integer.parseInt(this.topAltitudeJtextField.getText()); i++) {
             data.add(i);
         }
 
-        Temperature temperature = new Temperature(data);
-        temperature.generate();
-        //temperature.plot();
+//        Temperature temperature = new Temperature(data);
+//        temperature.generate();
+//        temperature.plot();
 
         Pressure pressure = new Pressure(data);
         pressure.generate();
         pressure.plot();
+
+//        Rayleigh rayleigh = new Rayleigh(data);
+//        rayleigh.generate();
+//        rayleigh.plotAlfaScattering();
+//        rayleigh.plotBetaScattering();
 
 
     }

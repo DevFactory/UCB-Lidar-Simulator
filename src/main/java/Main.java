@@ -1,5 +1,3 @@
-import Atmosphere.GUI.ConfigurationWindow;
-
 /**
  * Created by Oscar on 6/24/15.
  */
