@@ -1,6 +1,7 @@
 package telescope;
 
 import junit.framework.TestCase;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -11,7 +12,7 @@ public class TelescopeTest extends TestCase {
     private Telescope telescope = new Telescope();
     private double expected;
 
-    @Override
+    @Before
     public void setUp() throws Exception {
         super.setUp();
         telescope.setSystemFocalLength(12.5);
@@ -86,7 +87,6 @@ public class TelescopeTest extends TestCase {
 
     @Test
     public void testComputeQP() throws Exception {
-        setUp();
         this.telescope.computeQP();
         expected = 8.857264365354945;
         assertEquals(expected, this.telescope.getQp());
@@ -94,7 +94,6 @@ public class TelescopeTest extends TestCase {
 
     @Test
     public void testComputeQR2() throws Exception {
-        setUp();
         this.telescope.computeQR2();
         expected = -1.9525165321432114;
         assertEquals(expected, this.telescope.getqR2());
