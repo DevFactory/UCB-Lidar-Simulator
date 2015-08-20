@@ -4,10 +4,14 @@ import atmosphere.gui.GraphPanel;
 import com.xeiam.xchart.Chart;
 import com.xeiam.xchart.QuickChart;
 
+import javax.swing.*;
+
 /**
  * Created by Oscar on 6/23/15.
  */
 public class Hyperbolic extends Function {
+
+
     @Override
     public double getY(double x) {
         return 1 / x;
@@ -16,6 +20,27 @@ public class Hyperbolic extends Function {
     @Override
     public String getName() {
         return "Hyperbolic";
+    }
+
+    @Override
+    protected JPanel getPanel() {
+        double[] xData = new double[20];
+        double[] yData = new double[20];
+
+        Hyperbolic t = new Hyperbolic();
+
+        int j = 10;
+
+        for (int i = 0; i < 20; i++) {
+            yData[i] = t.getY(j);
+            xData[i] = j;
+            j++;
+        }
+
+        // Create Chartis
+        Chart chart = QuickChart.getChart(t.getName(), "X", "Y", "y(x)", xData, yData);
+        JPanel chartPanel = new GraphPanel(chart).getChartPanel();
+        return chartPanel;
     }
 
     @Override

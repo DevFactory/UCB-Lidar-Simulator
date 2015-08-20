@@ -5,6 +5,7 @@ import atmosphere.gui.GraphPanel;
 import com.xeiam.xchart.Chart;
 import com.xeiam.xchart.QuickChart;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 /**
@@ -164,6 +165,11 @@ public class Rayleigh extends Function {
     @Override
     protected String getName() {
         return "Rayleigh";
+    }
+
+    @Override
+    protected JPanel getPanel() {
+        return null;
     }
 
     @Override

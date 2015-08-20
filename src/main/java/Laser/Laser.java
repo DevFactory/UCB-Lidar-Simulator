@@ -15,6 +15,7 @@ public class Laser {
     private double acquisitionTime;//s
     private double verticalResolution;//m
 
+
     public Laser() {
         this.outputWaveLength = 532.0;
         this.outputEnergyPerPulse = 4.0;

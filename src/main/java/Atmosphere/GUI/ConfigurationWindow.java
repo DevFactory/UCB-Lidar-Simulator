@@ -1,10 +1,5 @@
 package atmosphere.gui;
 
-import atmosphere.Mie;
-import atmosphere.Pressure;
-import atmosphere.Rayleigh;
-import atmosphere.Temperature;
-
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -32,6 +27,8 @@ public class ConfigurationWindow {
     private JTextField topAltitudeJtextField;
 
     public ConfigurationWindow() {
+        this.temperatureColorComboBox.addItem("Blue");
+        this.pressureColorComboBox.addItem("Blue");
         generateButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -48,7 +45,7 @@ public class ConfigurationWindow {
     }
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Ventana de configuración");
+        JFrame frame = new JFrame("Configuration Window");
         frame.setContentPane(new ConfigurationWindow().panel1);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,27 +56,9 @@ public class ConfigurationWindow {
 
     private void generate() {
         ArrayList<Integer> data = new ArrayList<Integer>();
-
         for (int i = Integer.parseInt(this.initialAltitudeJtextField.getText()); i <= Integer.parseInt(this.topAltitudeJtextField.getText()); i++) {
             data.add(i);
         }
-
-//        Temperature temperature = new Temperature(data);
-//        temperature.generate();
-//        temperature.plot();
-
-//        Pressure pressure = new Pressure(data);
-//        pressure.generate();
-//        pressure.plot();
-
-            Rayleigh rayleigh = new Rayleigh(data);
-            rayleigh.generate();
-            rayleigh.plotAlfaScattering();
-            rayleigh.plotBetaScattering();
-
-        //Mie mie = new Mie();
-        //mie.plot();
-
-
+        new Visualizer(data);
     }
 }

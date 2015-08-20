@@ -5,12 +5,14 @@ import atmosphere.gui.GraphPanel;
 import com.xeiam.xchart.Chart;
 import com.xeiam.xchart.QuickChart;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 /**
  * Created by Oscar on 6/23/15.
  */
 public class Pressure extends Function {
+
     private ArrayList<Integer> temperatures = new ArrayList<Integer>();
     private ArrayList<Double> results = new ArrayList<Double>();
     private double seaLevelPressure, temperatureLapseRate, seaLevelTemperature, altittude;
@@ -76,6 +78,21 @@ public class Pressure extends Function {
     @Override
     public String getName() {
         return "Pressure";
+    }
+
+    @Override
+    public JPanel getPanel() {
+        double[] xData = new double[this.temperatures.size()];
+        double[] yData = new double[this.temperatures.size()];
+
+        for (int i = 0; i < this.temperatures.size(); i++) {
+            xData[i] = this.results.get(i);
+            yData[i] = this.temperatures.get(i);
+        }
+
+        Chart chart = QuickChart.getChart(getName(), "Presion", "Altura(Km.)", "Presion(Altura)", xData, yData);
+        JPanel chartPanel = new GraphPanel(chart).getChartPanel();
+        return chartPanel;
     }
 
     public ArrayList<Integer> getTemperatures() {

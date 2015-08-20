@@ -5,6 +5,7 @@ import atmosphere.gui.GraphPanel;
 import com.xeiam.xchart.Chart;
 import com.xeiam.xchart.QuickChart;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 /**
@@ -73,6 +74,21 @@ public class Temperature extends Function {
     @Override
     public String getName() {
         return "Temperatura";
+    }
+
+    @Override
+    public JPanel getPanel() {
+        double[] xData = new double[this.altitudes.size()];
+        double[] yData = new double[this.altitudes.size()];
+
+        for (int i = 0; i < this.altitudes.size(); i++) {
+            xData[i] = this.results.get(i);
+            yData[i] = this.altitudes.get(i);
+        }
+
+        Chart chart = QuickChart.getChart(getName(), "Temperatura", "Altura(Km.)", "Temperatura(Altura)", xData, yData);
+        JPanel chartPanel = new GraphPanel(chart).getChartPanel();
+        return chartPanel;
     }
 
     public double getSeaLevelTemperature() {

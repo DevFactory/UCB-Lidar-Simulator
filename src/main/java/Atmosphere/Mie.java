@@ -5,6 +5,8 @@ import atmosphere.gui.GraphPanel;
 import com.xeiam.xchart.Chart;
 import com.xeiam.xchart.QuickChart;
 
+import javax.swing.*;
+
 /**
  * Created by Oscar on 7/2/15.
  */
@@ -31,6 +33,24 @@ public class Mie extends Function {
         // Show it
         new GraphPanel(chart).displayChart(getName());
 
+    }
+
+    @Override
+    public JPanel getPanel() {
+        double[] xData = new double[100];
+        double[] yData = new double[100];
+
+        for (int i = 0; i < 100; i++) {
+            yData[i] = getY(i);
+            xData[i] = i;
+        }
+
+        // Create Chartis
+        Chart chart = QuickChart.getChart(getName(), "X", "Y", "y(x)", xData, yData);
+
+        // Show it
+        JPanel chartPanel = new GraphPanel(chart).getChartPanel();
+        return chartPanel;
     }
 
     @Override

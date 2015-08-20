@@ -15,20 +15,10 @@ public class GraphPanel {
     private int numRows;
     private int numColumns;
 
-    /**
-     * Constructor
-     *
-     * @param chart
-     */
     public GraphPanel(Chart chart) {
         this.charts.add(chart);
     }
 
-    /**
-     * Constructor - The number of rows and columns will be calculated automatically Constructor
-     *
-     * @param charts
-     */
     public GraphPanel(ArrayList<Chart> charts) {
         this.charts = charts;
         this.numRows = (int) (Math.sqrt(charts.size()) + .5);
@@ -36,13 +26,6 @@ public class GraphPanel {
 
     }
 
-    /**
-     * Constructor
-     *
-     * @param charts
-     * @param numRows    - the number of rows
-     * @param numColumns - the number of columns
-     */
     public GraphPanel(ArrayList<Chart> charts, int numRows, int numColumns) {
 
         this.charts = charts;
@@ -50,20 +33,31 @@ public class GraphPanel {
         this.numColumns = numColumns;
     }
 
-    /**
-     * Display the chart in a Swing JFrame
-     *
-     * @param windowTitle the title of the window
-     */
     public JFrame displayChart(String windowTitle) {
         frame = new JFrame(windowTitle);
         this.windowTitle = windowTitle;
         return displayChart();
     }
 
-    /**
-     * Display the chart in a Swing JFrame
-     */
+    public JPanel getChartPanel() {
+        JPanel chartPanel = new XChartPanel(charts.get(0));
+        return chartPanel;
+    }
+
+
+    public JPanel getChartMatrix() {
+        JPanel chartPanel = null;
+        for (Chart chart : charts) {
+            if (chart != null) {
+                chartPanel = new XChartPanel(chart);
+            } else {
+                chartPanel = new JPanel();
+            }
+        }
+        return chartPanel;
+    }
+
+
     public JFrame displayChart() {
 
         // Schedule a job for the event-dispatching thread:
@@ -89,20 +83,11 @@ public class GraphPanel {
         return frame;
     }
 
-    /**
-     * Display the charts in a Swing JFrame
-     *
-     * @param windowTitle the title of the window
-     * @return the JFrame
-     */
     public JFrame displayChartMatrix(String windowTitle) {
         this.windowTitle = windowTitle;
         return displayChartMatrix();
     }
 
-    /**
-     * Display the chart in a Swing JFrame
-     */
     public JFrame displayChartMatrix() {
 
         // Create and set up the window.
@@ -128,7 +113,7 @@ public class GraphPanel {
 
                 }
 
-                // Display the window.
+                //Display the window.
                 Toolkit tk = Toolkit.getDefaultToolkit();
                 frame.setSize(((int) tk.getScreenSize().getWidth()), ((int) tk.getScreenSize().getHeight()));
 
