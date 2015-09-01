@@ -1,24 +1,25 @@
 package atmosphere;
 
 import atmosphere.functions.Function;
-import atmosphere.gui.GraphPanel;
+import atmosphere.functions.plotter.GraphPanel;
 import com.xeiam.xchart.Chart;
 import com.xeiam.xchart.QuickChart;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Created by Oscar on 6/23/15.
  */
 public class Pressure extends Function {
 
-    private ArrayList<Integer> temperatures = new ArrayList<Integer>();
-    private ArrayList<Double> results = new ArrayList<Double>();
+    private Collection<Number> temperatures = new ArrayList<Number>();
+    private Collection<Number> pressures = new ArrayList<Number>();
     private double seaLevelPressure, temperatureLapseRate, seaLevelTemperature, altittude;
     private double constant = 5.2561;
 
-    public Pressure(ArrayList<Integer> temperatures, double seaLevelPressure, double temperatureLapseRate, double altittude, double seaLevelTemperature) {
+    public Pressure(ArrayList<Number> temperatures, double seaLevelPressure, double temperatureLapseRate, double altittude, double seaLevelTemperature) {
         this.temperatures = temperatures;
         this.seaLevelPressure = seaLevelPressure;
         this.temperatureLapseRate = temperatureLapseRate;
@@ -36,7 +37,7 @@ public class Pressure extends Function {
         this.seaLevelTemperature = 288.15;//Kelvin
     }
 
-    public Pressure(ArrayList<Integer> temperatures) {
+    public Pressure(Collection<Number> temperatures) {
         this.temperatures = temperatures;
         //this.seaLevelPressure = 2116.2; //lb/SquareFoot
         this.seaLevelPressure = 1013.25; //hPa
@@ -45,28 +46,6 @@ public class Pressure extends Function {
         //this.seaLevelTemperature = 59.0;//Fahrenheit
         //this.seaLevelTemperature = 15.0;//Celsius
         this.seaLevelTemperature = 288.15;//Kelvin
-    }
-
-    @Override
-    public void plot() {
-
-        double[] xData = new double[this.temperatures.size()];
-        double[] yData = new double[this.temperatures.size()];
-
-        for (int i = 0; i < this.temperatures.size(); i++) {
-            xData[i] = this.results.get(i);
-            yData[i] = this.temperatures.get(i);
-        }
-
-        Chart chart = QuickChart.getChart(getName(), "Presion", "Altura(Km.)", "Presion(Altura)", xData, yData);
-        new GraphPanel(chart).displayChart(getName());
-
-    }
-
-    public void generate() {
-        for (int i = 0; i < this.temperatures.size(); i++) {
-            this.results.add(getY(this.temperatures.get(i) * 1000));
-        }
     }
 
     @Override
@@ -81,26 +60,31 @@ public class Pressure extends Function {
     }
 
     @Override
-    public JPanel getPanel() {
-        double[] xData = new double[this.temperatures.size()];
-        double[] yData = new double[this.temperatures.size()];
-
-        for (int i = 0; i < this.temperatures.size(); i++) {
-            xData[i] = this.results.get(i);
-            yData[i] = this.temperatures.get(i);
-        }
-
-        Chart chart = QuickChart.getChart(getName(), "Presion", "Altura(Km.)", "Presion(Altura)", xData, yData);
-        JPanel chartPanel = new GraphPanel(chart).getChartPanel();
-        return chartPanel;
+    public Chart generateChart() {
+        return QuickChart.getChart(getName(), "Presion", "Altura(Km.)", "Presion(Altura)", this.pressures, this.temperatures);
     }
 
-    public ArrayList<Integer> getTemperatures() {
+
+    public void generate() {
+        for (Number temperature : temperatures) {
+            this.pressures.add(getY(temperature.doubleValue()*1000));
+        }
+    }
+
+    public Collection<Number> getTemperatures() {
         return temperatures;
     }
 
-    public void setTemperatures(ArrayList<Integer> temperatures) {
+    public void setTemperatures(Collection<Number> temperatures) {
         this.temperatures = temperatures;
+    }
+
+    public Collection<Number> getPressures() {
+        return pressures;
+    }
+
+    public void setPressures(Collection<Number> pressures) {
+        this.pressures = pressures;
     }
 
     public double getSeaLevelPressure() {
@@ -119,14 +103,6 @@ public class Pressure extends Function {
         this.temperatureLapseRate = temperatureLapseRate;
     }
 
-    public double getAltittude() {
-        return altittude;
-    }
-
-    public void setAltittude(double altittude) {
-        this.altittude = altittude;
-    }
-
     public double getSeaLevelTemperature() {
         return seaLevelTemperature;
     }
@@ -135,4 +111,19 @@ public class Pressure extends Function {
         this.seaLevelTemperature = seaLevelTemperature;
     }
 
+    public double getAltittude() {
+        return altittude;
+    }
+
+    public void setAltittude(double altittude) {
+        this.altittude = altittude;
+    }
+
+    public double getConstant() {
+        return constant;
+    }
+
+    public void setConstant(double constant) {
+        this.constant = constant;
+    }
 }

@@ -1,8 +1,5 @@
 package laser;
 
-/**
- * Created by Oscar on 6/23/15.
- */
 public class Laser {
 
     private double outputWaveLength;//nm

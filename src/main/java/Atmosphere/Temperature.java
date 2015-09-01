@@ -1,38 +1,36 @@
 package atmosphere;
 
 import atmosphere.functions.Function;
-import atmosphere.gui.GraphPanel;
 import com.xeiam.xchart.Chart;
 import com.xeiam.xchart.QuickChart;
+import com.xeiam.xchart.Series;
+import java.awt.Color;
 
-import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Collection;
 
-/**
- * Created by Oscar on 6/23/15.
- */
 public class Temperature extends Function {
 
     private double seaLevelTemperature, temperatureLapseRate;
-    private ArrayList<Integer> altitudes = new ArrayList<Integer>();
-    private ArrayList<Double> results = new ArrayList<Double>();
-
+    private Collection<Number> altitudes, results;
 
     public Temperature(double SLT, double TLR) {
         this.seaLevelTemperature = SLT;
         this.temperatureLapseRate = TLR;
-        this.results = new ArrayList<Double>();
+        this.results = new ArrayList<Number>();
     }
 
-    public Temperature(ArrayList<Integer> altitudes) {
+
+    public Temperature(Collection<Number> altitudes) {
         this.altitudes = altitudes;
-        this.results = new ArrayList<Double>();
+        this.results = new ArrayList<Number>();
         //this.seaLevelTemperature = 59.0;//Fahrenheit
         //this.seaLevelTemperature = 288.15;//Kelvin
         this.seaLevelTemperature = 15.0;//Celsius
         //this.temperatureLapseRate = -0.003566; //Rankine/Foot
         this.temperatureLapseRate = -0.00002370858424;//Celsius/Meter
     }
+
 
     public Temperature() {
         //this.seaLevelTemperature = 59.0;//Fahrenheit
@@ -40,34 +38,18 @@ public class Temperature extends Function {
         this.seaLevelTemperature = 15.0;//Celsius
         //this.temperatureLapseRate = -0.003566; //Rankine/Foot
         this.temperatureLapseRate = -0.00002370858424;//Celsius/Meter
-        this.results = new ArrayList<Double>();
+        this.results = new ArrayList<Number>();
     }
-
-    @Override
-    public void plot() {
-        double[] xData = new double[this.altitudes.size()];
-        double[] yData = new double[this.altitudes.size()];
-
-        for (int i = 0; i < this.altitudes.size(); i++) {
-            xData[i] = this.results.get(i);
-            yData[i] = this.altitudes.get(i);
-        }
-
-        Chart chart = QuickChart.getChart(getName(), "Temperatura", "Altura(Km.)", "Temperatura(Altura)", xData, yData);
-        new GraphPanel(chart).displayChart(getName());
-    }
-
 
     public void generate() {
-        for (int i = 0; i < this.altitudes.size(); i++) {
-            this.results.add(getY(this.altitudes.get(i) * 1000));
+        for (Number altitude : altitudes) {
+            this.results.add(getY(altitude.floatValue() * 1000));
         }
     }
 
 
     @Override
     public double getY(double x) {
-        //return (this.seaLevelTemperature + (this.temperatureLapseRate * x));
         return this.seaLevelTemperature - (6.5 * (x / 1000));
     }
 
@@ -75,20 +57,14 @@ public class Temperature extends Function {
     public String getName() {
         return "Temperatura";
     }
-
+    
     @Override
-    public JPanel getPanel() {
-        double[] xData = new double[this.altitudes.size()];
-        double[] yData = new double[this.altitudes.size()];
-
-        for (int i = 0; i < this.altitudes.size(); i++) {
-            xData[i] = this.results.get(i);
-            yData[i] = this.altitudes.get(i);
-        }
-
-        Chart chart = QuickChart.getChart(getName(), "Temperatura", "Altura(Km.)", "Temperatura(Altura)", xData, yData);
-        JPanel chartPanel = new GraphPanel(chart).getChartPanel();
-        return chartPanel;
+    public Chart generateChart() {
+        Chart chart = QuickChart.getChart(getName(), "Temperatura", "Altura(Km.)", "Temperatura(Altura)", this.results, this.altitudes);
+//        Series series;
+  //      series = chart.addSeries("Hello", this.results, this.altitudes);
+    //    series.setLineColor(Color.yellow)
+        return chart;
     }
 
     public double getSeaLevelTemperature() {
@@ -107,20 +83,19 @@ public class Temperature extends Function {
         this.temperatureLapseRate = temperatureLapseRate;
     }
 
-    public ArrayList<Integer> getAltitudes() {
+    public Collection<Number> getAltitudes() {
         return altitudes;
     }
 
-    public void setAltitudes(ArrayList<Integer> altitudes) {
+    public void setAltitudes(Collection<Number> altitudes) {
         this.altitudes = altitudes;
     }
 
-    public ArrayList<Double> getResults() {
+    public Collection<Number> getResults() {
         return results;
     }
 
-    public void setResults(ArrayList<Double> results) {
+    public void setResults(Collection<Number> results) {
         this.results = results;
     }
-
 }

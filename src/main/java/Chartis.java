@@ -1,4 +1,4 @@
-import atmosphere.gui.GraphPanel;
+import atmosphere.functions.plotter.GraphPanel;
 import atmosphere.Temperature;
 import com.xeiam.xchart.Chart;
 import com.xeiam.xchart.QuickChart;

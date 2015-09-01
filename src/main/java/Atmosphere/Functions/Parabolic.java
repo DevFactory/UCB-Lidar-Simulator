@@ -1,15 +1,20 @@
 package atmosphere.functions;
 
-import atmosphere.gui.GraphPanel;
 import com.xeiam.xchart.Chart;
 import com.xeiam.xchart.QuickChart;
 
-import javax.swing.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Created by Oscar on 6/23/15.
  */
 public class Parabolic extends Function {
+
+    private Collection<Number> xData = new ArrayList<Number>();
+    private Collection<Number> yData = new ArrayList<Number>();
+
+
     @Override
     public double getY(double x) {
         return Math.pow(x, 2);
@@ -21,43 +26,18 @@ public class Parabolic extends Function {
     }
 
     @Override
-    protected JPanel getPanel() {
-        double[] xData = new double[20];
-        double[] yData = new double[20];
-
-        Parabolic t = new Parabolic();
-
-        int j = 10;
-
-        for (int i = 0; i < 20; i++) {
-            yData[i] = t.getY(j);
-            xData[i] = j;
-            j++;
-        }
-
-        // Create Chartis
-        Chart chart = QuickChart.getChart(t.getName(), "X", "Y", "y(x)", xData, yData);
-        JPanel chartPanel = new GraphPanel(chart).getChartPanel();
-        return chartPanel;
+    protected Chart generateChart() {
+        return QuickChart.getChart(getName(), "X", "Y", "y(x)", this.xData, this.yData);
     }
 
     @Override
-    public void plot() {
+    protected void generate() {
+        int j = 10;
 
-        double[] xData = new double[20];
-        double[] yData = new double[20];
-
-        Parabolic t = new Parabolic();
         for (int i = 0; i < 20; i++) {
-            yData[i] = t.getY(i);
-            xData[i] = i;
+            this.yData.add(getY(j));
+            this.xData.add(j);
+            j++;
         }
-
-        // Create Chartis
-        Chart chart = QuickChart.getChart(t.getName(), "X", "Y", "y(x)", xData, yData);
-
-        // Show it
-        new GraphPanel(chart).displayChart(t.getName());
-
     }
 }

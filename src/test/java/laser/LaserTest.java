@@ -3,9 +3,6 @@ package laser;
 import junit.framework.TestCase;
 import org.junit.Test;
 
-/**
- * Created by Oscar on 7/2/15.
- */
 public class LaserTest extends TestCase {
 
     private Laser laser = new Laser();

@@ -1,18 +1,16 @@
 package atmosphere.functions;
 
-import javax.swing.*;
+import com.xeiam.xchart.Chart;
 
-/**
- * Created by Oscar on 6/23/15.
- */
+import java.util.Collection;
+
 public abstract class Function {
 
     protected abstract double getY(double x);
 
-    protected abstract void plot();
-
     protected abstract String getName();
 
-    protected abstract JPanel getPanel();
+    protected abstract Chart generateChart();
 
+    protected abstract void generate();
 }

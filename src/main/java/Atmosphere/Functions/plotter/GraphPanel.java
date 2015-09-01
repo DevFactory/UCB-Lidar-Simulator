@@ -1,4 +1,4 @@
-package atmosphere.gui;
+package atmosphere.functions.plotter;
 
 import com.xeiam.xchart.Chart;
 import com.xeiam.xchart.XChartPanel;
