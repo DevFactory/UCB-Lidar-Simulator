@@ -27,11 +27,6 @@
             <version>4.12</version>
             <scope>test</scope>
             <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>unknown.binary</groupId>
-            <artifactId>AbsoluteLayout</artifactId>
-            <version>SNAPSHOT</version>
-        </dependency>
+        </dependency>    
     </dependencies>
 </project>

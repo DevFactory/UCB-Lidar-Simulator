@@ -15,6 +15,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Collection;
+import javax.swing.JLabel;
 
 /**
  *
@@ -33,6 +34,8 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
     public GraphicsVisualizer(Collection<Number> data, ArrayList<Color> colors) {
         this.functionPlotter = new FunctionPlotter();
         
+        initComponents();
+        makeFrameFullSize();
         Color colorA, colorB;
         colorA = colors.get(0);
         createMieTabs(data, colorA);
@@ -43,8 +46,6 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
         colorA = colors.get(3);
         colorB = colors.get(4);
         createRayleighTabs(data, colorA, colorB);
-        initComponents();
-        makeFrameFullSize();
         this.setVisible(true);
         
 
@@ -56,6 +57,7 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
 
         this.functionPlotter = new FunctionPlotter((temperature.generateChart()));
         this.temperaturePanel = this.functionPlotter.getChartPanel();
+        graphicsTabbedPane.setComponentAt(0, this.temperaturePanel);
     }
 
     private void createPressureTabs(Collection<Number> data, Color color) {
