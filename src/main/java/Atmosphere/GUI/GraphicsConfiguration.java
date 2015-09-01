@@ -1,13 +1,59 @@
 package atmosphere.gui;
 
-import java.awt.Color;
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
-import javax.swing.JComboBox;
 
 public class GraphicsConfiguration extends javax.swing.JFrame {
 
+
+    private javax.swing.JComboBox betaRayleighColorComboBox;
+    private javax.swing.JTextField finalAltitudeTextField;
+    private javax.swing.JButton generateButton;
+    private ArrayList<Color> colors = new ArrayList<Color>();
+    private javax.swing.JTextField initialAltitudeTextField;    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox alfaRayleighColorComboBox;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton backButton;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JComboBox mieColorComboBox;
+    private javax.swing.JComboBox pressureColorComboBox;
+    private javax.swing.JComboBox temperatureColorComboBox;
+
     public GraphicsConfiguration() {
         initComponents();
+    }
+
+    public static void main(String args[]) {
+
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(GraphicsConfiguration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(GraphicsConfiguration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(GraphicsConfiguration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(GraphicsConfiguration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new GraphicsConfiguration().setVisible(true);
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -59,15 +105,15 @@ public class GraphicsConfiguration extends javax.swing.JFrame {
 
         jLabel9.setText("Beta Rayleigh:");
 
-        temperatureColorComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Red", "Blue", "Black", "Green" }));
+        temperatureColorComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Red", "Blue", "Black", "Green"}));
 
-        pressureColorComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Red", "Blue", "Black", "Green" }));
+        pressureColorComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Red", "Blue", "Black", "Green"}));
 
-        mieColorComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Red", "Blue", "Black", "Green" }));
+        mieColorComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Red", "Blue", "Black", "Green"}));
 
-        alfaRayleighColorComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Red", "Blue", "Black", "Green" }));
+        alfaRayleighColorComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Red", "Blue", "Black", "Green"}));
 
-        betaRayleighColorComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Red", "Blue", "Black", "Green" }));
+        betaRayleighColorComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Red", "Blue", "Black", "Green"}));
 
         backButton.setText("Back");
 
@@ -81,95 +127,95 @@ public class GraphicsConfiguration extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(backButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(generateButton))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, Short.MAX_VALUE)
-                                .addComponent(temperatureColorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(19, 19, 19)
-                                        .addComponent(jLabel1))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(42, 42, 42)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel6)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel7)
-                                            .addComponent(jLabel9)
-                                            .addComponent(jLabel8))))
-                                .addGap(20, 20, 20))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addGap(18, 18, 18)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(finalAltitudeTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-                                            .addComponent(initialAltitudeTextField))
-                                        .addComponent(pressureColorComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(mieColorComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(alfaRayleighColorComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(betaRayleighColorComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(13, 13, 13)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(backButton)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                .addComponent(generateButton))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(jLabel4)
+                                                                .addGap(18, 18, Short.MAX_VALUE)
+                                                                .addComponent(temperatureColorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addGroup(layout.createSequentialGroup()
+                                                                                .addGap(19, 19, 19)
+                                                                                .addComponent(jLabel1))
+                                                                        .addGroup(layout.createSequentialGroup()
+                                                                                .addGap(42, 42, 42)
+                                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                        .addComponent(jLabel6)
+                                                                                        .addComponent(jLabel5)
+                                                                                        .addComponent(jLabel7)
+                                                                                        .addComponent(jLabel9)
+                                                                                        .addComponent(jLabel8))))
+                                                                .addGap(20, 20, 20))
+                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                                .addContainerGap()
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(jLabel2)
+                                                                        .addComponent(jLabel3))
+                                                                .addGap(18, 18, 18)))
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                                                        .addComponent(finalAltitudeTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                                                                                        .addComponent(initialAltitudeTextField))
+                                                                                .addComponent(pressureColorComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                        .addComponent(mieColorComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addComponent(alfaRayleighColorComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(betaRayleighColorComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(initialAltitudeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(finalAltitudeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(temperatureColorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(pressureColorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(mieColorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(alfaRayleighColorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(betaRayleighColorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backButton)
-                    .addComponent(generateButton))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel2)
+                                        .addComponent(initialAltitudeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel3)
+                                        .addComponent(finalAltitudeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel5)
+                                        .addComponent(temperatureColorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel6)
+                                        .addComponent(pressureColorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel7)
+                                        .addComponent(mieColorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel8)
+                                        .addComponent(alfaRayleighColorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel9)
+                                        .addComponent(betaRayleighColorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(backButton)
+                                        .addComponent(generateButton))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -181,74 +227,79 @@ public class GraphicsConfiguration extends javax.swing.JFrame {
         for (int i = Integer.parseInt(this.initialAltitudeTextField.getText()); i <= Integer.parseInt(this.finalAltitudeTextField.getText()); i++) {
             data.add(i);
         }
-        
-        colors.add(obtainSelectedColor(this.temperatureColorComboBox));
-        colors.add(obtainSelectedColor(this.pressureColorComboBox));
-        colors.add(obtainSelectedColor(this.mieColorComboBox));
-        colors.add(obtainSelectedColor(this.alfaRayleighColorComboBox));
-        colors.add(obtainSelectedColor(this.betaRayleighColorComboBox));
-        
-        new GraphicsVisualizer(data, colors);
+        colors.add(0, obtainSelectedColor(this.temperatureColorComboBox));
+        colors.add(1, obtainSelectedColor(this.pressureColorComboBox));
+        colors.add(2, obtainSelectedColor(this.mieColorComboBox));
+        colors.add(3, obtainSelectedColor(this.alfaRayleighColorComboBox));
+        colors.add(4, obtainSelectedColor(this.betaRayleighColorComboBox));
+
+        GraphicsVisualizer graphicsVisualizer = new GraphicsVisualizer(data, colors);
         this.dispose();// TODO add your handling code here:
+
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Altitudes are supposed to be numbers.", "Format error", JOptionPane.ERROR_MESSAGE);
+//            }
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Altitudes aren't supposed to be empty.", "Format error", JOptionPane.ERROR_MESSAGE);
+//        }
+
+
     }//GEN-LAST:event_generateButtonActionPerformed
-     private Color obtainSelectedColor(JComboBox colorComboBox){
-         int option = colorComboBox.getSelectedIndex();
-        Color selectedColor = new Color(0);
-        switch(option){
-             case 1:
+
+    private boolean validateJustNumbers() {
+        char[] stringA = this.initialAltitudeTextField.getText().toCharArray();
+        char[] stringB = this.finalAltitudeTextField.getText().toCharArray();
+        boolean ok = true;
+
+        for (int i = 0; i < stringA.length; i++) {
+            try {
+                Integer.parseInt(String.valueOf(stringA[i]));
+            } catch (NumberFormatException exc) {
+                ok = false;
+                break;
+            }
+        }
+
+        for (int i = 0; i < stringB.length; i++) {
+            try {
+                Integer.parseInt(String.valueOf(stringB[i]));
+            } catch (NumberFormatException exc) {
+                ok = false;
+                break;
+            }
+        }
+        return ok;
+    }
+
+    private boolean validateNotEmpty() {
+        if (this.finalAltitudeTextField.getText().isEmpty() || this.initialAltitudeTextField.getText().isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    private Color obtainSelectedColor(JComboBox colorComboBox) {
+        int option = colorComboBox.getSelectedIndex();
+        Color selectedColor = null;
+        switch (option) {
+            case 0:
                 selectedColor = Color.RED;
-            case 2:
+                break;
+            case 1:
                 selectedColor = Color.BLUE;
-            case 3:
+                break;
+            case 2:
                 selectedColor = Color.BLACK;
-            case 4:
-                selectedColor = Color.GREEN;            
+                break;
+            case 3:
+                selectedColor = Color.GREEN;
+                break;
         }
         return selectedColor;
     }
-     public static void main(String args[]) {
-
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GraphicsConfiguration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GraphicsConfiguration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GraphicsConfiguration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GraphicsConfiguration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GraphicsConfiguration().setVisible(true);
-            }
-        });
-    }
-     private ArrayList<Color> colors = new ArrayList<Color>();
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox alfaRayleighColorComboBox;
-    private javax.swing.JButton backButton;
-    private javax.swing.JComboBox betaRayleighColorComboBox;
-    private javax.swing.JTextField finalAltitudeTextField;
-    private javax.swing.JButton generateButton;
-    private javax.swing.JTextField initialAltitudeTextField;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JComboBox mieColorComboBox;
-    private javax.swing.JComboBox pressureColorComboBox;
-    private javax.swing.JComboBox temperatureColorComboBox;
     // End of variables declaration//GEN-END:variables
+
+
 }

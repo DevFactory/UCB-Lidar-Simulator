@@ -4,6 +4,10 @@ import atmosphere.functions.Function;
 import atmosphere.functions.plotter.GraphPanel;
 import com.xeiam.xchart.Chart;
 import com.xeiam.xchart.QuickChart;
+import com.xeiam.xchart.Series;
+import com.xeiam.xchart.SeriesLineStyle;
+import com.xeiam.xchart.SeriesMarker;
+import java.awt.Color;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -60,8 +64,28 @@ public class Pressure extends Function {
     }
 
     @Override
-    public Chart generateChart() {
-        return QuickChart.getChart(getName(), "Presion", "Altura(Km.)", "Presion(Altura)", this.pressures, this.temperatures);
+    public Chart generateChart(Color color) {
+        //return QuickChart.getChart(getName(), "Presion", "Altura(Km.)", "Presion(Altura)", this.pressures, this.temperatures);
+        
+        Chart chart = new Chart(10, 10);
+        chart.setChartTitle(getName());
+        chart.setXAxisTitle("Pressure");
+        chart.setYAxisTitle("Altitude (Km.)");
+        chart.getStyleManager().setPlotBackgroundColor(Color.WHITE);
+        chart.getStyleManager().setPlotGridLinesColor(Color.GRAY);
+        chart.getStyleManager().setChartBackgroundColor(Color.WHITE);
+        chart.getStyleManager().setLegendBackgroundColor(Color.WHITE);
+        chart.getStyleManager().setChartFontColor(Color.BLACK);
+        chart.getStyleManager().setChartTitleBoxVisible(false);
+        chart.getStyleManager().setPlotGridLinesVisible(true);
+ 
+        Series series;
+        series = chart.addSeries("Pressure(Altitude)", this.pressures, this.temperatures);
+        series.setLineColor(color);
+        series.setMarkerColor(color);
+        series.setMarker(SeriesMarker.CIRCLE);
+        series.setLineStyle(SeriesLineStyle.SOLID);
+        return chart;
     }
 
 

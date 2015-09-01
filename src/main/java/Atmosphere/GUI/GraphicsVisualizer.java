@@ -38,11 +38,11 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
         makeFrameFullSize();
         Color colorA, colorB;
         colorA = colors.get(0);
-        createMieTabs(data, colorA);
+        createTemperatureTabs(data, colorA);
         colorA = colors.get(1);
         createPressureTabs(data, colorA);
         colorA = colors.get(2);
-        createTemperatureTabs(data, colorA);
+        createMieTabs(data, colorA);
         colorA = colors.get(3);
         colorB = colors.get(4);
         createRayleighTabs(data, colorA, colorB);
@@ -55,7 +55,7 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
         Temperature temperature = new Temperature(data);
         temperature.generate();
 
-        this.functionPlotter = new FunctionPlotter((temperature.generateChart()));
+        this.functionPlotter = new FunctionPlotter((temperature.generateChart(color)));
         this.temperaturePanel = this.functionPlotter.getChartPanel();
         graphicsTabbedPane.setComponentAt(0, this.temperaturePanel);
     }
@@ -63,24 +63,29 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
     private void createPressureTabs(Collection<Number> data, Color color) {
         Pressure pressure = new Pressure(data);
         pressure.generate();
-        this.functionPlotter.setChart(pressure.generateChart());
+        this.functionPlotter.setChart(pressure.generateChart(color));
         this.pressurePanel = this.functionPlotter.getChartPanel();
+        graphicsTabbedPane.setComponentAt(1, this.pressurePanel);
     }
 
     private void createMieTabs(Collection<Number> data, Color color) {
         Mie mie = new Mie();
         mie.generate();
-        this.functionPlotter.setChart(mie.generateChart());
+        this.functionPlotter.setChart(mie.generateChart(color));
         this.miePanel = this.functionPlotter.getChartPanel();
+        graphicsTabbedPane.setComponentAt(2, this.miePanel);
+        
     }
 
     private void createRayleighTabs(Collection<Number> data, Color colorA, Color colorB) {
         Rayleigh rayleigh = new Rayleigh(data);
         rayleigh.generate();
-        this.functionPlotter.setChart(rayleigh.getAlfaScatteringChart());
+        this.functionPlotter.setChart(rayleigh.getAlfaScatteringChart(colorA));
         this.alphaRayleighPanel = this.functionPlotter.getChartPanel();
-        this.functionPlotter.setChart(rayleigh.getBetaScatteringChart());
+        this.functionPlotter.setChart(rayleigh.getBetaScatteringChart(colorB));
         this.betaRayleighPanel = this.functionPlotter.getChartPanel();
+        graphicsTabbedPane.setComponentAt(3, this.alphaRayleighPanel);
+        graphicsTabbedPane.setComponentAt(4, this.betaRayleighPanel);
 
     }
 
@@ -107,6 +112,10 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
         miePanel = new javax.swing.JPanel();
         alphaRayleighPanel = new javax.swing.JPanel();
         betaRayleighPanel = new javax.swing.JPanel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        fileMenu = new javax.swing.JMenu();
+        exitMenuItem = new javax.swing.JMenuItem();
+        editMenu = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Graphics Visualizer");
@@ -114,6 +123,11 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
         backButton.setText("Back");
         backButton.setToolTipText("Back to graphics configuration window");
         backButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
         buttonPanel.add(backButton);
 
         getContentPane().add(buttonPanel, java.awt.BorderLayout.PAGE_END);
@@ -130,8 +144,36 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
+        fileMenu.setText("File");
+        fileMenu.setToolTipText("");
+
+        exitMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        exitMenuItem.setText("Exit");
+        exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitMenuItemActionPerformed(evt);
+            }
+        });
+        fileMenu.add(exitMenuItem);
+
+        jMenuBar1.add(fileMenu);
+
+        editMenu.setText("Edit");
+        jMenuBar1.add(editMenu);
+
+        setJMenuBar(jMenuBar1);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_exitMenuItemActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        this.dispose();
+        new GraphicsConfiguration().setVisible(true);
+    }//GEN-LAST:event_backButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,7 +216,11 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
     private javax.swing.JButton backButton;
     private javax.swing.JPanel betaRayleighPanel;
     private javax.swing.JPanel buttonPanel;
+    private javax.swing.JMenu editMenu;
+    private javax.swing.JMenuItem exitMenuItem;
+    private javax.swing.JMenu fileMenu;
     private javax.swing.JTabbedPane graphicsTabbedPane;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel miePanel;
     private javax.swing.JPanel pressurePanel;

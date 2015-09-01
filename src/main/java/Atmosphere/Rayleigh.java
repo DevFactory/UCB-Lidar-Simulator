@@ -3,6 +3,10 @@ package atmosphere;
 import atmosphere.functions.Function;
 import com.xeiam.xchart.Chart;
 import com.xeiam.xchart.QuickChart;
+import com.xeiam.xchart.Series;
+import com.xeiam.xchart.SeriesLineStyle;
+import com.xeiam.xchart.SeriesMarker;
+import java.awt.Color;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -24,7 +28,7 @@ public class Rayleigh extends Function {
     private Collection<Number> ns = new ArrayList<Number>();//
     private Collection<Number> refractiveIndex = new ArrayList<Number>();//
     private Collection<Number> sigma = new ArrayList<Number>();//
-    private Collection<Number> alfaScatering = new ArrayList<Number>();//
+    private Collection<Number> alphaScatering = new ArrayList<Number>();//
     private Collection<Number> betaScatering = new ArrayList<Number>();//
     private double kingFactor;//
     private double wavelength = 300.0;//Lambda-nm
@@ -132,35 +136,74 @@ public class Rayleigh extends Function {
             float sigma = sigmaIterator.next().floatValue();
             float ns = nsIterator.next().floatValue();
             aux = sigma * ns * 1e3;
-            this.alfaScatering.add(aux);
+            this.alphaScatering.add(aux);
         }
     }
 
     public void computeBetaScatering() {
         double aux;
 
-        for (Number number : this.alfaScatering) {
+        for (Number number : this.alphaScatering) {
             aux = number.floatValue() / 8.37758041;
             this.betaScatering.add(aux);
         }
 
     }
 
-    public Chart getAlfaScatteringChart() {
-        return QuickChart.getChart(getName(), "Sigma", "Alfa Scattering", "Alfa(sigma)", this.sigma, this.alfaScatering);
+    public Chart getAlfaScatteringChart(Color color) {
+        //return QuickChart.getChart(getName(), "Sigma", "Alfa Scattering", "Alfa(sigma)", this.sigma, this.alphaScatering);
+        Chart chart = new Chart(10, 10);
+        chart.setChartTitle(getName());
+        chart.setXAxisTitle("Sigma");
+        chart.setYAxisTitle("Alpha Scattering");
+        chart.getStyleManager().setPlotBackgroundColor(Color.WHITE);
+        chart.getStyleManager().setPlotGridLinesColor(Color.GRAY);
+        chart.getStyleManager().setChartBackgroundColor(Color.WHITE);
+        chart.getStyleManager().setLegendBackgroundColor(Color.WHITE);
+        chart.getStyleManager().setChartFontColor(Color.BLACK);
+        chart.getStyleManager().setChartTitleBoxVisible(false);
+        chart.getStyleManager().setPlotGridLinesVisible(true);
+ 
+        Series series;
+        series = chart.addSeries("Alpha(sigma)", this.sigma, this.alphaScatering);
+        series.setLineColor(color);
+        series.setMarkerColor(color);
+        series.setMarker(SeriesMarker.CIRCLE);
+        series.setLineStyle(SeriesLineStyle.SOLID);
+        return chart;
+        
     }
 
-    public Chart getBetaScatteringChart() {
-        return QuickChart.getChart(getName(), "Alfa", "Beta Scattering", "Beta(Alfa)", this.alfaScatering, this.betaScatering);
+    public Chart getBetaScatteringChart(Color color) {
+        //return QuickChart.getChart(getName(), "Alfa", "Beta Scattering", "Beta(Alfa)", this.alphaScatering, this.betaScatering);
+         Chart chart = new Chart(10, 10);
+        chart.setChartTitle(getName());
+        chart.setXAxisTitle("Alpha");
+        chart.setYAxisTitle("Beta Scattering");
+        chart.getStyleManager().setPlotBackgroundColor(Color.WHITE);
+        chart.getStyleManager().setPlotGridLinesColor(Color.GRAY);
+        chart.getStyleManager().setChartBackgroundColor(Color.WHITE);
+        chart.getStyleManager().setLegendBackgroundColor(Color.WHITE);
+        chart.getStyleManager().setChartFontColor(Color.BLACK);
+        chart.getStyleManager().setChartTitleBoxVisible(false);
+        chart.getStyleManager().setPlotGridLinesVisible(true);
+ 
+        Series series;
+        series = chart.addSeries("Beta(Alpha)", this.alphaScatering, this.betaScatering);
+        series.setLineColor(color);
+        series.setMarkerColor(color);
+        series.setMarker(SeriesMarker.CIRCLE);
+        series.setLineStyle(SeriesLineStyle.SOLID);
+        return chart;
     }
 
 //    @Override
 //    public JPanel getPanel() {
-//        double[] xDataA = new double[this.alfaScatering.size()];
+//        double[] xDataA = new double[this.alphaScatering.size()];
 //        double[] yDataA = new double[this.betaScatering.size()];
 //
-//        for (int i = 0; i < this.alfaScatering.size(); i++) {
-//            xDataA[i] = this.alfaScatering.get(i);
+//        for (int i = 0; i < this.alphaScatering.size(); i++) {
+//            xDataA[i] = this.alphaScatering.get(i);
 //        }
 //
 //        for (int i = 0; i < this.betaScatering.size(); i++) {
@@ -170,13 +213,13 @@ public class Rayleigh extends Function {
 //        Chart chartA = QuickChart.getChart(getName(), "Alfa", "Beta Scattering", "Beta(Alfa)", xDataA, yDataA);
 //
 //        double[] xDataB = new double[this.sigma.size()];
-//        double[] yDataB = new double[this.alfaScatering.size()];
+//        double[] yDataB = new double[this.alphaScatering.size()];
 //        for (int i = 0; i < this.sigma.size(); i++) {
 //            xDataB[i] = this.sigma.get(i);
 //        }
 //
-//        for (int i = 0; i < this.alfaScatering.size(); i++) {
-//            yDataB[i] = this.alfaScatering.get(i);
+//        for (int i = 0; i < this.alphaScatering.size(); i++) {
+//            yDataB[i] = this.alphaScatering.get(i);
 //        }
 //
 //        Chart chartB = QuickChart.getChart(getName(), "Sigma", "Alfa Scattering", "Alfa(sigma)", xDataB, yDataB);
@@ -200,7 +243,7 @@ public class Rayleigh extends Function {
     }
 
     @Override
-    protected Chart generateChart() {
+    protected Chart generateChart(Color color) {
         return null;
     }
 
@@ -281,11 +324,11 @@ public class Rayleigh extends Function {
     }
 
     public Collection<Number> getAlfaScatering() {
-        return alfaScatering;
+        return alphaScatering;
     }
 
     public void setAlfaScatering(Collection<Number> alfaScatering) {
-        this.alfaScatering = alfaScatering;
+        this.alphaScatering = alfaScatering;
     }
 
     public Collection<Number> getBetaScatering() {

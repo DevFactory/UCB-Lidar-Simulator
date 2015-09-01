@@ -2,6 +2,7 @@ package atmosphere.functions;
 
 import com.xeiam.xchart.Chart;
 import com.xeiam.xchart.QuickChart;
+import java.awt.Color;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,7 +26,7 @@ public class Hyperbolic extends Function {
     }
 
     @Override
-    protected Chart generateChart() {
+    protected Chart generateChart(Color color) {
         return QuickChart.getChart(getName(), "X", "Y", "y(x)", this.xData, this.yData);
     }
 

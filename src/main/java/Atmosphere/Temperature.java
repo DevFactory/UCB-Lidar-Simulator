@@ -4,6 +4,8 @@ import atmosphere.functions.Function;
 import com.xeiam.xchart.Chart;
 import com.xeiam.xchart.QuickChart;
 import com.xeiam.xchart.Series;
+import com.xeiam.xchart.SeriesLineStyle;
+import com.xeiam.xchart.SeriesMarker;
 import java.awt.Color;
 
 import java.util.ArrayList;
@@ -55,15 +57,30 @@ public class Temperature extends Function {
 
     @Override
     public String getName() {
-        return "Temperatura";
+        return "Temperature";
     }
     
     @Override
-    public Chart generateChart() {
-        Chart chart = QuickChart.getChart(getName(), "Temperatura", "Altura(Km.)", "Temperatura(Altura)", this.results, this.altitudes);
-//        Series series;
-  //      series = chart.addSeries("Hello", this.results, this.altitudes);
-    //    series.setLineColor(Color.yellow)
+    public Chart generateChart(Color color) {
+        Chart chart = new Chart(10, 10);
+                //QuickChart.getChart(getName(), "Temperatura", "Altura(Km.)", "Temperatura(Altura)", this.results, this.altitudes);
+        chart.setChartTitle(getName());
+        chart.setXAxisTitle("Temperature");
+        chart.setYAxisTitle("Altitude (Km.)");
+        chart.getStyleManager().setPlotBackgroundColor(Color.WHITE);
+        chart.getStyleManager().setPlotGridLinesColor(Color.GRAY);
+        chart.getStyleManager().setChartBackgroundColor(Color.WHITE);
+        chart.getStyleManager().setLegendBackgroundColor(Color.WHITE);
+        chart.getStyleManager().setChartFontColor(Color.BLACK);
+        chart.getStyleManager().setChartTitleBoxVisible(false);
+        chart.getStyleManager().setPlotGridLinesVisible(true);
+ 
+        Series series;
+        series = chart.addSeries("Temperature(Altitude)", this.results, this.altitudes);
+        series.setLineColor(color);
+        series.setMarkerColor(color);
+        series.setMarker(SeriesMarker.CIRCLE);
+        series.setLineStyle(SeriesLineStyle.SOLID);
         return chart;
     }
 
