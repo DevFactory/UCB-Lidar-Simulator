@@ -15,7 +15,9 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Locale;
 import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -116,12 +118,16 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
         fileMenu = new javax.swing.JMenu();
         exitMenuItem = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
+        languageMenu = new javax.swing.JMenu();
+        englishMenuItem = new javax.swing.JMenuItem();
+        spanishMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Graphics Visualizer");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("atmosphere/gui/Bundle_es_BO"); // NOI18N
+        setTitle(bundle.getString("GraphicsVisualizer.title")); // NOI18N
 
-        backButton.setText("Back");
-        backButton.setToolTipText("Back to graphics configuration window");
+        backButton.setText(bundle.getString("GraphicsVisualizer.backButton.text")); // NOI18N
+        backButton.setToolTipText(bundle.getString("GraphicsVisualizer.backButton.toolTipText")); // NOI18N
         backButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,21 +140,20 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
 
         jPanel2.setLayout(new java.awt.BorderLayout());
 
-        graphicsTabbedPane.addTab("Temperature", null, temperaturePanel, "View temperature graphic");
-        graphicsTabbedPane.addTab("Pressure", null, pressurePanel, "View pressure graphic");
-        graphicsTabbedPane.addTab("Mie", null, miePanel, "View mie graphic");
-        graphicsTabbedPane.addTab("Alpha Rayleigh", null, alphaRayleighPanel, "View alpha rayleigh graphic");
-        graphicsTabbedPane.addTab("Beta Rayleigh", null, betaRayleighPanel, "View beta rayleigh graphic");
+        graphicsTabbedPane.addTab(bundle.getString("GraphicsVisualizer.temperaturePanel.TabConstraints.tabTitle"), null, temperaturePanel, bundle.getString("GraphicsVisualizer.temperaturePanel.TabConstraints.tabToolTip")); // NOI18N
+        graphicsTabbedPane.addTab(bundle.getString("GraphicsVisualizer.pressurePanel.TabConstraints.tabTitle"), null, pressurePanel, bundle.getString("GraphicsVisualizer.pressurePanel.TabConstraints.tabToolTip")); // NOI18N
+        graphicsTabbedPane.addTab(bundle.getString("GraphicsVisualizer.miePanel.TabConstraints.tabTitle"), null, miePanel, bundle.getString("GraphicsVisualizer.miePanel.TabConstraints.tabToolTip")); // NOI18N
+        graphicsTabbedPane.addTab(bundle.getString("GraphicsVisualizer.alphaRayleighPanel.TabConstraints.tabTitle"), null, alphaRayleighPanel, bundle.getString("GraphicsVisualizer.alphaRayleighPanel.TabConstraints.tabToolTip")); // NOI18N
+        graphicsTabbedPane.addTab(bundle.getString("GraphicsVisualizer.betaRayleighPanel.TabConstraints.tabTitle"), null, betaRayleighPanel, bundle.getString("GraphicsVisualizer.betaRayleighPanel.TabConstraints.tabToolTip")); // NOI18N
 
         jPanel2.add(graphicsTabbedPane, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
-        fileMenu.setText("File");
-        fileMenu.setToolTipText("");
+        fileMenu.setText(bundle.getString("GraphicsVisualizer.fileMenu.text")); // NOI18N
 
         exitMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
-        exitMenuItem.setText("Exit");
+        exitMenuItem.setText(bundle.getString("GraphicsVisualizer.exitMenuItem.text")); // NOI18N
         exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitMenuItemActionPerformed(evt);
@@ -158,7 +163,30 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
 
         jMenuBar1.add(fileMenu);
 
-        editMenu.setText("Edit");
+        editMenu.setText(bundle.getString("GraphicsVisualizer.editMenu.text")); // NOI18N
+
+        languageMenu.setLabel(bundle.getString("GraphicsVisualizer.languageMenu.label")); // NOI18N
+
+        englishMenuItem.setText(bundle.getString("GraphicsVisualizer.englishMenuItem.text_1")); // NOI18N
+        englishMenuItem.setToolTipText(bundle.getString("GraphicsVisualizer.englishMenuItem.toolTipText")); // NOI18N
+        englishMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                englishMenuItemActionPerformed(evt);
+            }
+        });
+        languageMenu.add(englishMenuItem);
+
+        spanishMenuItem.setText(bundle.getString("GraphicsVisualizer.spanishMenuItem.text")); // NOI18N
+        spanishMenuItem.setToolTipText(bundle.getString("GraphicsVisualizer.spanishMenuItem.toolTipText")); // NOI18N
+        spanishMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                spanishMenuItemActionPerformed(evt);
+            }
+        });
+        languageMenu.add(spanishMenuItem);
+
+        editMenu.add(languageMenu);
+
         jMenuBar1.add(editMenu);
 
         setJMenuBar(jMenuBar1);
@@ -175,10 +203,24 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
         new GraphicsConfiguration().setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
+    private void englishMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_englishMenuItemActionPerformed
+        Locale l = new Locale("English", "US");
+        this.setLocale(l);
+        pack();
+    }//GEN-LAST:event_englishMenuItemActionPerformed
+
+    private void spanishMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spanishMenuItemActionPerformed
+        Locale l = new Locale("Spanish", "Bolivia");
+        this.setLocale(l);
+        this.invalidate();
+        this.validate();
+        this.repaint();
+    }//GEN-LAST:event_spanishMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+   public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -217,13 +259,16 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
     private javax.swing.JPanel betaRayleighPanel;
     private javax.swing.JPanel buttonPanel;
     private javax.swing.JMenu editMenu;
+    private javax.swing.JMenuItem englishMenuItem;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JTabbedPane graphicsTabbedPane;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JMenu languageMenu;
     private javax.swing.JPanel miePanel;
     private javax.swing.JPanel pressurePanel;
+    private javax.swing.JMenuItem spanishMenuItem;
     private javax.swing.JPanel temperaturePanel;
     // End of variables declaration//GEN-END:variables
 }
