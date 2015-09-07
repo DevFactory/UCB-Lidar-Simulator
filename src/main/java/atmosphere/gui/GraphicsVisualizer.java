@@ -5,6 +5,7 @@
  */
 package atmosphere.gui;
 
+import atmosphere.Atmosphere;
 import atmosphere.MyMain;
 import atmosphere.Mie;
 import atmosphere.Pressure;
@@ -47,20 +48,19 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
         makeFrameFullSize();
         Color colorA, colorB;
         colorA = colors.get(0);
-        createTemperatureTabs(data, colorA);
+        createTemperatureTab(data, colorA);
         colorA = colors.get(1);
-        createPressureTabs(data, colorA);
+        createPressureTab(data, colorA);
         colorA = colors.get(2);
-        createMieTabs(data, colorA);
+        createMieTab(data, colorA);
         colorA = colors.get(3);
         colorB = colors.get(4);
         createRayleighTabs(data, colorA, colorB);
+        createAtmosphereTab(data, colorA, colorB);
         this.setVisible(true);
-        
-
     }
     
-    private void createTemperatureTabs(Collection<Number> data, Color color) {
+    private void createTemperatureTab(Collection<Number> data, Color color) {
         Temperature temperature = new Temperature(data);
         temperature.generate();
 
@@ -69,7 +69,7 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
         graphicsTabbedPane.setComponentAt(0, this.temperaturePanel);
     }
 
-    private void createPressureTabs(Collection<Number> data, Color color) {
+    private void createPressureTab(Collection<Number> data, Color color) {
         Pressure pressure = new Pressure(data);
         pressure.generate();
         this.functionPlotter.setChart(pressure.generateChart(color));
@@ -77,7 +77,7 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
         graphicsTabbedPane.setComponentAt(1, this.pressurePanel);
     }
 
-    private void createMieTabs(Collection<Number> data, Color color) {
+    private void createMieTab(Collection<Number> data, Color color) {
         Mie mie = new Mie();
         mie.generate();
         this.functionPlotter.setChart(mie.generateChart(color));
@@ -96,6 +96,20 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
         graphicsTabbedPane.setComponentAt(3, this.alphaRayleighPanel);
         graphicsTabbedPane.setComponentAt(4, this.betaRayleighPanel);
 
+    }
+    
+    private void createAtmosphereTab(Collection<Number> data, Color colorA, Color colorB){
+        Mie mie = new Mie();
+        mie.generate();
+        Rayleigh rayleigh = new Rayleigh(data);
+        rayleigh.generate();
+        
+        Atmosphere atmosphere = new Atmosphere(mie,rayleigh);
+        
+        this.functionPlotter.setChart(atmosphere.generateChart(colorA));
+        this.atmospherePanel = this.functionPlotter.getChartPanel();
+        graphicsTabbedPane.setComponentAt(5, this.atmospherePanel);
+        
     }
 
     private void makeFrameFullSize() {
@@ -121,6 +135,7 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
         miePanel = new javax.swing.JPanel();
         alphaRayleighPanel = new javax.swing.JPanel();
         betaRayleighPanel = new javax.swing.JPanel();
+        atmospherePanel = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         exitMenuItem = new javax.swing.JMenuItem();
@@ -151,6 +166,7 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
         graphicsTabbedPane.addTab("Mie", null, miePanel, "View mie graphic");
         graphicsTabbedPane.addTab("Alpha Rayleigh", null, alphaRayleighPanel, "View alpha rayleigh graphic");
         graphicsTabbedPane.addTab("Beta Rayleigh", null, betaRayleighPanel, "View beta rayleigh graphic");
+        graphicsTabbedPane.addTab("Atmosphere", null, atmospherePanel, "View atmosphere graphic");
 
         jPanel2.add(graphicsTabbedPane, java.awt.BorderLayout.CENTER);
 
@@ -257,6 +273,7 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
     private FunctionPlotter functionPlotter = new FunctionPlotter();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel alphaRayleighPanel;
+    private javax.swing.JPanel atmospherePanel;
     private javax.swing.JButton backButton;
     private javax.swing.JPanel betaRayleighPanel;
     private javax.swing.JPanel buttonPanel;
