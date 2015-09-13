@@ -8,6 +8,9 @@ import atmosphere.gui.GraphicsConfiguration;
  */
 public class MyMain {
     public static void main(String[] args){
+        System.setProperty("user.language", "es");
+        System.setProperty("user.country", "ES");
+        System.out.println("-Duser.language=es -Duser.country=ES");
         
         new GraphicsConfiguration();
     }

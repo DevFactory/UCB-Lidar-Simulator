@@ -54,7 +54,6 @@ public class Pressure extends Function {
 
     @Override
     public double getY(double x) {
-        //return (this.seaLevelPressure) * Math.pow((1 + ((this.temperatureLapseRate * x) / this.seaLevelTemperature)), this.constant);
         return (this.seaLevelPressure * Math.pow((1 - (0.0065 * (x / this.seaLevelTemperature))), this.constant));
     }
 
@@ -70,7 +69,7 @@ public class Pressure extends Function {
         Chart chart = new Chart(10, 10);
         chart.setChartTitle(getName());
         chart.setXAxisTitle("Pressure");
-        chart.setYAxisTitle("Altitude (Km.)");
+        chart.setYAxisTitle("Temperature (ºC)");
         chart.getStyleManager().setPlotBackgroundColor(Color.WHITE);
         chart.getStyleManager().setPlotGridLinesColor(Color.GRAY);
         chart.getStyleManager().setChartBackgroundColor(Color.WHITE);
@@ -80,7 +79,7 @@ public class Pressure extends Function {
         chart.getStyleManager().setPlotGridLinesVisible(true);
  
         Series series;
-        series = chart.addSeries("Pressure(Altitude)", this.pressures, this.temperatures);
+        series = chart.addSeries("Pressure(Temperature)", this.pressures, this.temperatures);
         series.setLineColor(color);
         series.setMarkerColor(color);
         series.setMarker(SeriesMarker.CIRCLE);

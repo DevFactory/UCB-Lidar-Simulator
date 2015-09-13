@@ -2,12 +2,11 @@ package atmosphere;
 
 import atmosphere.functions.Function;
 import com.xeiam.xchart.Chart;
-import com.xeiam.xchart.QuickChart;
 import com.xeiam.xchart.Series;
 import com.xeiam.xchart.SeriesLineStyle;
 import com.xeiam.xchart.SeriesMarker;
-import java.awt.Color;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -49,7 +48,6 @@ public class Temperature extends Function {
         }
     }
 
-
     @Override
     public double getY(double x) {
         return this.seaLevelTemperature - (6.5 * (x / 1000));
@@ -59,11 +57,10 @@ public class Temperature extends Function {
     public String getName() {
         return "Temperature";
     }
-    
+
     @Override
     public Chart generateChart(Color color) {
         Chart chart = new Chart(10, 10);
-                //QuickChart.getChart(getName(), "Temperatura", "Altura(Km.)", "Temperatura(Altura)", this.results, this.altitudes);
         chart.setChartTitle(getName());
         chart.setXAxisTitle("Temperature");
         chart.setYAxisTitle("Altitude (Km.)");
@@ -74,7 +71,7 @@ public class Temperature extends Function {
         chart.getStyleManager().setChartFontColor(Color.BLACK);
         chart.getStyleManager().setChartTitleBoxVisible(false);
         chart.getStyleManager().setPlotGridLinesVisible(true);
- 
+
         Series series;
         series = chart.addSeries("Temperature(Altitude)", this.results, this.altitudes);
         series.setLineColor(color);

@@ -5,8 +5,8 @@ import com.xeiam.xchart.Chart;
 import com.xeiam.xchart.Series;
 import com.xeiam.xchart.SeriesLineStyle;
 import com.xeiam.xchart.SeriesMarker;
-import java.awt.Color;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -31,9 +31,7 @@ public class Mie extends Function {
 
     @Override
     public Chart generateChart(Color color) {
-        //Chart chart = QuickChart.getChart(getName(), "X", "Y", "y(x)", this.xData, this.yData);
-        //return chart;
-         Chart chart = new Chart(10, 10);
+        Chart chart = new Chart(10, 10);
         chart.setChartTitle(getName());
         chart.setXAxisTitle("X");
         chart.setYAxisTitle("Y");
@@ -44,7 +42,7 @@ public class Mie extends Function {
         chart.getStyleManager().setChartFontColor(Color.BLACK);
         chart.getStyleManager().setChartTitleBoxVisible(false);
         chart.getStyleManager().setPlotGridLinesVisible(true);
- 
+
         Series series;
         series = chart.addSeries("y(x)", this.xData, this.yData);
         series.setLineColor(color);
@@ -60,5 +58,21 @@ public class Mie extends Function {
             this.yData.add(getY(i));
             this.xData.add(i);
         }
+    }
+
+    public Collection<Number> getxData() {
+        return xData;
+    }
+
+    public void setxData(Collection<Number> xData) {
+        this.xData = xData;
+    }
+
+    public Collection<Number> getyData() {
+        return yData;
+    }
+
+    public void setyData(Collection<Number> yData) {
+        this.yData = yData;
     }
 }

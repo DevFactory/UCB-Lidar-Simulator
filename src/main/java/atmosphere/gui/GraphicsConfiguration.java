@@ -10,6 +10,7 @@ public class GraphicsConfiguration extends javax.swing.JFrame {
     public GraphicsConfiguration() {
         initComponents();
         this.setVisible(true);
+        this.getRootPane().setDefaultButton(this.generateButton);
     }
 
     @SuppressWarnings("unchecked")

@@ -36,6 +36,7 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
     /**
      * Creates new form GraphicsVisualizer
      */
+    private Temperature temperature;
     public GraphicsVisualizer() {
         initComponents();
         makeFrameFullSize();
@@ -50,7 +51,7 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
         colorA = colors.get(0);
         createTemperatureTab(data, colorA);
         colorA = colors.get(1);
-        createPressureTab(data, colorA);
+        createPressureTab(this.temperature.getResults(), colorA);
         colorA = colors.get(2);
         createMieTab(data, colorA);
         colorA = colors.get(3);
@@ -61,10 +62,9 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
     }
     
     private void createTemperatureTab(Collection<Number> data, Color color) {
-        Temperature temperature = new Temperature(data);
-        temperature.generate();
-
-        this.functionPlotter = new FunctionPlotter((temperature.generateChart(color)));
+        this.temperature = new Temperature(data);
+        this.temperature.generate();
+        this.functionPlotter = new FunctionPlotter((this.temperature.generateChart(color)));
         this.temperaturePanel = this.functionPlotter.getChartPanel();
         graphicsTabbedPane.setComponentAt(0, this.temperaturePanel);
     }
@@ -99,12 +99,13 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
     }
     
     private void createAtmosphereTab(Collection<Number> data, Color colorA, Color colorB){
-        Mie mie = new Mie();
-        mie.generate();
+        Temperature temperature = new Temperature(data);
+        temperature.generate();
+
         Rayleigh rayleigh = new Rayleigh(data);
         rayleigh.generate();
         
-        Atmosphere atmosphere = new Atmosphere(mie,rayleigh);
+        Atmosphere atmosphere = new Atmosphere(temperature,rayleigh);
         
         this.functionPlotter.setChart(atmosphere.generateChart(colorA));
         this.atmospherePanel = this.functionPlotter.getChartPanel();

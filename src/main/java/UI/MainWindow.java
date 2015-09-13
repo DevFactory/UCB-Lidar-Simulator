@@ -335,10 +335,12 @@ public class MainWindow extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
-        JOptionPane.showMessageDialog(null, "My Goodness, this is so concise");
+        new ProjectConfiguration();
+        this.dispose();
     }//GEN-LAST:event_jPanel3MouseClicked
 
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
