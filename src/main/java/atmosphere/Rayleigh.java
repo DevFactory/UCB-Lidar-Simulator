@@ -187,7 +187,7 @@ public class Rayleigh extends Function {
         series = chart.addSeries("Alpha(sigma)", this.sigma, this.alphaScattering);
         series.setLineColor(color);
         series.setMarkerColor(color);
-        series.setMarker(SeriesMarker.CIRCLE);
+        series.setMarker(SeriesMarker.NONE);
         series.setLineStyle(SeriesLineStyle.SOLID);
         return chart;
 
@@ -211,13 +211,13 @@ public class Rayleigh extends Function {
         series = chart.addSeries("Beta(Alpha)", this.alphaScattering, this.betaScattering);
         series.setLineColor(color);
         series.setMarkerColor(color);
-        series.setMarker(SeriesMarker.CIRCLE);
+        series.setMarker(SeriesMarker.NONE);
         series.setLineStyle(SeriesLineStyle.SOLID);
         return chart;
     }
 
     @Override
-    protected double getY(double x) {
+    public double getY(double x) {
         return 0;
     }
 

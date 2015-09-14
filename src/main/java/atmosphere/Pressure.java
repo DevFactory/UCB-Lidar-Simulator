@@ -82,7 +82,7 @@ public class Pressure extends Function {
         series = chart.addSeries("Pressure(Temperature)", this.pressures, this.temperatures);
         series.setLineColor(color);
         series.setMarkerColor(color);
-        series.setMarker(SeriesMarker.CIRCLE);
+        series.setMarker(SeriesMarker.NONE);
         series.setLineStyle(SeriesLineStyle.SOLID);
         return chart;
     }

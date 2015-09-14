@@ -15,8 +15,12 @@ import java.util.Collection;
  */
 public class Mie extends Function {
 
-    private Collection<Number> xData = new ArrayList<Number>();
-    private Collection<Number> yData = new ArrayList<Number>();
+    private Collection<Number> results = new ArrayList<Number>();
+    private Collection<Number> altitudes = new ArrayList<Number>();
+
+    public Mie(Collection<Number> altitudes) {
+        this.altitudes = altitudes;
+    }
 
 
     @Override
@@ -25,16 +29,16 @@ public class Mie extends Function {
     }
 
     @Override
-    protected double getY(double x) {
-        return 10 + Math.sin(x);
+    public double getY(double x) {
+        return Math.sin(0.25 * Math.PI * Math.pow(x, 2.0)) - (0.1 * Math.cos(0.5 * Math.PI * Math.pow(x, 3.0))) + (Math.pow((0.2 * x), 3.0)) + (0.01 * x + 1);
     }
 
     @Override
     public Chart generateChart(Color color) {
         Chart chart = new Chart(10, 10);
         chart.setChartTitle(getName());
-        chart.setXAxisTitle("X");
-        chart.setYAxisTitle("Y");
+        chart.setXAxisTitle("Mie");
+        chart.setYAxisTitle("Altitude");
         chart.getStyleManager().setPlotBackgroundColor(Color.WHITE);
         chart.getStyleManager().setPlotGridLinesColor(Color.GRAY);
         chart.getStyleManager().setChartBackgroundColor(Color.WHITE);
@@ -44,35 +48,18 @@ public class Mie extends Function {
         chart.getStyleManager().setPlotGridLinesVisible(true);
 
         Series series;
-        series = chart.addSeries("y(x)", this.xData, this.yData);
+        series = chart.addSeries("Mie(Altitude)", this.altitudes, this.results);
         series.setLineColor(color);
         series.setMarkerColor(color);
-        series.setMarker(SeriesMarker.CIRCLE);
+        series.setMarker(SeriesMarker.NONE);
         series.setLineStyle(SeriesLineStyle.SOLID);
         return chart;
     }
 
     @Override
     public void generate() {
-        for (int i = 0; i < 100; i++) {
-            this.yData.add(getY(i));
-            this.xData.add(i);
+        for (Number altitude : altitudes) {
+            this.results.add(getY(altitude.floatValue()));
         }
-    }
-
-    public Collection<Number> getxData() {
-        return xData;
-    }
-
-    public void setxData(Collection<Number> xData) {
-        this.xData = xData;
-    }
-
-    public Collection<Number> getyData() {
-        return yData;
-    }
-
-    public void setyData(Collection<Number> yData) {
-        this.yData = yData;
     }
 }

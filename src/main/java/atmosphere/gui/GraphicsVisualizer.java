@@ -6,7 +6,6 @@
 package atmosphere.gui;
 
 import atmosphere.Atmosphere;
-import atmosphere.MyMain;
 import atmosphere.Mie;
 import atmosphere.Pressure;
 import atmosphere.Rayleigh;
@@ -15,17 +14,8 @@ import atmosphere.functions.plotter.FunctionPlotter;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JLabel;
-import javax.swing.SwingUtilities;
-import jdk.nashorn.internal.runtime.AccessorProperty;
 
 /**
  *
@@ -78,7 +68,7 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
     }
 
     private void createMieTab(Collection<Number> data, Color color) {
-        Mie mie = new Mie();
+        Mie mie = new Mie(data);
         mie.generate();
         this.functionPlotter.setChart(mie.generateChart(color));
         this.miePanel = this.functionPlotter.getChartPanel();

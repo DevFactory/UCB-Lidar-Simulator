@@ -1,13 +1,12 @@
 package atmosphere.functions;
 
 import com.xeiam.xchart.Chart;
-import java.awt.Color;
 
-import java.util.Collection;
+import java.awt.*;
 
 public abstract class Function {
 
-    protected abstract double getY(double x);
+    public abstract double getY(double x);
 
     protected abstract String getName();
 

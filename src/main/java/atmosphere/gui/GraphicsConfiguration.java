@@ -181,8 +181,9 @@ public class GraphicsConfiguration extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
+        float f = Float.parseFloat(this.initialAltitudeTextField.getText());
         ArrayList<Number> data = new ArrayList<Number>();
-        for (int i = Integer.parseInt(this.initialAltitudeTextField.getText()); i <= Integer.parseInt(this.finalAltitudeTextField.getText()); i++) {
+        for (float i = Float.parseFloat(this.initialAltitudeTextField.getText()) ; i <= Float.parseFloat(this.finalAltitudeTextField.getText()); i+=0.001) {
             data.add(i);
         }
         colors.add(0, obtainSelectedColor(this.temperatureColorComboBox));

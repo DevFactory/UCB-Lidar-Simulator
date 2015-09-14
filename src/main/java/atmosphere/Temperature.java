@@ -76,7 +76,7 @@ public class Temperature extends Function {
         series = chart.addSeries("Temperature(Altitude)", this.results, this.altitudes);
         series.setLineColor(color);
         series.setMarkerColor(color);
-        series.setMarker(SeriesMarker.CIRCLE);
+        series.setMarker(SeriesMarker.NONE);
         series.setLineStyle(SeriesLineStyle.SOLID);
         return chart;
     }

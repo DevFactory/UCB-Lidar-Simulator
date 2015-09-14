@@ -16,7 +16,7 @@ public class Atmosphere extends Function {
     private Rayleigh rayleigh = new Rayleigh();
 
     @Override
-    protected double getY(double x) {
+    public double getY(double x) {
         return 0;
     }
 
