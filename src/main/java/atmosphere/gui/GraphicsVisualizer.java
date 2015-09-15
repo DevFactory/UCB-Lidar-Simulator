@@ -27,6 +27,7 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
      * Creates new form GraphicsVisualizer
      */
     private Temperature temperature;
+
     public GraphicsVisualizer() {
         initComponents();
         makeFrameFullSize();
@@ -89,13 +90,13 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
     }
     
     private void createAtmosphereTab(Collection<Number> data, Color colorA, Color colorB){
-        Temperature temperature = new Temperature(data);
-        temperature.generate();
+        Mie mie = new Mie(data);
+        mie.generate();
 
         Rayleigh rayleigh = new Rayleigh(data);
         rayleigh.generate();
         
-        Atmosphere atmosphere = new Atmosphere(temperature,rayleigh);
+        Atmosphere atmosphere = new Atmosphere(mie, rayleigh);
         
         this.functionPlotter.setChart(atmosphere.generateChart(colorA));
         this.atmospherePanel = this.functionPlotter.getChartPanel();

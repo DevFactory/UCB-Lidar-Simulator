@@ -22,6 +22,8 @@ public class Mie extends Function {
         this.altitudes = altitudes;
     }
 
+    public Mie() {
+    }
 
     @Override
     protected String getName() {
@@ -61,5 +63,21 @@ public class Mie extends Function {
         for (Number altitude : altitudes) {
             this.results.add(getY(altitude.floatValue()));
         }
+    }
+
+    public Collection<Number> getResults() {
+        return results;
+    }
+
+    public void setResults(Collection<Number> results) {
+        this.results = results;
+    }
+
+    public Collection<Number> getAltitudes() {
+        return altitudes;
+    }
+
+    public void setAltitudes(Collection<Number> altitudes) {
+        this.altitudes = altitudes;
     }
 }

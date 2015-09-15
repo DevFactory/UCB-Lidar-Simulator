@@ -17,8 +17,8 @@ public class IntegralSolver {
         this.function = function;
     }
 
-    protected float integration(float a, float b) {
-        float sum = 0;
+    public double integration(double a, double b) {
+        double sum = 0;
         for (int k = 0; k < this.DEFAULTINTEGRATIONPRESICION; k++) {
             sum += this.function.getY(a + k * (b - a) / this.DEFAULTINTEGRATIONPRESICION);
         }

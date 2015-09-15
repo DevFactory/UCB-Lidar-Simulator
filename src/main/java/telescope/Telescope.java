@@ -19,6 +19,7 @@ public class Telescope {
     private double k2;//Conic constant for secondary mirror
     private double qp;
     private double qR2;
+    private double Ar; //Effective Telescope Area
 
     public Telescope() {
     }
@@ -31,6 +32,14 @@ public class Telescope {
         this.q = q;
         this.e = e;
         this.p = p;
+    }
+
+    public double getAr() {
+        return Ar;
+    }
+
+    public void setAr(double ar) {
+        Ar = ar;
     }
 
     public void computeSystemFocalLength() {
