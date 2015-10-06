@@ -6,17 +6,17 @@
 package atmosphere.functions;
 
 import com.xeiam.xchart.Chart;
-import java.awt.Color;
+
+import java.awt.*;
 
 /**
- *
  * @author Internet
  */
-public class TestFunction extends Function{
+public class TestFunction extends Function {
 
     @Override
     public double getY(double x) {
-       return x/(Math.pow(x,2)-1);
+        return (1 / (Math.pow((x - 1), 3)));
     }
 
     @Override
@@ -33,5 +33,5 @@ public class TestFunction extends Function{
     protected void generate() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

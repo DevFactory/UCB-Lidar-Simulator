@@ -3,6 +3,7 @@ package lidar;
 import atmosphere.Mie;
 import atmosphere.Rayleigh;
 import laser.Laser;
+import linkbudget.LinkBudget;
 import math.IntegralSolver;
 import monochromator.Monochromator;
 import telescope.Telescope;
@@ -24,6 +25,7 @@ public class Lidar {
     private Monochromator monochromator = new Monochromator();
     private Telescope telescope = new Telescope();
     private Laser laser = new Laser();
+    private LinkBudget linkBudget = new LinkBudget();
     private double k; //System constant
 
     public Lidar() {

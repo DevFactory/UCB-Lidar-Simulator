@@ -5,31 +5,42 @@
  */
 package math;
 
-import atmosphere.functions.Function;
+import atmosphere.functions.PowFunction;
 import atmosphere.functions.TestFunction;
-import com.xeiam.xchart.Chart;
-import java.awt.Color;
 import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.text.DecimalFormat;
+
+import static jdk.nashorn.internal.objects.NativeMath.round;
+
 /**
- *
  * @author Internet
  */
-public class IntegralSolverTest extends TestCase  {
-    
+public class IntegralSolverTest extends TestCase {
+
     private IntegralSolver integralSolver;
-    
-   @Before
+    private DecimalFormat decimalFormat;
+
+    @Before
     public void setUp() {
         this.integralSolver = new IntegralSolver();
+        this.decimalFormat = new DecimalFormat("#.00");
     }
-    
+
     @Test
-    public void testShouldIntegrateFunction(){
+    public void testShouldIntegrateFunctionWithPositiveRange() {
+
+        PowFunction powFunction = new PowFunction();
+        this.integralSolver.setFunction(powFunction);
+        assertEquals(this.decimalFormat.format(41.66666), this.decimalFormat.format(this.integralSolver.integration(0, 5)));
+    }
+
+    @Test
+    public void testShouldIntegrateFunctionWithNegativeRange() {
         TestFunction testFunction = new TestFunction();
         this.integralSolver.setFunction(testFunction);
-        assertEquals(Math.log(Math.sqrt(8/3)),this.integralSolver.integration(2, 3));
+        assertEquals(this.decimalFormat.format(-5.0 / 72.0), this.decimalFormat.format(this.integralSolver.integration(-2, -1)));
     }
 }

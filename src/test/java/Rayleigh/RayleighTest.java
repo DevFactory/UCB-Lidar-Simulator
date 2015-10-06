@@ -1,4 +1,4 @@
-package Rayleigh;
+package rayleigh;
 
 import atmosphere.Pressure;
 import atmosphere.Rayleigh;
@@ -31,10 +31,9 @@ public class RayleighTest extends TestCase {
         this.rayleigh = new Rayleigh(this.altitudes);
     }
 
-//    @Test
-//    public void testShouldReturnCorrectNS() {
-//        this.expected = 2.546899952596164E25;
-//        assertEquals(expected, this.rayleigh.getNS(1013.25, 288.15));
-//    }
+    @Test
+    public void testShouldReturnNull() {
+        assertEquals(null, null);
+    }
 
 }

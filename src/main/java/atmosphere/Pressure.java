@@ -18,16 +18,16 @@ import java.util.Collection;
  */
 public class Pressure extends Function {
 
-    private Collection<Number> temperatures = new ArrayList<Number>();
+    private Collection<Number> altitudes = new ArrayList<Number>();
     private Collection<Number> pressures = new ArrayList<Number>();
-    private double seaLevelPressure, temperatureLapseRate, seaLevelTemperature, altittude;
+    private double seaLevelPressure, temperatureLapseRate, seaLevelTemperature;
     private double constant = 5.2561;
 
-    public Pressure(ArrayList<Number> temperatures, double seaLevelPressure, double temperatureLapseRate, double altittude, double seaLevelTemperature) {
-        this.temperatures = temperatures;
+    public Pressure(ArrayList<Number> altitudes, double seaLevelPressure, double temperatureLapseRate, double seaLevelTemperature) {
+        this.altitudes = altitudes;
         this.seaLevelPressure = seaLevelPressure;
         this.temperatureLapseRate = temperatureLapseRate;
-        this.altittude = altittude;
+
         this.seaLevelTemperature = seaLevelTemperature;
     }
 
@@ -41,8 +41,8 @@ public class Pressure extends Function {
         this.seaLevelTemperature = 288.15;//Kelvin
     }
 
-    public Pressure(Collection<Number> temperatures) {
-        this.temperatures = temperatures;
+    public Pressure(Collection<Number> altitudes) {
+        this.altitudes = altitudes;
         //this.seaLevelPressure = 2116.2; //lb/SquareFoot
         this.seaLevelPressure = 1013.25; //hPa
         //this.temperatureLapseRate = -0.003566; //Rankine/Foot
@@ -64,12 +64,11 @@ public class Pressure extends Function {
 
     @Override
     public Chart generateChart(Color color) {
-        //return QuickChart.getChart(getName(), "Presion", "Altura(Km.)", "Presion(Altura)", this.pressures, this.temperatures);
         
         Chart chart = new Chart(10, 10);
         chart.setChartTitle(getName());
-        chart.setXAxisTitle("Pressure");
-        chart.setYAxisTitle("Temperature (ºC)");
+        chart.setXAxisTitle("Altitude");
+        chart.setYAxisTitle("Pressure");
         chart.getStyleManager().setPlotBackgroundColor(Color.WHITE);
         chart.getStyleManager().setPlotGridLinesColor(Color.GRAY);
         chart.getStyleManager().setChartBackgroundColor(Color.WHITE);
@@ -79,7 +78,7 @@ public class Pressure extends Function {
         chart.getStyleManager().setPlotGridLinesVisible(true);
  
         Series series;
-        series = chart.addSeries("Pressure(Temperature)", this.pressures, this.temperatures);
+        series = chart.addSeries("Pressure(Temperature)", this.altitudes, this.pressures);
         series.setLineColor(color);
         series.setMarkerColor(color);
         series.setMarker(SeriesMarker.NONE);
@@ -89,17 +88,17 @@ public class Pressure extends Function {
 
 
     public void generate() {
-        for (Number temperature : temperatures) {
-            this.pressures.add(getY(temperature.doubleValue()*1000));
+        for (Number altitude : altitudes) {
+            this.pressures.add(getY(altitude.doubleValue()*1000));
         }
     }
 
     public Collection<Number> getTemperatures() {
-        return temperatures;
+        return altitudes;
     }
 
     public void setTemperatures(Collection<Number> temperatures) {
-        this.temperatures = temperatures;
+        this.altitudes = temperatures;
     }
 
     public Collection<Number> getPressures() {
@@ -132,14 +131,6 @@ public class Pressure extends Function {
 
     public void setSeaLevelTemperature(double seaLevelTemperature) {
         this.seaLevelTemperature = seaLevelTemperature;
-    }
-
-    public double getAltittude() {
-        return altittude;
-    }
-
-    public void setAltittude(double altittude) {
-        this.altittude = altittude;
     }
 
     public double getConstant() {

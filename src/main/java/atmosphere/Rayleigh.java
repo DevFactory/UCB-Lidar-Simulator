@@ -153,7 +153,7 @@ public class Rayleigh extends Function {
         //return QuickChart.getChart(getName(), "Sigma", "Alfa Scattering", "Alfa(sigma)", this.sigma, this.alphaScatering);
         Chart chart = new Chart(10, 10);
         chart.setChartTitle(getName());
-        chart.setXAxisTitle("Sigma");
+        chart.setXAxisTitle("Altitude");
         chart.setYAxisTitle("Alpha Scattering");
         chart.getStyleManager().setPlotBackgroundColor(Color.WHITE);
         chart.getStyleManager().setPlotGridLinesColor(Color.GRAY);
@@ -164,7 +164,7 @@ public class Rayleigh extends Function {
         chart.getStyleManager().setPlotGridLinesVisible(true);
 
         Series series;
-        series = chart.addSeries("Alpha(sigma)", this.sigma, this.alphaScatering);
+        series = chart.addSeries("Alpha(Altitude)", this.altitudes, this.alphaScatering);
         series.setLineColor(color);
         series.setMarkerColor(color);
         series.setMarker(SeriesMarker.NONE);
@@ -177,7 +177,7 @@ public class Rayleigh extends Function {
         //return QuickChart.getChart(getName(), "Alfa", "Beta Scattering", "Beta(Alfa)", this.alphaScatering, this.betaScatering);
         Chart chart = new Chart(10, 10);
         chart.setChartTitle(getName());
-        chart.setXAxisTitle("Alpha");
+        chart.setXAxisTitle("Altitude");
         chart.setYAxisTitle("Beta Scattering");
         chart.getStyleManager().setPlotBackgroundColor(Color.WHITE);
         chart.getStyleManager().setPlotGridLinesColor(Color.GRAY);
@@ -188,7 +188,7 @@ public class Rayleigh extends Function {
         chart.getStyleManager().setPlotGridLinesVisible(true);
 
         Series series;
-        series = chart.addSeries("Beta(Alpha)", this.alphaScatering, this.betaScatering);
+        series = chart.addSeries("Beta(Altitude)", this.altitudes, this.betaScatering);
         series.setLineColor(color);
         series.setMarkerColor(color);
         series.setMarker(SeriesMarker.NONE);

@@ -42,7 +42,7 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
         colorA = colors.get(0);
         createTemperatureTab(data, colorA);
         colorA = colors.get(1);
-        createPressureTab(this.temperature.getResults(), colorA);
+        createPressureTab(data, colorA);
         colorA = colors.get(2);
         createMieTab(data, colorA);
         colorA = colors.get(3);

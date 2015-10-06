@@ -62,8 +62,8 @@ public class Temperature extends Function {
     public Chart generateChart(Color color) {
         Chart chart = new Chart(10, 10);
         chart.setChartTitle(getName());
-        chart.setXAxisTitle("Temperature");
-        chart.setYAxisTitle("Altitude (Km.)");
+        chart.setYAxisTitle("Temperature");
+        chart.setXAxisTitle("Altitude (Km.)");
         chart.getStyleManager().setPlotBackgroundColor(Color.WHITE);
         chart.getStyleManager().setPlotGridLinesColor(Color.GRAY);
         chart.getStyleManager().setChartBackgroundColor(Color.WHITE);
@@ -73,7 +73,7 @@ public class Temperature extends Function {
         chart.getStyleManager().setPlotGridLinesVisible(true);
 
         Series series;
-        series = chart.addSeries("Temperature(Altitude)", this.results, this.altitudes);
+        series = chart.addSeries("Temperature(Altitude)", this.altitudes, this.results);
         series.setLineColor(color);
         series.setMarkerColor(color);
         series.setMarker(SeriesMarker.NONE);
@@ -112,4 +112,5 @@ public class Temperature extends Function {
     public void setResults(Collection<Number> results) {
         this.results = results;
     }
+    
 }
