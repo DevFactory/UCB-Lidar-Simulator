@@ -16,28 +16,28 @@ import java.util.Iterator;
  */
 public class Rayleigh extends Function {
 
-    private final double AVOGADRO = 6.0221367e23;
-    private final double GASMOLARCONSTANT = 8.314116;
+    private final double NA = 6.0221367e23;//avogadro's number
+    private final double R = 8.314116;//Gas molar Constant
     private final double PI = Math.PI;
-    private double floorLevelTemperature = 15.0;// T0-Celsius
-    private double floorLevelPressure = 1013.25;//P0-HPa
+    private double seaLevelTemperature = 15.0;// T0-Celsius
+    private double seaLevelPressure = 1013.25;//P0-HPa
     private Collection<Number> altitudes = new ArrayList<Number>();//r
     private Collection<Number> pressures = new ArrayList<Number>();//
     private Collection<Number> temperatures = new ArrayList<Number>();//
     private Collection<Number> ns = new ArrayList<Number>();//
     private Collection<Number> refractiveIndex = new ArrayList<Number>();//
     private Collection<Number> sigma = new ArrayList<Number>();//
-    private Collection<Number> alphaScatering = new ArrayList<Number>();//
-    private Collection<Number> betaScatering = new ArrayList<Number>();//
+    private Collection<Number> alphaScattering = new ArrayList<Number>();//
+    private Collection<Number> betaScattering = new ArrayList<Number>();//
     private double kingFactor;//
     private double wavelength = 300.0;//Lambda-nm
     private double t;//US Standard atmosphere temperature profile
     private double p;//US Standard atmosphere pressure profile
     private double rayleighExtinction;
 
-    public Rayleigh(double floorLevelTemperature, double floorLevelPressure, Collection<Number> altitudes, double wavelength) {
-        this.floorLevelTemperature = floorLevelTemperature;
-        this.floorLevelPressure = floorLevelPressure;
+    public Rayleigh(double seaLevelTemperature, double seaLevelPressure, Collection<Number> altitudes, double wavelength) {
+        this.seaLevelTemperature = seaLevelTemperature;
+        this.seaLevelPressure = seaLevelPressure;
         this.altitudes = altitudes;
         this.wavelength = wavelength;
     }
@@ -50,44 +50,44 @@ public class Rayleigh extends Function {
     }
 
     public void generate() {
-        this.floorLevelTemperature = this.floorLevelTemperature + 273.15;
+        this.seaLevelTemperature = this.seaLevelTemperature + 273.15;
         generateTemperatureAndPressure();
         computeNs();
         computeRayleighExtinction();
         computeRefractiveIndex();
         computeKingFactor();
         computeSigma();
-        computeAlfaScatering();
-        computeBetaScatering();
+        computeAlfaScattering();
+        computeBetaScattering();
     }
 
     public void generateTemperatureAndPressure() {
 
         for (Number altitude : altitudes) {
-            this.t = this.floorLevelTemperature - (6.5 * altitude.floatValue());
+            this.t = this.seaLevelTemperature - (6.5 * altitude.floatValue());
             this.temperatures.add(this.t);
-            this.p = this.floorLevelPressure * (Math.pow((this.t / this.floorLevelTemperature), 5.256));
+            this.p = this.seaLevelPressure * (Math.pow((this.t / this.seaLevelTemperature), 5.2561));
             this.pressures.add(this.p);
         }
     }
 
     public void computeNs() {
-        double aux;
-
         Iterator<Number> temperatureIterator = this.temperatures.iterator();
         Iterator<Number> pressureIterator = this.pressures.iterator();
-
         while (temperatureIterator.hasNext()) {
             float temperature = temperatureIterator.next().floatValue();
             float pressure = pressureIterator.next().floatValue();
-            aux = AVOGADRO / (22.4141 * 273.15 / 1013.25 * 1e3 * (pressure / temperature));
-            ns.add(aux);
+            ns.add(obtainNS(pressure, temperature));
         }
+    }
+
+    public double obtainNS(double pressure, double temperature) {
+        return (this.NA / 22.4141) * (273.15 / 1013.25) * 1e3 * (pressure / temperature);
     }
 
     public void computeRayleighExtinction() {
         this.rayleighExtinction = this.wavelength * 1e-3;
-        System.out.println("Lam" + this.rayleighExtinction);
+
     }
 
     public void computeRefractiveIndex() {
@@ -105,10 +105,6 @@ public class Rayleigh extends Function {
     }
 
     public void computeKingFactor() {
-        double kingfa, kingfb, kingfc, kingfd;
-
-        kingfa = (78.084 * (1.034 + 3.17e-4 / Math.pow(this.rayleighExtinction, 2.0)));
-        System.out.println("Kingfa " + kingfa);
         this.kingFactor = (78.084 * (1.034 + 3.17e-4 / Math.pow(this.rayleighExtinction, 4.0)) + 20.946 * (1.096 + 1.385e-3 / Math.pow(this.rayleighExtinction, 2.0) + 1.448e-4 / Math.pow(this.rayleighExtinction, 4.0)) + 0.934 * 1.00 + 0.036 * 1.15) / (78.084 + 20.946 + 0.934 + 0.036);
     }
 
@@ -126,7 +122,7 @@ public class Rayleigh extends Function {
         }
     }
 
-    public void computeAlfaScatering() {
+    public void computeAlfaScattering() {
         double aux;
         Iterator<Number> sigmaIterator = this.sigma.iterator();
         Iterator<Number> nsIterator = this.ns.iterator();
@@ -135,22 +131,22 @@ public class Rayleigh extends Function {
             float sigma = sigmaIterator.next().floatValue();
             float ns = nsIterator.next().floatValue();
             aux = sigma * ns * 1e3;
-            this.alphaScatering.add(aux);
+            this.alphaScattering.add(aux);
         }
     }
 
-    public void computeBetaScatering() {
+    public void computeBetaScattering() {
         double aux;
 
-        for (Number number : this.alphaScatering) {
+        for (Number number : this.alphaScattering) {
             aux = number.floatValue() / 8.37758041;
-            this.betaScatering.add(aux);
+            this.betaScattering.add(aux);
         }
 
     }
 
     public Chart getAlfaScatteringChart(Color color) {
-        //return QuickChart.getChart(getName(), "Sigma", "Alfa Scattering", "Alfa(sigma)", this.sigma, this.alphaScatering);
+        //return QuickChart.getChart(getName(), "Sigma", "Alfa Scattering", "Alfa(sigma)", this.sigma, this.alphaScattering);
         Chart chart = new Chart(10, 10);
         chart.setChartTitle(getName());
         chart.setXAxisTitle("Altitude");
@@ -164,7 +160,7 @@ public class Rayleigh extends Function {
         chart.getStyleManager().setPlotGridLinesVisible(true);
 
         Series series;
-        series = chart.addSeries("Alpha(Altitude)", this.altitudes, this.alphaScatering);
+        series = chart.addSeries("Alpha(Altitude)", this.altitudes, this.alphaScattering);
         series.setLineColor(color);
         series.setMarkerColor(color);
         series.setMarker(SeriesMarker.NONE);
@@ -174,7 +170,7 @@ public class Rayleigh extends Function {
     }
 
     public Chart getBetaScatteringChart(Color color) {
-        //return QuickChart.getChart(getName(), "Alfa", "Beta Scattering", "Beta(Alfa)", this.alphaScatering, this.betaScatering);
+        //return QuickChart.getChart(getName(), "Alfa", "Beta Scattering", "Beta(Alfa)", this.alphaScattering, this.betaScattering);
         Chart chart = new Chart(10, 10);
         chart.setChartTitle(getName());
         chart.setXAxisTitle("Altitude");
@@ -188,7 +184,7 @@ public class Rayleigh extends Function {
         chart.getStyleManager().setPlotGridLinesVisible(true);
 
         Series series;
-        series = chart.addSeries("Beta(Altitude)", this.altitudes, this.betaScatering);
+        series = chart.addSeries("Beta(Altitude)", this.altitudes, this.betaScattering);
         series.setLineColor(color);
         series.setMarkerColor(color);
         series.setMarker(SeriesMarker.NONE);
@@ -212,32 +208,32 @@ public class Rayleigh extends Function {
         return null;
     }
 
-    public double getAVOGADRO() {
-        return AVOGADRO;
+    public double getNA() {
+        return NA;
     }
 
-    public double getGASMOLARCONSTANT() {
-        return GASMOLARCONSTANT;
+    public double getR() {
+        return R;
     }
 
     public double getPI() {
         return PI;
     }
 
-    public double getFloorLevelTemperature() {
-        return floorLevelTemperature;
+    public double getSeaLevelTemperature() {
+        return seaLevelTemperature;
     }
 
-    public void setFloorLevelTemperature(double floorLevelTemperature) {
-        this.floorLevelTemperature = floorLevelTemperature;
+    public void setSeaLevelTemperature(double seaLevelTemperature) {
+        this.seaLevelTemperature = seaLevelTemperature;
     }
 
-    public double getFloorLevelPressure() {
-        return floorLevelPressure;
+    public double getSeaLevelPressure() {
+        return seaLevelPressure;
     }
 
-    public void setFloorLevelPressure(double floorLevelPressure) {
-        this.floorLevelPressure = floorLevelPressure;
+    public void setSeaLevelPressure(double seaLevelPressure) {
+        this.seaLevelPressure = seaLevelPressure;
     }
 
     public Collection<Number> getAltitudes() {
@@ -289,19 +285,19 @@ public class Rayleigh extends Function {
     }
 
     public Collection<Number> getAlfaScatering() {
-        return alphaScatering;
+        return alphaScattering;
     }
 
     public void setAlfaScatering(Collection<Number> alfaScatering) {
-        this.alphaScatering = alfaScatering;
+        this.alphaScattering = alfaScatering;
     }
 
-    public Collection<Number> getBetaScatering() {
-        return betaScatering;
+    public Collection<Number> getBetaScattering() {
+        return betaScattering;
     }
 
-    public void setBetaScatering(Collection<Number> betaScatering) {
-        this.betaScatering = betaScatering;
+    public void setBetaScattering(Collection<Number> betaScattering) {
+        this.betaScattering = betaScattering;
     }
 
     public double getKingFactor() {

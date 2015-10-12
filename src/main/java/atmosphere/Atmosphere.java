@@ -50,7 +50,7 @@ public class Atmosphere extends Function {
 
         Series series1, series2;
 
-        series1 = chart.addSeries("Beta(Alpha)", this.rayleigh.getAltitudes(), this.rayleigh.getBetaScatering());
+        series1 = chart.addSeries("Beta(Alpha)", this.rayleigh.getAltitudes(), this.rayleigh.getBetaScattering());
         series1.setLineColor(color);
         series1.setMarkerColor(color);
         series1.setMarker(SeriesMarker.NONE);

@@ -12,12 +12,11 @@ import java.util.Collection;
 
 public class Temperature extends Function {
 
-    private double seaLevelTemperature, temperatureLapseRate;
+    private double seaLevelTemperature;
     private Collection<Number> altitudes, results;
 
-    public Temperature(double SLT, double TLR) {
+    public Temperature(double SLT) {
         this.seaLevelTemperature = SLT;
-        this.temperatureLapseRate = TLR;
         this.results = new ArrayList<Number>();
     }
 
@@ -25,11 +24,9 @@ public class Temperature extends Function {
     public Temperature(Collection<Number> altitudes) {
         this.altitudes = altitudes;
         this.results = new ArrayList<Number>();
+        this.seaLevelTemperature = 15.0;//Celsius
         //this.seaLevelTemperature = 59.0;//Fahrenheit
         //this.seaLevelTemperature = 288.15;//Kelvin
-        this.seaLevelTemperature = 15.0;//Celsius
-        //this.temperatureLapseRate = -0.003566; //Rankine/Foot
-        this.temperatureLapseRate = -0.00002370858424;//Celsius/Meter
     }
 
 
@@ -37,8 +34,6 @@ public class Temperature extends Function {
         //this.seaLevelTemperature = 59.0;//Fahrenheit
         //this.seaLevelTemperature = 288.15;//Kelvin
         this.seaLevelTemperature = 15.0;//Celsius
-        //this.temperatureLapseRate = -0.003566; //Rankine/Foot
-        this.temperatureLapseRate = -0.00002370858424;//Celsius/Meter
         this.results = new ArrayList<Number>();
     }
 
@@ -62,7 +57,7 @@ public class Temperature extends Function {
     public Chart generateChart(Color color) {
         Chart chart = new Chart(10, 10);
         chart.setChartTitle(getName());
-        chart.setYAxisTitle("Temperature");
+        chart.setYAxisTitle("Temperature (ºC)");
         chart.setXAxisTitle("Altitude (Km.)");
         chart.getStyleManager().setPlotBackgroundColor(Color.WHITE);
         chart.getStyleManager().setPlotGridLinesColor(Color.GRAY);
@@ -89,14 +84,6 @@ public class Temperature extends Function {
         this.seaLevelTemperature = seaLevelTemperature;
     }
 
-    public double getTemperatureLapseRate() {
-        return temperatureLapseRate;
-    }
-
-    public void setTemperatureLapseRate(double temperatureLapseRate) {
-        this.temperatureLapseRate = temperatureLapseRate;
-    }
-
     public Collection<Number> getAltitudes() {
         return altitudes;
     }
@@ -112,5 +99,5 @@ public class Temperature extends Function {
     public void setResults(Collection<Number> results) {
         this.results = results;
     }
-    
+
 }
