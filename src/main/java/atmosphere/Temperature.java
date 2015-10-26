@@ -39,13 +39,13 @@ public class Temperature extends Function {
 
     public void generate() {
         for (Number altitude : altitudes) {
-            this.results.add(getY(altitude.floatValue() * 1000));
+            this.results.add(getY(altitude.floatValue()));
         }
     }
 
     @Override
     public double getY(double x) {
-        return this.seaLevelTemperature - (6.5 * (x / 1000));
+        return this.seaLevelTemperature - (6.5 * ((x*1000) / 1000));
     }
 
     @Override

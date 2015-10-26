@@ -1,7 +1,9 @@
 package lidar;
 
 import atmosphere.Mie;
+import atmosphere.Pressure;
 import atmosphere.Rayleigh;
+import atmosphere.Temperature;
 import laser.Laser;
 import linkbudget.LinkBudget;
 import math.IntegralSolver;
@@ -22,6 +24,8 @@ public class Lidar {
     private Collection<Number> results = new ArrayList<Number>();
     private Rayleigh rayleigh = new Rayleigh();
     private Mie mie = new Mie();
+    private Temperature temperature = new Temperature();
+    private Pressure pressure = new Pressure();
     private Monochromator monochromator = new Monochromator();
     private Telescope telescope = new Telescope();
     private Laser laser = new Laser();
@@ -51,5 +55,57 @@ public class Lidar {
 
     public void equation() {
 
+    }
+
+    public static double getLIGHTSPEEDCONSTANT() {
+        return LIGHTSPEEDCONSTANT;
+    }
+
+    public IntegralSolver getIntegralSolver() {
+        return integralSolver;
+    }
+
+    public Collection<Number> getAltitudes() {
+        return altitudes;
+    }
+
+    public Collection<Number> getResults() {
+        return results;
+    }
+
+    public Rayleigh getRayleigh() {
+        return rayleigh;
+    }
+
+    public Mie getMie() {
+        return mie;
+    }
+
+    public Temperature getTemperature() {
+        return temperature;
+    }
+
+    public Pressure getPressure() {
+        return pressure;
+    }
+
+    public Monochromator getMonochromator() {
+        return monochromator;
+    }
+
+    public Telescope getTelescope() {
+        return telescope;
+    }
+
+    public Laser getLaser() {
+        return laser;
+    }
+
+    public LinkBudget getLinkBudget() {
+        return linkBudget;
+    }
+
+    public double getK() {
+        return k;
     }
 }

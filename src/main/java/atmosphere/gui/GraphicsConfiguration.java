@@ -1,9 +1,9 @@
 package atmosphere.gui;
 
 import java.awt.Color;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
 
 public class GraphicsConfiguration extends javax.swing.JFrame {
 
@@ -31,7 +31,7 @@ public class GraphicsConfiguration extends javax.swing.JFrame {
         temperatureColorComboBox = new javax.swing.JComboBox();
         pressureColorComboBox = new javax.swing.JComboBox();
         mieColorComboBox = new javax.swing.JComboBox();
-        alfaRayleighColorComboBox = new javax.swing.JComboBox();
+        alphaRayleighColorComboBox = new javax.swing.JComboBox();
         betaRayleighColorComboBox = new javax.swing.JComboBox();
         backButton = new javax.swing.JButton();
         generateButton = new javax.swing.JButton();
@@ -69,7 +69,7 @@ public class GraphicsConfiguration extends javax.swing.JFrame {
 
         mieColorComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Red", "Blue", "Black", "Green" }));
 
-        alfaRayleighColorComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Red", "Blue", "Black", "Green" }));
+        alphaRayleighColorComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Red", "Blue", "Black", "Green"}));
 
         betaRayleighColorComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Red", "Blue", "Black", "Green" }));
 
@@ -130,7 +130,7 @@ public class GraphicsConfiguration extends javax.swing.JFrame {
                                             .addComponent(initialAltitudeTextField))
                                         .addComponent(pressureColorComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(mieColorComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(alfaRayleighColorComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(alphaRayleighColorComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(betaRayleighColorComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -164,7 +164,7 @@ public class GraphicsConfiguration extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(alfaRayleighColorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(alphaRayleighColorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -181,15 +181,25 @@ public class GraphicsConfiguration extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
-        float f = Float.parseFloat(this.initialAltitudeTextField.getText());
+        double initial = Double.parseDouble(this.initialAltitudeTextField.getText());
+        double ending = Double.parseDouble(this.finalAltitudeTextField.getText());
+        DecimalFormat df = new DecimalFormat("#.000");
+        double var = initial;
         ArrayList<Number> data = new ArrayList<Number>();
-        for (float i = Float.parseFloat(this.initialAltitudeTextField.getText()) ; i <= Float.parseFloat(this.finalAltitudeTextField.getText()); i+=0.001) {
-            data.add(i);
+
+        while (var <= ending){
+            data.add(var);
+            var = var + 0.001;
         }
+
+        //for (float i = Float.parseFloat(this.initialAltitudeTextField.getText()); i <= Float.parseFloat(this.finalAltitudeTextField.getText()); i+=0.001) {
+          //  data.add(i);
+        //}
+
         colors.add(0, obtainSelectedColor(this.temperatureColorComboBox));
         colors.add(1, obtainSelectedColor(this.pressureColorComboBox));
         colors.add(2, obtainSelectedColor(this.mieColorComboBox));
-        colors.add(3, obtainSelectedColor(this.alfaRayleighColorComboBox));
+        colors.add(3, obtainSelectedColor(this.alphaRayleighColorComboBox));
         colors.add(4, obtainSelectedColor(this.betaRayleighColorComboBox));
 
         GraphicsVisualizer graphicsVisualizer = new GraphicsVisualizer(data, colors);
@@ -240,7 +250,7 @@ public class GraphicsConfiguration extends javax.swing.JFrame {
     }
     private ArrayList<Color> colors = new ArrayList<Color>();
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox alfaRayleighColorComboBox;
+    private javax.swing.JComboBox alphaRayleighColorComboBox;
     private javax.swing.JButton backButton;
     private javax.swing.JComboBox betaRayleighColorComboBox;
     private javax.swing.JTextField finalAltitudeTextField;
