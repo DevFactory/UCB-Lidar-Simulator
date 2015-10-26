@@ -105,7 +105,7 @@ public class Rayleigh extends Function {
     }
 
     public void computeKingFactor() {
-        this.kingFactor = (78.084 * (1.034 + 3.17e-4 / Math.pow(this.rayleighExtinction, 4.0)) + 20.946 * (1.096 + 1.385e-3 / Math.pow(this.rayleighExtinction, 2.0) + 1.448e-4 / Math.pow(this.rayleighExtinction, 4.0)) + 0.934 * 1.00 + 0.036 * 1.15) / (78.084 + 20.946 + 0.934 + 0.036);
+        this.kingFactor = (78.084 * (1.034 + 3.17e-4 / Math.pow(this.rayleighExtinction, 2.0)) + 20.946 * (1.096 + 1.385e-3 / Math.pow(this.rayleighExtinction, 2.0) + 1.448e-4 / Math.pow(this.rayleighExtinction, 4.0)) + 0.934 * 1.00 + 0.036 * 1.15) / (78.084 + 20.946 + 0.934 + 0.036);
     }
 
     public void computeSigma() {
@@ -117,7 +117,7 @@ public class Rayleigh extends Function {
             float refractiveIndex = refractiveIndexIterator.next().floatValue();
             float ns = nsIterator.next().floatValue();
 
-            aux = (8 * Math.pow(this.PI, 3.0) * Math.pow((Math.pow(refractiveIndex, 2.0) - 1), 2)) / (Math.pow(Math.pow(3 * (this.wavelength * 1e-9), 4.0) * ns, 2.0) * this.kingFactor);
+            aux = (8 * Math.pow(this.PI, 3.0) * Math.pow((Math.pow(refractiveIndex, 2.0) - 1), 2)) / (3*Math.pow((this.wavelength * 1e-9), 4.0) * Math.pow(ns, 2.0) * this.kingFactor);
             this.sigma.add(aux);
         }
     }
