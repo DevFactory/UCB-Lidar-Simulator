@@ -234,8 +234,9 @@ public class StartWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_spanishMenuItemActionPerformed
 
     private void newProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newProjectButtonActionPerformed
-        new ProjectConfigurationWindow();    
+        ProjectConfigurationWindow projectConfigurationWindow = new ProjectConfigurationWindow();    
         this.dispose();
+        projectConfigurationWindow.setVisible(true);
     }//GEN-LAST:event_newProjectButtonActionPerformed
 
     /**

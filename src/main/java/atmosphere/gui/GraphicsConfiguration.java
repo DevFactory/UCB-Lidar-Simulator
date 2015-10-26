@@ -201,9 +201,10 @@ public class GraphicsConfiguration extends javax.swing.JFrame {
         colors.add(2, obtainSelectedColor(this.mieColorComboBox));
         colors.add(3, obtainSelectedColor(this.alphaRayleighColorComboBox));
         colors.add(4, obtainSelectedColor(this.betaRayleighColorComboBox));
-
-        GraphicsVisualizer graphicsVisualizer = new GraphicsVisualizer(data, colors);
         this.dispose();
+        GraphicsVisualizer graphicsVisualizer = new GraphicsVisualizer(data, colors);
+        graphicsVisualizer.setVisible(true);
+        
     }//GEN-LAST:event_generateButtonActionPerformed
     private Color obtainSelectedColor(JComboBox colorComboBox){
         int option = colorComboBox.getSelectedIndex();

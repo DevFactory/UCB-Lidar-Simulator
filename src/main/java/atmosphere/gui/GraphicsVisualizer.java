@@ -49,7 +49,6 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
         colorB = colors.get(4);
         createRayleighTabs(data, colorA, colorB);
         createAtmosphereTab(data, colorA, colorB);
-        this.setVisible(true);
     }
     
     private void createTemperatureTab(Collection<Number> data, Color color) {

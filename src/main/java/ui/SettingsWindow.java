@@ -15,8 +15,12 @@ public class SettingsWindow extends javax.swing.JFrame {
      * Creates new form SettingsWindow
      */
     public SettingsWindow() {
+        
         initComponents();
+        
+        
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -199,7 +203,7 @@ public class SettingsWindow extends javax.swing.JFrame {
         detailsPanelLayout.setVerticalGroup(
             detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(detailsPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
+                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -357,7 +361,7 @@ public class SettingsWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SettingsWindow().setVisible(true);
+              //  new SettingsWindow().setVisible(true);
             }
         });
     }

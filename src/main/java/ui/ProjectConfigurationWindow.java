@@ -20,7 +20,6 @@ public class ProjectConfigurationWindow extends javax.swing.JFrame {
      */
     public ProjectConfigurationWindow() {
         initComponents();
-        this.setVisible(true);
     }
 
     /**
@@ -127,15 +126,19 @@ public class ProjectConfigurationWindow extends javax.swing.JFrame {
         fileSaver.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         fileSaver.setAcceptAllFileFilterUsed(false);
         if (fileSaver.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            this.locationTextField.setText(fileSaver.getSelectedFile().toString()+"/");
+            this.locationTextField.setText(fileSaver.getSelectedFile().toString() + "/");
         } else {
             System.out.println("No Selection ");
         }
     }//GEN-LAST:event_browseButtonActionPerformed
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
-       FileWriter fileWriter = new FileWriter();
-       fileWriter.saveProject(this.nameTextField.getText(), this.locationTextField.getText(), new Lidar());
+        FileWriter fileWriter = new FileWriter();
+        fileWriter.saveProject(this.nameTextField.getText(), this.locationTextField.getText(), new Lidar());
+        SettingsWindow settingsWindow = new SettingsWindow();
+        this.dispose();
+        settingsWindow.setTitle(this.nameTextField.getText()+ " - UCB Lidar Simulator");
+        settingsWindow.setVisible(true);        
     }//GEN-LAST:event_createButtonActionPerformed
 
     /**
