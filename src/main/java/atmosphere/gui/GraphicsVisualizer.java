@@ -16,6 +16,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Collection;
+import ui.StartWindow;
 
 /**
  *
@@ -219,11 +220,19 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
     private void englishMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_englishMenuItemActionPerformed
         System.setProperty("user.language", "en");
         System.setProperty("user.country", "US");
+        StartWindow w = new StartWindow();
+        
+        w.setVisible(true);
+        dispose();
     }//GEN-LAST:event_englishMenuItemActionPerformed
 
     private void spanishMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spanishMenuItemActionPerformed
         System.setProperty("user.language", "es");
         System.setProperty("user.country", "ES");
+        GraphicsConfiguration w = new GraphicsConfiguration();
+        
+        w.setVisible(true);
+        dispose();
     }//GEN-LAST:event_spanishMenuItemActionPerformed
 
     /**

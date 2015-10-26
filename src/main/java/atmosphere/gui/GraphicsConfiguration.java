@@ -3,11 +3,13 @@ package atmosphere.gui;
 import java.awt.Color;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 import javax.swing.JComboBox;
 
 public class GraphicsConfiguration extends javax.swing.JFrame {
 
     public GraphicsConfiguration() {
+        Locale.setDefault(new Locale(System.getProperty("user.language"), System.getProperty("user.country")));
         initComponents();
         this.setVisible(true);
         this.getRootPane().setDefaultButton(this.generateButton);
