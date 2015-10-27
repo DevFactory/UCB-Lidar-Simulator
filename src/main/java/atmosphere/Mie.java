@@ -33,7 +33,7 @@ public class Mie extends Function {
     @Override
     public double getY(double x) {
         //return Math.sin(0.25 * Math.PI * Math.pow(x, 2.0)) - (0.1 * Math.cos(0.5 * Math.PI * Math.pow(x, 3.0))) + (Math.pow((0.2 * x), 3.0)) + (0.01 * x + 1);
-        return 100 + (Math.sin(0.25 * Math.PI * Math.pow(x, 2.0)) + (0.1 * Math.cos(0.5 * Math.PI * Math.pow(x, 3.0))) - (Math.pow((0.2 * x), 3.0)) - (0.01 * x + 1));
+        return (18 + (Math.sin(0.25 * Math.PI * Math.pow(x, 2.0)) + (0.1 * Math.cos(0.5 * Math.PI * Math.pow(x, 3.0))) - (Math.pow((0.2 * x), 3.0)) - (0.01 * x + 1))) / 1500;
     }
 
     @Override
@@ -81,4 +81,5 @@ public class Mie extends Function {
     public void setAltitudes(Collection<Number> altitudes) {
         this.altitudes = altitudes;
     }
+
 }
