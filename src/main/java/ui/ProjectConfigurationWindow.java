@@ -40,29 +40,33 @@ public class ProjectConfigurationWindow extends javax.swing.JFrame {
         cancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Configuration Window");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("UI/Bundle"); // NOI18N
+        setTitle(bundle.getString("ProjectConfigurationWindow.title")); // NOI18N
         setResizable(false);
 
-        nameLabel.setText("Project Name:");
+        nameLabel.setText(bundle.getString("ProjectConfigurationWindow.nameLabel.text")); // NOI18N
+        nameLabel.setToolTipText(bundle.getString("ProjectConfigurationWindow.nameLabel.toolTipText")); // NOI18N
 
-        locationLabel.setText("Project Location:");
+        locationLabel.setText(bundle.getString("ProjectConfigurationWindow.locationLabel.text")); // NOI18N
 
-        browseButton.setText("Browse");
-        browseButton.setToolTipText("Click to browse a location for project creation");
+        browseButton.setText(bundle.getString("ProjectConfigurationWindow.browseButton.text")); // NOI18N
+        browseButton.setToolTipText(bundle.getString("ProjectConfigurationWindow.browseButton.toolTipText")); // NOI18N
         browseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 browseButtonActionPerformed(evt);
             }
         });
 
-        createButton.setText("Create");
+        createButton.setText(bundle.getString("ProjectConfigurationWindow.createButton.text")); // NOI18N
+        createButton.setToolTipText(bundle.getString("ProjectConfigurationWindow.createButton.toolTipText")); // NOI18N
         createButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createButtonActionPerformed(evt);
             }
         });
 
-        cancelButton.setText("Cancel");
+        cancelButton.setText(bundle.getString("ProjectConfigurationWindow.cancelButton.text")); // NOI18N
+        cancelButton.setToolTipText(bundle.getString("ProjectConfigurationWindow.cancelButton.toolTipText")); // NOI18N
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelButtonActionPerformed(evt);
@@ -74,23 +78,22 @@ public class ProjectConfigurationWindow extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(locationLabel)
                             .addComponent(nameLabel))
                         .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nameTextField)
-                            .addComponent(locationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(browseButton))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(cancelButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(createButton)))
-                .addContainerGap())
+                            .addComponent(nameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+                            .addComponent(locationTextField)))
+                    .addComponent(cancelButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(browseButton)
+                    .addComponent(createButton))
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,7 +107,7 @@ public class ProjectConfigurationWindow extends javax.swing.JFrame {
                     .addComponent(locationLabel)
                     .addComponent(locationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(browseButton))
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelButton)
                     .addComponent(createButton))
