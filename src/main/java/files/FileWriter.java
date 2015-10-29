@@ -120,7 +120,7 @@ public class FileWriter {
     public void createDocument(String projectName, SimulationProject project) {
         Element rootElement = createRootElement(projectName);
         if (project.getData() != null) {
-            rootElement.appendChild(createAtmosphereComponent(project.getData().get(0).doubleValue(), project.getData().get(project.getData().size()).doubleValue() + 1));
+            rootElement.appendChild(createAtmosphereComponent(project.getData().get(0).doubleValue(), project.getData().get(project.getData().size() - 1).doubleValue() + 1));
         } else {
             rootElement.appendChild(createAtmosphereComponent(0, 0));
         }

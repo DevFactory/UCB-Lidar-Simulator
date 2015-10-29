@@ -7,6 +7,7 @@ package ui;
 
 import atmosphere.gui.GraphicsConfiguration;
 import java.util.Locale;
+import project.SimulationProject;
 
 /**
  *
@@ -17,11 +18,12 @@ public class SettingsWindow extends javax.swing.JFrame {
     /**
      * Creates new form SettingsWindow
      */
+    SimulationProject simulationProject = SimulationProject.getInstance();
+
     public SettingsWindow() {
         Locale.setDefault(new Locale(System.getProperty("user.language"), System.getProperty("user.country")));
-        initComponents();        
+        initComponents();
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,14 +48,14 @@ public class SettingsWindow extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         atmosphereConfigurationButton = new javax.swing.JButton();
         filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(60, 0), new java.awt.Dimension(60, 0), new java.awt.Dimension(32767, 0));
-        jButton2 = new javax.swing.JButton();
+        telescopeSettingsButton = new javax.swing.JButton();
         filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(60, 0), new java.awt.Dimension(60, 0), new java.awt.Dimension(32767, 0));
-        jButton3 = new javax.swing.JButton();
+        laserSettingsButton = new javax.swing.JButton();
         detailsPanel = new javax.swing.JPanel();
         jScrollPane = new javax.swing.JScrollPane();
         detailsTextPane = new javax.swing.JTextPane();
         actionPanel = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        viewGraphicsButton = new javax.swing.JButton();
         resultsButton = new javax.swing.JButton();
         saveConfigurationsButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -140,19 +142,19 @@ public class SettingsWindow extends javax.swing.JFrame {
         jPanel3.add(filler3);
         filler3.setBounds(119, 35, 60, 0);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/telescope.png"))); // NOI18N
-        jButton2.setToolTipText(bundle.getString("SettingsWindow.jButton2.toolTipText")); // NOI18N
-        jButton2.setPreferredSize(new java.awt.Dimension(60, 60));
-        jPanel3.add(jButton2);
-        jButton2.setBounds(220, 10, 60, 60);
+        telescopeSettingsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/telescope.png"))); // NOI18N
+        telescopeSettingsButton.setToolTipText(bundle.getString("SettingsWindow.telescopeSettingsButton.toolTipText")); // NOI18N
+        telescopeSettingsButton.setPreferredSize(new java.awt.Dimension(60, 60));
+        jPanel3.add(telescopeSettingsButton);
+        telescopeSettingsButton.setBounds(220, 10, 60, 60);
         jPanel3.add(filler4);
         filler4.setBounds(249, 35, 60, 0);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/laser.png"))); // NOI18N
-        jButton3.setToolTipText(bundle.getString("SettingsWindow.jButton3.toolTipText")); // NOI18N
-        jButton3.setPreferredSize(new java.awt.Dimension(60, 60));
-        jPanel3.add(jButton3);
-        jButton3.setBounds(340, 10, 60, 60);
+        laserSettingsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/laser.png"))); // NOI18N
+        laserSettingsButton.setToolTipText(bundle.getString("SettingsWindow.laserSettingsButton.toolTipText")); // NOI18N
+        laserSettingsButton.setPreferredSize(new java.awt.Dimension(60, 60));
+        jPanel3.add(laserSettingsButton);
+        laserSettingsButton.setBounds(340, 10, 60, 60);
 
         configurationsPanel.add(jPanel3, java.awt.BorderLayout.CENTER);
 
@@ -182,10 +184,10 @@ public class SettingsWindow extends javax.swing.JFrame {
 
         actionPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("SettingsWindow.actionPanel.border.title"))); // NOI18N
 
-        jButton1.setText(bundle.getString("SettingsWindow.jButton1.text")); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        viewGraphicsButton.setText(bundle.getString("SettingsWindow.viewGraphicsButton.text")); // NOI18N
+        viewGraphicsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                viewGraphicsButtonActionPerformed(evt);
             }
         });
 
@@ -201,25 +203,25 @@ public class SettingsWindow extends javax.swing.JFrame {
             .addGroup(actionPanelLayout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addGroup(actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
+                    .addComponent(viewGraphicsButton)
                     .addGroup(actionPanelLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
+                        .addGap(12, 12, 12)
                         .addGroup(actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(saveConfigurationsButton)
                             .addGroup(actionPanelLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addComponent(saveConfigurationsButton))
-                            .addComponent(resultsButton))))
+                                .addComponent(resultsButton)))))
                 .addGap(44, 44, 44))
         );
         actionPanelLayout.setVerticalGroup(
             actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(actionPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(resultsButton)
+                .addComponent(viewGraphicsButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(saveConfigurationsButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(resultsButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -311,7 +313,7 @@ public class SettingsWindow extends javax.swing.JFrame {
     private void englishMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_englishMenuItemActionPerformed
         System.setProperty("user.language", "en");
         System.setProperty("user.country", "US");
-        SettingsWindow w = new SettingsWindow();        
+        SettingsWindow w = new SettingsWindow();
         w.setVisible(true);
         dispose();
     }//GEN-LAST:event_englishMenuItemActionPerformed
@@ -320,36 +322,39 @@ public class SettingsWindow extends javax.swing.JFrame {
         System.setProperty("user.language", "es");
         System.setProperty("user.country", "ES");
         SettingsWindow w = new SettingsWindow();
-        
+
         w.setVisible(true);
         dispose();
     }//GEN-LAST:event_spanishMenuItemActionPerformed
 
     private void laserDetailsLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laserDetailsLabelMouseClicked
         this.detailsTextPane.setText("Laser: \n Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n"
-            + "tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n"
-            + "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n"
-            + "consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n"
-            + "cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n"
-            + "proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+                + "tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n"
+                + "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n"
+                + "consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n"
+                + "cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n"
+                + "proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
     }//GEN-LAST:event_laserDetailsLabelMouseClicked
 
     private void telescopeDetailsLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_telescopeDetailsLabelMouseClicked
         this.detailsTextPane.setText("Telescopio: \n Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n"
-            + "tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n"
-            + "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n"
-            + "consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n"
-            + "cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n"
-            + "proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+                + "tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n"
+                + "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n"
+                + "consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n"
+                + "cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n"
+                + "proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
     }//GEN-LAST:event_telescopeDetailsLabelMouseClicked
 
     private void atmosphereDetailsLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atmosphereDetailsLabelMouseClicked
-        this.detailsTextPane.setText("ATMOSFERA:\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n"
-            + "tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n"
-            + "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n"
-            + "consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n"
-            + "cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n"
-            + "proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+        double initialAltitude = 0;
+        double finalAltitude = 0;
+        if (simulationProject.getData() != null) {
+            initialAltitude = this.simulationProject.getData().get(0).doubleValue();
+            finalAltitude = this.simulationProject.getData().get(this.simulationProject.getData().size() - 1).doubleValue();
+            this.detailsTextPane.setText("ATMOSPHERE DETAILS:\n" + "Initial altitude: " + initialAltitude + "\n" + "Final altitude: " + finalAltitude + "\n");
+        } else {
+            this.detailsTextPane.setText("ATMOSPHERE DETAILS:\n" + "Initial altitude: Not defined\n" + "Final altitude: Not defined\n");
+        }
     }//GEN-LAST:event_atmosphereDetailsLabelMouseClicked
 
     private void atmosphereConfigurationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atmosphereConfigurationButtonActionPerformed
@@ -358,9 +363,9 @@ public class SettingsWindow extends javax.swing.JFrame {
         w.setVisible(true);
     }//GEN-LAST:event_atmosphereConfigurationButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void viewGraphicsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewGraphicsButtonActionPerformed
+
+    }//GEN-LAST:event_viewGraphicsButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -392,7 +397,7 @@ public class SettingsWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-              new SettingsWindow().setVisible(true);
+                new SettingsWindow().setVisible(true);
             }
         });
     }
@@ -412,9 +417,6 @@ public class SettingsWindow extends javax.swing.JFrame {
     private javax.swing.Box.Filler filler2;
     private javax.swing.Box.Filler filler3;
     private javax.swing.Box.Filler filler4;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -425,11 +427,14 @@ public class SettingsWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JMenu languageMenu;
     private javax.swing.JLabel laserDetailsLabel;
+    private javax.swing.JButton laserSettingsButton;
     private javax.swing.JButton resultsButton;
     private javax.swing.JMenuItem saveAsMenuItem;
     private javax.swing.JButton saveConfigurationsButton;
     private javax.swing.JMenuItem saveMenuItem;
     private javax.swing.JMenuItem spanishMenuItem;
     private javax.swing.JLabel telescopeDetailsLabel;
+    private javax.swing.JButton telescopeSettingsButton;
+    private javax.swing.JButton viewGraphicsButton;
     // End of variables declaration//GEN-END:variables
 }

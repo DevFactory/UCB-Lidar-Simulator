@@ -5,6 +5,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import project.SimulationProject;
 import ui.SettingsWindow;
 
@@ -197,26 +198,20 @@ public class GraphicsConfiguration extends javax.swing.JFrame {
         DecimalFormat df = new DecimalFormat("#.000");
         double var = initial;
         ArrayList<Number> data = new ArrayList<Number>();
-
         while (var <= ending){
             data.add(var);
             var = var + 0.001;
         }
-
-        //for (float i = Float.parseFloat(this.initialAltitudeTextField.getText()); i <= Float.parseFloat(this.finalAltitudeTextField.getText()); i+=0.001) {
-          //  data.add(i);
-        //}
-
         colors.add(0, obtainSelectedColor(this.temperatureColorComboBox));
         colors.add(1, obtainSelectedColor(this.pressureColorComboBox));
         colors.add(2, obtainSelectedColor(this.mieColorComboBox));
         colors.add(3, obtainSelectedColor(this.alphaRayleighColorComboBox));
         colors.add(4, obtainSelectedColor(this.betaRayleighColorComboBox));
+        SettingsWindow w = new SettingsWindow();
         this.dispose();
         this.simulationProject.setData(data);
-        GraphicsVisualizer graphicsVisualizer = new GraphicsVisualizer(data, colors);
-        graphicsVisualizer.setVisible(true);
-        
+        JOptionPane.showMessageDialog(null, "Atmosphere Values Setted");
+        w.setVisible(true);
     }//GEN-LAST:event_generateButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -224,6 +219,7 @@ public class GraphicsConfiguration extends javax.swing.JFrame {
         this.dispose();
         w.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
+    
     private Color obtainSelectedColor(JComboBox colorComboBox){
         int option = colorComboBox.getSelectedIndex();
         Color selectedColor = null;
