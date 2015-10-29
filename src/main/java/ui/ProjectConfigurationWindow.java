@@ -6,6 +6,7 @@
 package ui;
 
 import files.FileWriter;
+import java.util.Locale;
 import javax.swing.JFileChooser;
 import lidar.Lidar;
 
@@ -19,6 +20,7 @@ public class ProjectConfigurationWindow extends javax.swing.JFrame {
      * Creates new form ProjectConfiguration
      */
     public ProjectConfigurationWindow() {
+        Locale.setDefault(new Locale(System.getProperty("user.language"), System.getProperty("user.country")));
         initComponents();
     }
 

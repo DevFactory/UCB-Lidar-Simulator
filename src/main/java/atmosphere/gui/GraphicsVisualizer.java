@@ -16,6 +16,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Locale;
 import ui.StartWindow;
 
 /**
@@ -30,6 +31,7 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
     private Temperature temperature;
 
     public GraphicsVisualizer() {
+        Locale.setDefault(new Locale(System.getProperty("user.language"), System.getProperty("user.country")));
         initComponents();
         makeFrameFullSize();
     }

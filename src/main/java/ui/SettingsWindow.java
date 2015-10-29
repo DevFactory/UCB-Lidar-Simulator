@@ -5,6 +5,9 @@
  */
 package ui;
 
+import atmosphere.gui.GraphicsConfiguration;
+import java.util.Locale;
+
 /**
  *
  * @author oscar_sgc
@@ -15,10 +18,8 @@ public class SettingsWindow extends javax.swing.JFrame {
      * Creates new form SettingsWindow
      */
     public SettingsWindow() {
-        
-        initComponents();
-        
-        
+        Locale.setDefault(new Locale(System.getProperty("user.language"), System.getProperty("user.country")));
+        initComponents();        
     }
     
 
@@ -268,11 +269,20 @@ public class SettingsWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void englishMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_englishMenuItemActionPerformed
-
+        System.setProperty("user.language", "en");
+        System.setProperty("user.country", "US");
+        SettingsWindow w = new SettingsWindow();        
+        w.setVisible(true);
+        dispose();
     }//GEN-LAST:event_englishMenuItemActionPerformed
 
     private void spanishMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spanishMenuItemActionPerformed
-
+        System.setProperty("user.language", "es");
+        System.setProperty("user.country", "ES");
+        SettingsWindow w = new SettingsWindow();
+        
+        w.setVisible(true);
+        dispose();
     }//GEN-LAST:event_spanishMenuItemActionPerformed
 
     private void laserDetailsLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laserDetailsLabelMouseClicked

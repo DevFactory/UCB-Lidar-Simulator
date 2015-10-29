@@ -5,6 +5,8 @@
  */
 package ui;
 
+import java.util.Locale;
+
 /**
  *
  * @author oscar_sgc
@@ -15,6 +17,7 @@ public class StartWindow extends javax.swing.JFrame {
      * Creates new form StartWindow
      */
     public StartWindow() {
+        Locale.setDefault(new Locale(System.getProperty("user.language"), System.getProperty("user.country")));
         initComponents();
     }
 
@@ -107,7 +110,7 @@ public class StartWindow extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(48, 48, 48)
                                 .addComponent(openProjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
