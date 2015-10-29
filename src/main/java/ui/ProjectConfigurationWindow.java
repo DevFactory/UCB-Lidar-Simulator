@@ -8,7 +8,7 @@ package ui;
 import files.FileWriter;
 import java.util.Locale;
 import javax.swing.JFileChooser;
-import lidar.Lidar;
+import project.SimulationProject;
 
 /**
  *
@@ -138,12 +138,14 @@ public class ProjectConfigurationWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_browseButtonActionPerformed
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
-        FileWriter fileWriter = new FileWriter();
-        fileWriter.saveProject(this.nameTextField.getText(), this.locationTextField.getText(), new Lidar());
+        SimulationProject project = SimulationProject.getInstance();
+        project.setProjectName(this.nameTextField.getText());
+        project.setProjectLocation(this.locationTextField.getText());
+        project.saveProject();
         SettingsWindow settingsWindow = new SettingsWindow();
         this.dispose();
-        settingsWindow.setTitle(this.nameTextField.getText()+ " - UCB Lidar Simulator");
-        settingsWindow.setVisible(true);        
+        settingsWindow.setTitle(this.nameTextField.getText() + " - UCB Lidar Simulator");
+        settingsWindow.setVisible(true);
     }//GEN-LAST:event_createButtonActionPerformed
 
     /**

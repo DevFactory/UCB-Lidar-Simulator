@@ -3,7 +3,6 @@ package files;
 import atmosphere.Mie;
 import atmosphere.Pressure;
 import atmosphere.Rayleigh;
-import atmosphere.Temperature;
 import laser.Laser;
 import lidar.Lidar;
 import linkbudget.LinkBudget;
@@ -22,6 +21,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
+import project.SimulationProject;
 
 public class FileWriter {
 
@@ -57,48 +57,31 @@ public class FileWriter {
         return rootElement;
     }
 
-    public Element createTemperatureElement(Temperature temperature) {
-        Element temperatureElement = this.document.createElement("element");
+    public Element createInitialValueElement(double initialValue) {
+        Element initialValueElement = this.document.createElement("element");
         Attr name = this.document.createAttribute("name");
-        name.setValue("Temperature");
-        temperatureElement.setAttributeNode(name);
-        return temperatureElement;
+        name.setValue("Initial Value");
+        initialValueElement.setAttributeNode(name);
+        initialValueElement.appendChild(this.document.createTextNode(String.valueOf(initialValue)));
+        return initialValueElement;
     }
 
-    private Element createPressureElement(Pressure pressure) {
-        Element pressureElement = this.document.createElement("element");
+    private Element createFinalValueElement(double finalValue) {
+        Element finalValueElement = this.document.createElement("element");
         Attr name = this.document.createAttribute("name");
-        name.setValue("Pressure");
-        pressureElement.setAttributeNode(name);
-        pressureElement.appendChild(this.document.createTextNode("prueba"));
-        return pressureElement;
+        name.setValue("Final Value");
+        finalValueElement.setAttributeNode(name);
+        finalValueElement.appendChild(this.document.createTextNode(String.valueOf(finalValue)));
+        return finalValueElement;
     }
 
-    private Element createMieElement(Mie mie) {
-        Element mieElement = this.document.createElement("element");
-        Attr name = this.document.createAttribute("name");
-        name.setValue("Mie");
-        mieElement.setAttributeNode(name);
-        return mieElement;
-    }
-
-    private Element createRayleighElement(Rayleigh rayleigh) {
-        Element rayleighElement = this.document.createElement("element");
-        Attr name = this.document.createAttribute("name");
-        name.setValue("Rayleigh");
-        rayleighElement.setAttributeNode(name);
-        return rayleighElement;
-    }
-
-    public Element createAtmosphereComponent(Temperature temperature, Pressure pressure, Mie mie, Rayleigh rayleigh) {
+    public Element createAtmosphereComponent(double initialValue, double finalValue) {
         Element atmosphereComponent = this.document.createElement("component");
         Attr name = this.document.createAttribute("name");
         name.setValue("Atmosphere");
         atmosphereComponent.setAttributeNode(name);
-        atmosphereComponent.appendChild(createTemperatureElement(temperature));
-        atmosphereComponent.appendChild(createPressureElement(pressure));
-        atmosphereComponent.appendChild(createMieElement(mie));
-        atmosphereComponent.appendChild(createRayleighElement(rayleigh));
+        atmosphereComponent.appendChild(createInitialValueElement(initialValue));
+        atmosphereComponent.appendChild(createFinalValueElement(finalValue));
         return atmosphereComponent;
     }
 
@@ -134,22 +117,26 @@ public class FileWriter {
         return linkBudgetComponent;
     }
 
-    public void createDocument(String projectName, Lidar lidar) {
+    public void createDocument(String projectName, SimulationProject project) {
         Element rootElement = createRootElement(projectName);
-        rootElement.appendChild(createAtmosphereComponent(lidar.getTemperature(), lidar.getPressure(), lidar.getMie(), lidar.getRayleigh()));
-        rootElement.appendChild(createLaserComponent(lidar.getLaser()));
-        rootElement.appendChild(createTelescopeComponent(lidar.getTelescope()));
-        rootElement.appendChild(createMonochromatorComponent(lidar.getMonochromator()));
-        rootElement.appendChild(createLinkBudgetComponent(lidar.getLinkBudget()));
+        if (project.getData() != null) {
+            rootElement.appendChild(createAtmosphereComponent(project.getData().get(0).doubleValue(), project.getData().get(project.getData().size()).doubleValue() + 1));
+        } else {
+            rootElement.appendChild(createAtmosphereComponent(0, 0));
+        }
+        rootElement.appendChild(createLaserComponent(project.getLidar().getLaser()));
+        rootElement.appendChild(createTelescopeComponent(project.getLidar().getTelescope()));
+        rootElement.appendChild(createMonochromatorComponent(project.getLidar().getMonochromator()));
+        rootElement.appendChild(createLinkBudgetComponent(project.getLidar().getLinkBudget()));
         this.document.appendChild(rootElement);//Estructura principal
 
     }
 
-    public void saveProject(String projectName, String location, Lidar lidar) {
-        createDocument(projectName, lidar);
+    public void saveProject(SimulationProject project) {
+        createDocument(project.getProjectName(), project);
         this.document.getDocumentElement().normalize();
         this.source = new DOMSource(this.document);
-        StreamResult results = new StreamResult(new File(location + projectName + ".xml"));
+        StreamResult results = new StreamResult(new File(project.getProjectLocation() + project.getProjectName() + ".xml"));
 
         try {
             transformer.transform(source, results);
@@ -161,8 +148,10 @@ public class FileWriter {
     }
 
     public static void main(String args[]) {
-        new FileWriter().saveProject("Proyecto Prueba", "/Users/oscar_sgc/Documents/", new Lidar());
-
+        SimulationProject test = SimulationProject.getInstance();
+        test.setProjectName("Proyecto Prueba");
+        test.setProjectLocation("/Users/oscar_sgc/Documents/");
+        new FileWriter().saveProject(test);
     }
 
 }

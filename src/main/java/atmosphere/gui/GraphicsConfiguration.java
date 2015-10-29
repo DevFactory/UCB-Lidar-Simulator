@@ -5,8 +5,12 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 import javax.swing.JComboBox;
+import project.SimulationProject;
+import ui.SettingsWindow;
 
 public class GraphicsConfiguration extends javax.swing.JFrame {
+    
+    SimulationProject simulationProject = SimulationProject.getInstance();
 
     public GraphicsConfiguration() {
         Locale.setDefault(new Locale(System.getProperty("user.language"), System.getProperty("user.country")));
@@ -76,6 +80,11 @@ public class GraphicsConfiguration extends javax.swing.JFrame {
         betaRayleighColorComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Red", "Blue", "Black", "Green" }));
 
         backButton.setText(bundle.getString("GraphicsConfiguration.backButton.text")); // NOI18N
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
 
         generateButton.setText(bundle.getString("GraphicsConfiguration.generateButton.text")); // NOI18N
         generateButton.addActionListener(new java.awt.event.ActionListener() {
@@ -204,10 +213,17 @@ public class GraphicsConfiguration extends javax.swing.JFrame {
         colors.add(3, obtainSelectedColor(this.alphaRayleighColorComboBox));
         colors.add(4, obtainSelectedColor(this.betaRayleighColorComboBox));
         this.dispose();
+        this.simulationProject.setData(data);
         GraphicsVisualizer graphicsVisualizer = new GraphicsVisualizer(data, colors);
         graphicsVisualizer.setVisible(true);
         
     }//GEN-LAST:event_generateButtonActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        SettingsWindow w = new SettingsWindow();
+        this.dispose();
+        w.setVisible(true);
+    }//GEN-LAST:event_backButtonActionPerformed
     private Color obtainSelectedColor(JComboBox colorComboBox){
         int option = colorComboBox.getSelectedIndex();
         Color selectedColor = null;

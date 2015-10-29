@@ -35,7 +35,7 @@ public class SettingsWindow extends javax.swing.JFrame {
         configurationsPanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(45, 0), new java.awt.Dimension(45, 0), new java.awt.Dimension(60, 32767));
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(45, 0), new java.awt.Dimension(50, 0), new java.awt.Dimension(60, 32767));
         jLabel5 = new javax.swing.JLabel();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(60, 0), new java.awt.Dimension(60, 0), new java.awt.Dimension(60, 32767));
         jLabel6 = new javax.swing.JLabel();
@@ -44,7 +44,7 @@ public class SettingsWindow extends javax.swing.JFrame {
         telescopeDetailsLabel = new javax.swing.JLabel();
         laserDetailsLabel = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        atmosphereConfigurationButton = new javax.swing.JButton();
         filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(60, 0), new java.awt.Dimension(60, 0), new java.awt.Dimension(32767, 0));
         jButton2 = new javax.swing.JButton();
         filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(60, 0), new java.awt.Dimension(60, 0), new java.awt.Dimension(32767, 0));
@@ -53,8 +53,13 @@ public class SettingsWindow extends javax.swing.JFrame {
         jScrollPane = new javax.swing.JScrollPane();
         detailsTextPane = new javax.swing.JTextPane();
         actionPanel = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        resultsButton = new javax.swing.JButton();
+        saveConfigurationsButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
+        saveMenuItem = new javax.swing.JMenuItem();
+        saveAsMenuItem = new javax.swing.JMenuItem();
         exitMenuItem = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
         languageMenu = new javax.swing.JMenu();
@@ -94,7 +99,7 @@ public class SettingsWindow extends javax.swing.JFrame {
             }
         });
         jPanel2.add(atmosphereDetailsLabel);
-        atmosphereDetailsLabel.setBounds(60, 10, 79, 16);
+        atmosphereDetailsLabel.setBounds(80, 10, 77, 16);
 
         telescopeDetailsLabel.setForeground(new java.awt.Color(51, 51, 255));
         telescopeDetailsLabel.setText(bundle.getString("SettingsWindow.telescopeDetailsLabel.text")); // NOI18N
@@ -105,7 +110,7 @@ public class SettingsWindow extends javax.swing.JFrame {
             }
         });
         jPanel2.add(telescopeDetailsLabel);
-        telescopeDetailsLabel.setBounds(190, 10, 75, 16);
+        telescopeDetailsLabel.setBounds(210, 10, 77, 16);
 
         laserDetailsLabel.setForeground(new java.awt.Color(51, 51, 255));
         laserDetailsLabel.setText(bundle.getString("SettingsWindow.laserDetailsLabel.text")); // NOI18N
@@ -116,17 +121,22 @@ public class SettingsWindow extends javax.swing.JFrame {
             }
         });
         jPanel2.add(laserDetailsLabel);
-        laserDetailsLabel.setBounds(320, 10, 75, 16);
+        laserDetailsLabel.setBounds(330, 10, 77, 16);
 
         configurationsPanel.add(jPanel2, java.awt.BorderLayout.PAGE_END);
 
         jPanel3.setLayout(null);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/atmosphere.png"))); // NOI18N
-        jButton1.setToolTipText(bundle.getString("SettingsWindow.jButton1.toolTipText")); // NOI18N
-        jButton1.setPreferredSize(new java.awt.Dimension(60, 60));
-        jPanel3.add(jButton1);
-        jButton1.setBounds(70, 10, 60, 60);
+        atmosphereConfigurationButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/atmosphere.png"))); // NOI18N
+        atmosphereConfigurationButton.setToolTipText(bundle.getString("SettingsWindow.atmosphereConfigurationButton.toolTipText")); // NOI18N
+        atmosphereConfigurationButton.setPreferredSize(new java.awt.Dimension(60, 60));
+        atmosphereConfigurationButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atmosphereConfigurationButtonActionPerformed(evt);
+            }
+        });
+        jPanel3.add(atmosphereConfigurationButton);
+        atmosphereConfigurationButton.setBounds(90, 10, 60, 60);
         jPanel3.add(filler3);
         filler3.setBounds(119, 35, 60, 0);
 
@@ -134,7 +144,7 @@ public class SettingsWindow extends javax.swing.JFrame {
         jButton2.setToolTipText(bundle.getString("SettingsWindow.jButton2.toolTipText")); // NOI18N
         jButton2.setPreferredSize(new java.awt.Dimension(60, 60));
         jPanel3.add(jButton2);
-        jButton2.setBounds(190, 10, 60, 60);
+        jButton2.setBounds(220, 10, 60, 60);
         jPanel3.add(filler4);
         filler4.setBounds(249, 35, 60, 0);
 
@@ -142,7 +152,7 @@ public class SettingsWindow extends javax.swing.JFrame {
         jButton3.setToolTipText(bundle.getString("SettingsWindow.jButton3.toolTipText")); // NOI18N
         jButton3.setPreferredSize(new java.awt.Dimension(60, 60));
         jPanel3.add(jButton3);
-        jButton3.setBounds(320, 10, 60, 60);
+        jButton3.setBounds(340, 10, 60, 60);
 
         configurationsPanel.add(jPanel3, java.awt.BorderLayout.CENTER);
 
@@ -166,27 +176,66 @@ public class SettingsWindow extends javax.swing.JFrame {
         detailsPanelLayout.setVerticalGroup(
             detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(detailsPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         actionPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("SettingsWindow.actionPanel.border.title"))); // NOI18N
 
+        jButton1.setText(bundle.getString("SettingsWindow.jButton1.text")); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        resultsButton.setText(bundle.getString("SettingsWindow.resultsButton.text")); // NOI18N
+
+        saveConfigurationsButton.setText(bundle.getString("SettingsWindow.saveConfigurationsButton.text")); // NOI18N
+        saveConfigurationsButton.setToolTipText(bundle.getString("SettingsWindow.saveConfigurationsButton.toolTipText")); // NOI18N
+
         javax.swing.GroupLayout actionPanelLayout = new javax.swing.GroupLayout(actionPanel);
         actionPanel.setLayout(actionPanelLayout);
         actionPanelLayout.setHorizontalGroup(
             actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 178, Short.MAX_VALUE)
+            .addGroup(actionPanelLayout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addGroup(actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addGroup(actionPanelLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(actionPanelLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(saveConfigurationsButton))
+                            .addComponent(resultsButton))))
+                .addGap(44, 44, 44))
         );
         actionPanelLayout.setVerticalGroup(
             actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(actionPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(resultsButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(saveConfigurationsButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        fileMenu.setText(bundle.getString("SettingsWindow.fileMenu.text")); // NOI18N
+        fileMenu.setText(bundle.getString("StartWindow.fileMenu.text")); // NOI18N
+
+        saveMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        saveMenuItem.setText(bundle.getString("SettingsWindow.saveMenuItem.text")); // NOI18N
+        fileMenu.add(saveMenuItem);
+
+        saveAsMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        saveAsMenuItem.setText(bundle.getString("SettingsWindow.saveAsMenuItem.text")); // NOI18N
+        saveAsMenuItem.setToolTipText(bundle.getString("SettingsWindow.saveAsMenuItem.toolTipText")); // NOI18N
+        fileMenu.add(saveAsMenuItem);
 
         exitMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
-        exitMenuItem.setText(bundle.getString("SettingsWindow.exitMenuItem.text")); // NOI18N
+        exitMenuItem.setText(bundle.getString("StartWindow.exitMenuItem.text")); // NOI18N
         exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitMenuItemActionPerformed(evt);
@@ -196,13 +245,13 @@ public class SettingsWindow extends javax.swing.JFrame {
 
         jMenuBar1.add(fileMenu);
 
-        editMenu.setText(bundle.getString("SettingsWindow.editMenu.text")); // NOI18N
+        editMenu.setText(bundle.getString("StartWindow.editMenu.text")); // NOI18N
 
+        java.util.ResourceBundle bundle1 = java.util.ResourceBundle.getBundle("ui/Bundle"); // NOI18N
+        languageMenu.setLabel(bundle1.getString("StartWindow.languageMenu.label")); // NOI18N
 
-        languageMenu.setLabel(bundle.getString("SettingsWindow.languageMenu.label")); // NOI18N
-
-        englishMenuItem.setText(bundle.getString("SettingsWindow.englishMenuItem.text")); // NOI18N
-        englishMenuItem.setToolTipText(bundle.getString("SettingsWindow.englishMenuItem.toolTipText")); // NOI18N
+        englishMenuItem.setText(bundle.getString("StartWindow.englishMenuItem.text")); // NOI18N
+        englishMenuItem.setToolTipText(bundle.getString("StartWindow.englishMenuItem.toolTipText")); // NOI18N
         englishMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 englishMenuItemActionPerformed(evt);
@@ -210,8 +259,8 @@ public class SettingsWindow extends javax.swing.JFrame {
         });
         languageMenu.add(englishMenuItem);
 
-        spanishMenuItem.setText(bundle.getString("SettingsWindow.spanishMenuItem.text")); // NOI18N
-        spanishMenuItem.setToolTipText(bundle.getString("SettingsWindow.spanishMenuItem.toolTipText")); // NOI18N
+        spanishMenuItem.setText(bundle.getString("StartWindow.spanishMenuItem.text")); // NOI18N
+        spanishMenuItem.setToolTipText(bundle.getString("StartWindow.spanishMenuItem.toolTipText")); // NOI18N
         spanishMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 spanishMenuItemActionPerformed(evt);
@@ -231,13 +280,13 @@ public class SettingsWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(configurationsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(detailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(actionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 9, Short.MAX_VALUE))
+                        .addComponent(actionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,6 +352,16 @@ public class SettingsWindow extends javax.swing.JFrame {
             + "proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
     }//GEN-LAST:event_atmosphereDetailsLabelMouseClicked
 
+    private void atmosphereConfigurationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atmosphereConfigurationButtonActionPerformed
+        GraphicsConfiguration w = new GraphicsConfiguration();
+        this.dispose();
+        w.setVisible(true);
+    }//GEN-LAST:event_atmosphereConfigurationButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -340,6 +399,7 @@ public class SettingsWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel actionPanel;
+    private javax.swing.JButton atmosphereConfigurationButton;
     private javax.swing.JLabel atmosphereDetailsLabel;
     private javax.swing.JPanel configurationsPanel;
     private javax.swing.JPanel detailsPanel;
@@ -365,6 +425,10 @@ public class SettingsWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JMenu languageMenu;
     private javax.swing.JLabel laserDetailsLabel;
+    private javax.swing.JButton resultsButton;
+    private javax.swing.JMenuItem saveAsMenuItem;
+    private javax.swing.JButton saveConfigurationsButton;
+    private javax.swing.JMenuItem saveMenuItem;
     private javax.swing.JMenuItem spanishMenuItem;
     private javax.swing.JLabel telescopeDetailsLabel;
     // End of variables declaration//GEN-END:variables
