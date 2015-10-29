@@ -47,16 +47,14 @@ public class StartWindow extends javax.swing.JFrame {
         spanishMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("UI/Bundle_7"); // NOI18N
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("UI/Bundle"); // NOI18N
         setTitle(bundle.getString("StartWindow.title")); // NOI18N
         setResizable(false);
 
-        java.util.ResourceBundle bundle1 = java.util.ResourceBundle.getBundle("UI/Bundle_4"); // NOI18N
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle1.getString("StartWindow.jPanel1.border.title"))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("StartWindow.jPanel1.border.title"))); // NOI18N
 
         newProjectButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/edit.png"))); // NOI18N
-        java.util.ResourceBundle bundle2 = java.util.ResourceBundle.getBundle("UI/Bundle_5"); // NOI18N
-        newProjectButton.setToolTipText(bundle2.getString("StartWindow.newProjectButton.toolTipText")); // NOI18N
+        newProjectButton.setToolTipText(bundle.getString("StartWindow.newProjectButton.toolTipText")); // NOI18N
         newProjectButton.setPreferredSize(new java.awt.Dimension(60, 60));
         newProjectButton.setSize(new java.awt.Dimension(60, 60));
         newProjectButton.addActionListener(new java.awt.event.ActionListener() {
@@ -66,51 +64,46 @@ public class StartWindow extends javax.swing.JFrame {
         });
 
         openProjectButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/import.png"))); // NOI18N
-        java.util.ResourceBundle bundle3 = java.util.ResourceBundle.getBundle("UI/Bundle"); // NOI18N
-        openProjectButton.setToolTipText(bundle3.getString("StartWindow.openProjectButton.toolTipText_1")); // NOI18N
+        openProjectButton.setToolTipText(bundle.getString("StartWindow.openProjectButton.toolTipText")); // NOI18N
         openProjectButton.setPreferredSize(new java.awt.Dimension(60, 60));
         openProjectButton.setSize(new java.awt.Dimension(60, 60));
 
         tutorialButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/presentation.png"))); // NOI18N
-        java.util.ResourceBundle bundle4 = java.util.ResourceBundle.getBundle("UI/Bundle_6"); // NOI18N
-        tutorialButton.setToolTipText(bundle4.getString("StartWindow.tutorialButton.toolTipText")); // NOI18N
+        tutorialButton.setToolTipText(bundle.getString("StartWindow.tutorialButton.toolTipText")); // NOI18N
         tutorialButton.setPreferredSize(new java.awt.Dimension(60, 60));
         tutorialButton.setSize(new java.awt.Dimension(60, 60));
 
-        newProjectLabel.setText(bundle3.getString("StartWindow.newProjectLabel.text_1")); // NOI18N
+        newProjectLabel.setText(bundle.getString("StartWindow.newProjectLabel.text")); // NOI18N
 
-        openLabel.setText(bundle3.getString("StartWindow.openLabel.text_1")); // NOI18N
+        openLabel.setText(bundle.getString("StartWindow.openLabel.text")); // NOI18N
 
-        tutorialLabel.setText(bundle3.getString("StartWindow.tutorialLabel.text_1")); // NOI18N
+        tutorialLabel.setText(bundle.getString("StartWindow.tutorialLabel.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(91, 91, 91)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(tutorialLabel))
-                            .addComponent(tutorialButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(newProjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(newProjectLabel))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addComponent(openLabel))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(48, 48, 48)
-                                .addComponent(openProjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(32, Short.MAX_VALUE))
+                        .addGap(6, 6, 6)
+                        .addComponent(tutorialLabel))
+                    .addComponent(tutorialButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(newProjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(newProjectLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(openProjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(openLabel)
+                        .addGap(34, 34, 34))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,7 +123,7 @@ public class StartWindow extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle3.getString("StartWindow.jPanel2.border.title_1"))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("StartWindow.jPanel2.border.title"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -143,12 +136,10 @@ public class StartWindow extends javax.swing.JFrame {
             .addGap(0, 209, Short.MAX_VALUE)
         );
 
-        java.util.ResourceBundle bundle5 = java.util.ResourceBundle.getBundle("UI/Bundle_1"); // NOI18N
-        fileMenu.setText(bundle5.getString("StartWindow.fileMenu.text")); // NOI18N
+        fileMenu.setText(bundle.getString("StartWindow.fileMenu.text")); // NOI18N
 
         exitMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
-        java.util.ResourceBundle bundle6 = java.util.ResourceBundle.getBundle("UI/Bundle_2"); // NOI18N
-        exitMenuItem.setText(bundle6.getString("StartWindow.exitMenuItem.text")); // NOI18N
+        exitMenuItem.setText(bundle.getString("StartWindow.exitMenuItem.text")); // NOI18N
         exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitMenuItemActionPerformed(evt);
@@ -158,13 +149,12 @@ public class StartWindow extends javax.swing.JFrame {
 
         jMenuBar2.add(fileMenu);
 
-        editMenu.setText(bundle3.getString("StartWindow.editMenu.text_1")); // NOI18N
+        editMenu.setText(bundle.getString("StartWindow.editMenu.text")); // NOI18N
 
-        languageMenu.setText(bundle3.getString("StartWindow.languageMenu.text_1")); // NOI18N
+        languageMenu.setText(bundle.getString("StartWindow.languageMenu.text")); // NOI18N
 
-        java.util.ResourceBundle bundle7 = java.util.ResourceBundle.getBundle("UI/Bundle_3"); // NOI18N
-        englishMenuItem.setText(bundle7.getString("StartWindow.englishMenuItem.text")); // NOI18N
-        englishMenuItem.setToolTipText(bundle3.getString("StartWindow.englishMenuItem.toolTipText_1")); // NOI18N
+        englishMenuItem.setText(bundle.getString("StartWindow.englishMenuItem.text")); // NOI18N
+        englishMenuItem.setToolTipText(bundle.getString("StartWindow.englishMenuItem.toolTipText")); // NOI18N
         englishMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 englishMenuItemActionPerformed(evt);
@@ -172,8 +162,8 @@ public class StartWindow extends javax.swing.JFrame {
         });
         languageMenu.add(englishMenuItem);
 
-        spanishMenuItem.setText(bundle3.getString("StartWindow.spanishMenuItem.text_1")); // NOI18N
-        spanishMenuItem.setToolTipText(bundle3.getString("StartWindow.spanishMenuItem.toolTipText_1")); // NOI18N
+        spanishMenuItem.setText(bundle.getString("StartWindow.spanishMenuItem.text")); // NOI18N
+        spanishMenuItem.setToolTipText(bundle.getString("StartWindow.spanishMenuItem.toolTipText")); // NOI18N
         spanishMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 spanishMenuItemActionPerformed(evt);
