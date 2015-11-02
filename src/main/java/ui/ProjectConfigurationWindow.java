@@ -19,6 +19,8 @@ public class ProjectConfigurationWindow extends javax.swing.JFrame {
     /**
      * Creates new form ProjectConfiguration
      */
+
+    SimulationProject project = SimulationProject.getInstance();
     public ProjectConfigurationWindow() {
         Locale.setDefault(new Locale(System.getProperty("user.language"), System.getProperty("user.country")));
         initComponents();
@@ -138,7 +140,6 @@ public class ProjectConfigurationWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_browseButtonActionPerformed
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
-        SimulationProject project = SimulationProject.getInstance();
         project.setProjectName(this.nameTextField.getText());
         project.setProjectLocation(this.locationTextField.getText());
         project.saveProject();

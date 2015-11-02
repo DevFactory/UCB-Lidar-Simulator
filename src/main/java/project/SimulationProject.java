@@ -5,6 +5,7 @@
  */
 package project;
 
+import atmosphere.Atmosphere;
 import files.FileWriter;
 
 import java.awt.*;
@@ -23,6 +24,7 @@ public class SimulationProject {
     private ArrayList<Color> colors;
     private String projectName;
     private String projectLocation;
+
     private static SimulationProject simulationProject = new SimulationProject();
 
     private SimulationProject() {

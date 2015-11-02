@@ -5,6 +5,7 @@ import com.xeiam.xchart.Chart;
 import com.xeiam.xchart.Series;
 import com.xeiam.xchart.SeriesLineStyle;
 import com.xeiam.xchart.SeriesMarker;
+import project.SimulationProject;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class Atmosphere extends Function {
     private Mie mie = new Mie();
     private Rayleigh rayleigh = new Rayleigh();
     private ArrayList<Number> results = new ArrayList<Number>();
+    SimulationProject simulationProject = SimulationProject.getInstance();
 
     public Atmosphere() {
 
