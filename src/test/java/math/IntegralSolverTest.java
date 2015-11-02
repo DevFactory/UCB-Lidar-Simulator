@@ -5,6 +5,7 @@
  */
 package math;
 
+import helpers.IntegralSolver;
 import atmosphere.functions.PowFunction;
 import atmosphere.functions.TestFunction;
 import junit.framework.TestCase;

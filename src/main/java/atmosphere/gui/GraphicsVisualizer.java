@@ -11,12 +11,30 @@ import atmosphere.Pressure;
 import atmosphere.Rayleigh;
 import atmosphere.Temperature;
 import atmosphere.functions.plotter.FunctionPlotter;
+import atmosphere.functions.plotter.GraphPanel;
+import com.xeiam.xchart.BitmapEncoder;
+import com.xeiam.xchart.BitmapEncoder.BitmapFormat;
+import com.xeiam.xchart.Chart;
+import com.xeiam.xchart.VectorGraphicsEncoder;
+import com.xeiam.xchart.VectorGraphicsEncoder.VectorGraphicsFormat;
+//import helpers.SuffixSaveFilter;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.File;
+import java.io.FileFilter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Locale;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import project.SimulationProject;
+import com.xeiam.xchart.XChartPanel;
+import helpers.SuffixSaveFilter;
+import java.awt.Component;
+import javax.swing.JPanel;
+import ui.SettingsWindow;
 import ui.StartWindow;
 
 /**
@@ -28,17 +46,17 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
     /**
      * Creates new form GraphicsVisualizer
      */
-    private Temperature temperature;
+    SimulationProject simulationProject = SimulationProject.getInstance();
 
     public GraphicsVisualizer() {
         Locale.setDefault(new Locale(System.getProperty("user.language"), System.getProperty("user.country")));
         initComponents();
         makeFrameFullSize();
     }
-    
+
     public GraphicsVisualizer(Collection<Number> data, ArrayList<Color> colors) {
         this.functionPlotter = new FunctionPlotter();
-        
+
         initComponents();
         makeFrameFullSize();
         Color colorA, colorB;
@@ -53,11 +71,11 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
         createRayleighTabs(data, colorA, colorB);
         createAtmosphereTab(data, colorA, colorB);
     }
-    
+
     private void createTemperatureTab(Collection<Number> data, Color color) {
-        this.temperature = new Temperature(data);
-        this.temperature.generate();
-        this.functionPlotter = new FunctionPlotter((this.temperature.generateChart(color)));
+        Temperature temperature = new Temperature(data);
+        temperature.generate();
+        this.functionPlotter = new FunctionPlotter((temperature.generateChart(color)));
         this.temperaturePanel = this.functionPlotter.getChartPanel();
         graphicsTabbedPane.setComponentAt(0, this.temperaturePanel);
     }
@@ -76,7 +94,7 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
         this.functionPlotter.setChart(mie.generateChart(color));
         this.miePanel = this.functionPlotter.getChartPanel();
         graphicsTabbedPane.setComponentAt(2, this.miePanel);
-        
+
     }
 
     private void createRayleighTabs(Collection<Number> data, Color colorA, Color colorB) {
@@ -90,20 +108,20 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
         graphicsTabbedPane.setComponentAt(4, this.betaRayleighPanel);
 
     }
-    
-    private void createAtmosphereTab(Collection<Number> data, Color colorA, Color colorB){
+
+    private void createAtmosphereTab(Collection<Number> data, Color colorA, Color colorB) {
         Mie mie = new Mie(data);
         mie.generate();
 
         Rayleigh rayleigh = new Rayleigh(data);
         rayleigh.generate();
-        
+
         Atmosphere atmosphere = new Atmosphere(mie, rayleigh);
-        
+        atmosphere.generate();
         this.functionPlotter.setChart(atmosphere.generateChart(colorA));
         this.atmospherePanel = this.functionPlotter.getChartPanel();
         graphicsTabbedPane.setComponentAt(5, this.atmospherePanel);
-        
+
     }
 
     private void makeFrameFullSize() {
@@ -132,6 +150,9 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
         atmospherePanel = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
+        saveMenuItem = new javax.swing.JMenuItem();
+        saveAsMenuItem = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
         exitMenuItem = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
         languageMenu = new javax.swing.JMenu();
@@ -168,6 +189,27 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
         fileMenu.setText(bundle.getString("GraphicsVisualizer.fileMenu.text")); // NOI18N
+
+        saveMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        saveMenuItem.setText(bundle.getString("GraphicsVisualizer.saveMenuItem.text")); // NOI18N
+        saveMenuItem.setToolTipText(bundle.getString("GraphicsVisualizer.saveMenuItem.toolTipText")); // NOI18N
+        saveMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveMenuItemActionPerformed(evt);
+            }
+        });
+        fileMenu.add(saveMenuItem);
+
+        saveAsMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        saveAsMenuItem.setText(bundle.getString("GraphicsVisualizer.saveAsMenuItem.text")); // NOI18N
+        saveAsMenuItem.setToolTipText(bundle.getString("GraphicsVisualizer.saveAsMenuItem.toolTipText")); // NOI18N
+        saveAsMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveAsMenuItemActionPerformed(evt);
+            }
+        });
+        fileMenu.add(saveAsMenuItem);
+        fileMenu.add(jSeparator2);
 
         exitMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
         exitMenuItem.setText(bundle.getString("GraphicsVisualizer.exitMenuItem.text")); // NOI18N
@@ -217,14 +259,13 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         this.dispose();
-        new GraphicsConfiguration().setVisible(true);
+        new SettingsWindow().setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void englishMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_englishMenuItemActionPerformed
         System.setProperty("user.language", "en");
         System.setProperty("user.country", "US");
         StartWindow w = new StartWindow();
-        
         w.setVisible(true);
         dispose();
     }//GEN-LAST:event_englishMenuItemActionPerformed
@@ -233,15 +274,31 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
         System.setProperty("user.language", "es");
         System.setProperty("user.country", "ES");
         GraphicsConfiguration w = new GraphicsConfiguration();
-        
         w.setVisible(true);
         dispose();
     }//GEN-LAST:event_spanishMenuItemActionPerformed
 
+    private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
+        this.simulationProject.saveProject();
+    }//GEN-LAST:event_saveMenuItemActionPerformed
+
+    private void saveAsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAsMenuItemActionPerformed
+        JFileChooser fileSaver = new JFileChooser();
+        fileSaver.setDialogTitle("Select Storing Directory");
+        fileSaver.setAcceptAllFileFilterUsed(false);
+        if (fileSaver.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            this.simulationProject.setProjectName(fileSaver.getSelectedFile().getName());
+            this.simulationProject.setProjectLocation(fileSaver.getCurrentDirectory() + "/");
+            this.simulationProject.saveProject();
+        } else {
+            JOptionPane.showMessageDialog(null, "File not saved, please try again");
+        }
+    }//GEN-LAST:event_saveAsMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
-   public static void main(String args[]) {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -287,9 +344,12 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
     private javax.swing.JTabbedPane graphicsTabbedPane;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JMenu languageMenu;
     private javax.swing.JPanel miePanel;
     private javax.swing.JPanel pressurePanel;
+    private javax.swing.JMenuItem saveAsMenuItem;
+    private javax.swing.JMenuItem saveMenuItem;
     private javax.swing.JMenuItem spanishMenuItem;
     private javax.swing.JPanel temperaturePanel;
     // End of variables declaration//GEN-END:variables

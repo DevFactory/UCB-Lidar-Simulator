@@ -6,11 +6,13 @@
 package project;
 
 import files.FileWriter;
+
+import java.awt.*;
 import java.util.ArrayList;
+
 import lidar.Lidar;
 
 /**
- *
  * @author oscar_sgc
  */
 public class SimulationProject {
@@ -18,18 +20,19 @@ public class SimulationProject {
     private Lidar lidar = new Lidar();
     FileWriter fileWriter = new FileWriter();
     private ArrayList<Number> data;
+    private ArrayList<Color> colors;
     private String projectName;
     private String projectLocation;
     private static SimulationProject simulationProject = new SimulationProject();
-    
-    private SimulationProject(){
-        
-    }   
-    
-    public void saveProject(){
+
+    private SimulationProject() {
+
+    }
+
+    public void saveProject() {
         fileWriter.saveProject(this);
     }
-    
+
     private SimulationProject(String projectName, String projectLocation) {
         this.projectName = projectName;
         this.projectLocation = projectLocation;
@@ -38,9 +41,9 @@ public class SimulationProject {
     private SimulationProject(Lidar lidar) {
         this.lidar = lidar;
     }
-    
-    public static SimulationProject getInstance(){
-        if(simulationProject == null){
+
+    public static SimulationProject getInstance() {
+        if (simulationProject == null) {
             simulationProject = new SimulationProject();
         }
         return simulationProject;
@@ -76,5 +79,13 @@ public class SimulationProject {
 
     public void setProjectLocation(String projectLocation) {
         this.projectLocation = projectLocation;
+    }
+
+    public ArrayList<Color> getColors() {
+        return colors;
+    }
+
+    public void setColors(ArrayList<Color> colors) {
+        this.colors = colors;
     }
 }

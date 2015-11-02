@@ -210,6 +210,7 @@ public class GraphicsConfiguration extends javax.swing.JFrame {
         SettingsWindow w = new SettingsWindow();
         this.dispose();
         this.simulationProject.setData(data);
+        this.simulationProject.setColors(colors);
         JOptionPane.showMessageDialog(null, "Atmosphere Values Setted");
         w.setVisible(true);
     }//GEN-LAST:event_generateButtonActionPerformed

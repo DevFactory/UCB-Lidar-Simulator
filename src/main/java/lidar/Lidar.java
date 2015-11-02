@@ -6,7 +6,7 @@ import atmosphere.Rayleigh;
 import atmosphere.Temperature;
 import laser.Laser;
 import linkbudget.LinkBudget;
-import math.IntegralSolver;
+import helpers.IntegralSolver;
 import monochromator.Monochromator;
 import telescope.Telescope;
 

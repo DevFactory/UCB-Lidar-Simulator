@@ -7,6 +7,12 @@ package ui;
 
 import atmosphere.gui.GraphicsConfiguration;
 import java.util.Locale;
+
+import atmosphere.gui.GraphicsVisualizer;
+import java.io.File;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import project.SimulationProject;
 
 /**
@@ -21,6 +27,7 @@ public class SettingsWindow extends javax.swing.JFrame {
     SimulationProject simulationProject = SimulationProject.getInstance();
 
     public SettingsWindow() {
+        SimulationProject simulationProject = SimulationProject.getInstance();
         Locale.setDefault(new Locale(System.getProperty("user.language"), System.getProperty("user.country")));
         initComponents();
     }
@@ -229,11 +236,21 @@ public class SettingsWindow extends javax.swing.JFrame {
 
         saveMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         saveMenuItem.setText(bundle.getString("SettingsWindow.saveMenuItem.text")); // NOI18N
+        saveMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveMenuItemActionPerformed(evt);
+            }
+        });
         fileMenu.add(saveMenuItem);
 
         saveAsMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         saveAsMenuItem.setText(bundle.getString("SettingsWindow.saveAsMenuItem.text")); // NOI18N
         saveAsMenuItem.setToolTipText(bundle.getString("SettingsWindow.saveAsMenuItem.toolTipText")); // NOI18N
+        saveAsMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveAsMenuItemActionPerformed(evt);
+            }
+        });
         fileMenu.add(saveAsMenuItem);
 
         exitMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
@@ -249,6 +266,7 @@ public class SettingsWindow extends javax.swing.JFrame {
 
         editMenu.setText(bundle.getString("StartWindow.editMenu.text")); // NOI18N
 
+        languageMenu.setText(bundle.getString("SettingsWindow.languageMenu.text")); // NOI18N
         java.util.ResourceBundle bundle1 = java.util.ResourceBundle.getBundle("ui/Bundle"); // NOI18N
         languageMenu.setLabel(bundle1.getString("StartWindow.languageMenu.label")); // NOI18N
 
@@ -364,8 +382,27 @@ public class SettingsWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_atmosphereConfigurationButtonActionPerformed
 
     private void viewGraphicsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewGraphicsButtonActionPerformed
-
+        GraphicsVisualizer graphicsVisualizer = new GraphicsVisualizer(this.simulationProject.getData(), this.simulationProject.getColors());
+        this.dispose();
+        graphicsVisualizer.setVisible(true);
     }//GEN-LAST:event_viewGraphicsButtonActionPerformed
+
+    private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
+        this.simulationProject.saveProject();
+    }//GEN-LAST:event_saveMenuItemActionPerformed
+
+    private void saveAsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAsMenuItemActionPerformed
+        JFileChooser fileSaver = new JFileChooser();
+        fileSaver.setDialogTitle("Select Storing Directory");
+        fileSaver.setAcceptAllFileFilterUsed(false);
+        if (fileSaver.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            this.simulationProject.setProjectName(fileSaver.getSelectedFile().getName());
+            this.simulationProject.setProjectLocation(fileSaver.getCurrentDirectory() + "/");
+            this.simulationProject.saveProject();
+        } else {
+            JOptionPane.showMessageDialog(null, "File not saved, please try again");
+        }
+    }//GEN-LAST:event_saveAsMenuItemActionPerformed
 
     /**
      * @param args the command line arguments

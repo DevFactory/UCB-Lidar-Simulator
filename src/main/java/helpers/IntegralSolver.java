@@ -1,4 +1,4 @@
-package math;
+package helpers;
 
 import atmosphere.functions.Function;
 

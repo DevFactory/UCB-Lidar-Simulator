@@ -293,7 +293,7 @@ public class Rayleigh extends Function {
     }
 
     public Collection<Number> getBetaScattering() {
-        return betaScattering;
+        return this.betaScattering;
     }
 
     public void setBetaScattering(Collection<Number> betaScattering) {
