@@ -67,6 +67,11 @@ public class StartWindow extends javax.swing.JFrame {
         openProjectButton.setToolTipText(bundle.getString("StartWindow.openProjectButton.toolTipText")); // NOI18N
         openProjectButton.setPreferredSize(new java.awt.Dimension(60, 60));
         openProjectButton.setSize(new java.awt.Dimension(60, 60));
+        openProjectButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openProjectButtonActionPerformed(evt);
+            }
+        });
 
         tutorialButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/presentation.png"))); // NOI18N
         tutorialButton.setToolTipText(bundle.getString("StartWindow.tutorialButton.toolTipText")); // NOI18N
@@ -227,6 +232,12 @@ public class StartWindow extends javax.swing.JFrame {
         projectConfigurationWindow.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_newProjectButtonActionPerformed
+
+    private void openProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openProjectButtonActionPerformed
+        OpenProjectWindow w = new OpenProjectWindow();
+        this.dispose();
+        w.setVisible(true);
+    }//GEN-LAST:event_openProjectButtonActionPerformed
 
     /**
      * @param args the command line arguments

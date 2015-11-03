@@ -202,15 +202,15 @@ public class GraphicsConfiguration extends javax.swing.JFrame {
             data.add(var);
             var = var + 0.001;
         }
-        colors.add(0, obtainSelectedColor(this.temperatureColorComboBox));
-        colors.add(1, obtainSelectedColor(this.pressureColorComboBox));
-        colors.add(2, obtainSelectedColor(this.mieColorComboBox));
-        colors.add(3, obtainSelectedColor(this.alphaRayleighColorComboBox));
-        colors.add(4, obtainSelectedColor(this.betaRayleighColorComboBox));
+        this.colors.add(0, obtainSelectedColor(this.temperatureColorComboBox));
+        this.colors.add(1, obtainSelectedColor(this.pressureColorComboBox));
+        this.colors.add(2, obtainSelectedColor(this.mieColorComboBox));
+        this.colors.add(3, obtainSelectedColor(this.alphaRayleighColorComboBox));
+        this.colors.add(4, obtainSelectedColor(this.betaRayleighColorComboBox));
         SettingsWindow w = new SettingsWindow();
         this.dispose();
         this.simulationProject.setData(data);
-        this.simulationProject.setColors(colors);
+        this.simulationProject.setColors(this.colors);
         JOptionPane.showMessageDialog(null, "Atmosphere Values Setted");
         w.setVisible(true);
     }//GEN-LAST:event_generateButtonActionPerformed

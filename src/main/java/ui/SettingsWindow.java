@@ -267,8 +267,7 @@ public class SettingsWindow extends javax.swing.JFrame {
         editMenu.setText(bundle.getString("StartWindow.editMenu.text")); // NOI18N
 
         languageMenu.setText(bundle.getString("SettingsWindow.languageMenu.text")); // NOI18N
-        java.util.ResourceBundle bundle1 = java.util.ResourceBundle.getBundle("ui/Bundle"); // NOI18N
-        languageMenu.setLabel(bundle1.getString("StartWindow.languageMenu.label")); // NOI18N
+        languageMenu.setLabel(bundle.getString("StartWindow.languageMenu.label")); // NOI18N
 
         englishMenuItem.setText(bundle.getString("StartWindow.englishMenuItem.text")); // NOI18N
         englishMenuItem.setToolTipText(bundle.getString("StartWindow.englishMenuItem.toolTipText")); // NOI18N
@@ -382,9 +381,13 @@ public class SettingsWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_atmosphereConfigurationButtonActionPerformed
 
     private void viewGraphicsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewGraphicsButtonActionPerformed
-        GraphicsVisualizer graphicsVisualizer = new GraphicsVisualizer(this.simulationProject.getData(), this.simulationProject.getColors());
-        this.dispose();
-        graphicsVisualizer.setVisible(true);
+        if (this.simulationProject.getData() != null) {
+            GraphicsVisualizer graphicsVisualizer = new GraphicsVisualizer();
+            this.dispose();
+            graphicsVisualizer.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "Atmosphere Data is empty... please fill data first");
+        }
     }//GEN-LAST:event_viewGraphicsButtonActionPerformed
 
     private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed

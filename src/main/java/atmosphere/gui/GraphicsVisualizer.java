@@ -10,6 +10,7 @@ import atmosphere.Mie;
 import atmosphere.Pressure;
 import atmosphere.Rayleigh;
 import atmosphere.Temperature;
+import atmosphere.functions.Function;
 import atmosphere.functions.plotter.FunctionPlotter;
 //import helpers.SuffixSaveFilter;
 import java.awt.Color;
@@ -18,8 +19,9 @@ import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Locale;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
+import javax.swing.*;
+
+import helpers.GraphicsController;
 import project.SimulationProject;
 import ui.SettingsWindow;
 import ui.StartWindow;
@@ -37,76 +39,42 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
 
     public GraphicsVisualizer() {
         Locale.setDefault(new Locale(System.getProperty("user.language"), System.getProperty("user.country")));
-        initComponents();
-        makeFrameFullSize();
-    }
-
-    public GraphicsVisualizer(Collection<Number> data, ArrayList<Color> colors) {
+        GraphicsController graphicsController = new GraphicsController();
         this.functionPlotter = new FunctionPlotter();
-
         initComponents();
         makeFrameFullSize();
-        Color colorA, colorB;
-        colorA = colors.get(0);
-        createTemperatureTab(data, colorA);
-        colorA = colors.get(1);
-        createPressureTab(data, colorA);
-        colorA = colors.get(2);
-        createMieTab(data, colorA);
-        colorA = colors.get(3);
-        colorB = colors.get(4);
-        createRayleighTabs(data, colorA, colorB);
-        createAtmosphereTab(data, colorA, colorB);
+        createTemperatureTab(graphicsController.getChartPanels().get(0));
+        createPressureTab(graphicsController.getChartPanels().get(1));
+        createMieTab(graphicsController.getChartPanels().get(2));
+        createRayleighTabs(graphicsController.getChartPanels().get(3), graphicsController.getChartPanels().get(4));
+        createAtmosphereTab(graphicsController.getChartPanels().get(5));
     }
 
-    private void createTemperatureTab(Collection<Number> data, Color color) {
-        Temperature temperature = new Temperature(data);
-        temperature.generate();
-        this.functionPlotter = new FunctionPlotter((temperature.generateChart(color)));
-        this.temperaturePanel = this.functionPlotter.getChartPanel();
+    private void createTemperatureTab(JPanel panel) {
+        this.temperaturePanel = panel;
         graphicsTabbedPane.setComponentAt(0, this.temperaturePanel);
     }
 
-    private void createPressureTab(Collection<Number> data, Color color) {
-        Pressure pressure = new Pressure(data);
-        pressure.generate();
-        this.functionPlotter.setChart(pressure.generateChart(color));
-        this.pressurePanel = this.functionPlotter.getChartPanel();
+    private void createPressureTab(JPanel panel) {
+        this.pressurePanel = panel;
         graphicsTabbedPane.setComponentAt(1, this.pressurePanel);
     }
 
-    private void createMieTab(Collection<Number> data, Color color) {
-        Mie mie = new Mie(data);
-        mie.generate();
-        this.functionPlotter.setChart(mie.generateChart(color));
-        this.miePanel = this.functionPlotter.getChartPanel();
+    private void createMieTab(JPanel panel) {
+        this.miePanel = panel;
         graphicsTabbedPane.setComponentAt(2, this.miePanel);
 
     }
 
-    private void createRayleighTabs(Collection<Number> data, Color colorA, Color colorB) {
-        Rayleigh rayleigh = new Rayleigh(data);
-        rayleigh.generate();
-        this.functionPlotter.setChart(rayleigh.getAlfaScatteringChart(colorA));
-        this.alphaRayleighPanel = this.functionPlotter.getChartPanel();
-        this.functionPlotter.setChart(rayleigh.getBetaScatteringChart(colorB));
-        this.betaRayleighPanel = this.functionPlotter.getChartPanel();
+    private void createRayleighTabs(JPanel panelA, JPanel panelB) {
+        this.alphaRayleighPanel = panelA;
+        this.betaRayleighPanel = panelB;
         graphicsTabbedPane.setComponentAt(3, this.alphaRayleighPanel);
         graphicsTabbedPane.setComponentAt(4, this.betaRayleighPanel);
-
     }
 
-    private void createAtmosphereTab(Collection<Number> data, Color colorA, Color colorB) {
-        Mie mie = new Mie(data);
-        mie.generate();
-
-        Rayleigh rayleigh = new Rayleigh(data);
-        rayleigh.generate();
-
-        Atmosphere atmosphere = new Atmosphere(mie, rayleigh);
-        atmosphere.generate();
-        this.functionPlotter.setChart(atmosphere.generateChart(colorA));
-        this.atmospherePanel = this.functionPlotter.getChartPanel();
+    private void createAtmosphereTab(JPanel panel) {
+        this.atmospherePanel = panel;
         graphicsTabbedPane.setComponentAt(5, this.atmospherePanel);
 
     }

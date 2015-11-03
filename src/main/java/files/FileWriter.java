@@ -21,6 +21,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
+
 import project.SimulationProject;
 
 public class FileWriter {
@@ -34,124 +35,81 @@ public class FileWriter {
     private StreamResult result;
 
     public FileWriter() {
-        initializeComponents();
-    }
-
-    public void initializeComponents() {
-        try {
-            this.builder = this.builderFactory.newDocumentBuilder();
-            this.transformer = this.transformerFactory.newTransformer();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (TransformerConfigurationException e) {
-            e.printStackTrace();
-        }
-        this.document = this.builder.newDocument();
-    }
-
-    public Element createRootElement(String projectName) {
-        Element rootElement = this.document.createElement("Project");
-        Attr name = this.document.createAttribute("name");
-        name.setValue(projectName);
-        rootElement.setAttributeNode(name);
-        return rootElement;
-    }
-
-    public Element createInitialValueElement(double initialValue) {
-        Element initialValueElement = this.document.createElement("element");
-        Attr name = this.document.createAttribute("name");
-        name.setValue("Initial Value");
-        initialValueElement.setAttributeNode(name);
-        initialValueElement.appendChild(this.document.createTextNode(String.valueOf(initialValue)));
-        return initialValueElement;
-    }
-
-    private Element createFinalValueElement(double finalValue) {
-        Element finalValueElement = this.document.createElement("element");
-        Attr name = this.document.createAttribute("name");
-        name.setValue("Final Value");
-        finalValueElement.setAttributeNode(name);
-        finalValueElement.appendChild(this.document.createTextNode(String.valueOf(finalValue)));
-        return finalValueElement;
-    }
-
-    public Element createAtmosphereComponent(double initialValue, double finalValue) {
-        Element atmosphereComponent = this.document.createElement("component");
-        Attr name = this.document.createAttribute("name");
-        name.setValue("Atmosphere");
-        atmosphereComponent.setAttributeNode(name);
-        atmosphereComponent.appendChild(createInitialValueElement(initialValue));
-        atmosphereComponent.appendChild(createFinalValueElement(finalValue));
-        return atmosphereComponent;
-    }
-
-    public Element createTelescopeComponent(Telescope telescope) {
-        Element telescopeComponent = this.document.createElement("component");
-        Attr name = this.document.createAttribute("name");
-        name.setValue("Telescope");
-        telescopeComponent.setAttributeNode(name);
-        return telescopeComponent;
-    }
-
-    public Element createLaserComponent(Laser laser) {
-        Element laserComponent = this.document.createElement("component");
-        Attr name = this.document.createAttribute("name");
-        name.setValue("Laser");
-        laserComponent.setAttributeNode(name);
-        return laserComponent;
-    }
-
-    public Element createMonochromatorComponent(Monochromator monochromator) {
-        Element monochromatorComponent = this.document.createElement("component");
-        Attr name = this.document.createAttribute("name");
-        name.setValue("Monochromator");
-        monochromatorComponent.setAttributeNode(name);
-        return monochromatorComponent;
-    }
-
-    public Element createLinkBudgetComponent(LinkBudget linkBudget) {
-        Element linkBudgetComponent = this.document.createElement("component");
-        Attr name = this.document.createAttribute("name");
-        name.setValue("LinkBudget");
-        linkBudgetComponent.setAttributeNode(name);
-        return linkBudgetComponent;
-    }
-
-    public void createDocument(String projectName, SimulationProject project) {
-        Element rootElement = createRootElement(projectName);
-        if (project.getData() != null) {
-            rootElement.appendChild(createAtmosphereComponent(project.getData().get(0).doubleValue(), project.getData().get(project.getData().size() - 1).doubleValue() + 1));
-        } else {
-            rootElement.appendChild(createAtmosphereComponent(0, 0));
-        }
-        rootElement.appendChild(createLaserComponent(project.getLidar().getLaser()));
-        rootElement.appendChild(createTelescopeComponent(project.getLidar().getTelescope()));
-        rootElement.appendChild(createMonochromatorComponent(project.getLidar().getMonochromator()));
-        rootElement.appendChild(createLinkBudgetComponent(project.getLidar().getLinkBudget()));
-        this.document.appendChild(rootElement);//Estructura principal
 
     }
 
     public void saveProject(SimulationProject project) {
-        createDocument(project.getProjectName(), project);
-        this.document.getDocumentElement().normalize();
-        this.source = new DOMSource(this.document);
-        StreamResult results = new StreamResult(new File(project.getProjectLocation() + project.getProjectName() + ".xml"));
 
         try {
-            transformer.transform(source, results);
-        } catch (TransformerException e) {
-            e.printStackTrace();
+
+            this.builderFactory = DocumentBuilderFactory.newInstance();
+            this.builder = builderFactory.newDocumentBuilder();
+
+            this.document = builder.newDocument();
+
+            Element rootElement = document.createElement("Project");
+            rootElement.setAttribute("name", project.getProjectName());
+            document.appendChild(rootElement);
+
+            Element atmosphere = document.createElement("Atmosphere");
+            rootElement.appendChild(atmosphere);
+
+            double initialValue;
+            double finalValue;
+
+            if (project.getData() != null) {
+                initialValue = project.getData().get(0).doubleValue();
+                finalValue = project.getData().get(project.getData().size() - 1).doubleValue();
+            } else {
+                initialValue = 0.0;
+                finalValue = 0.0;
+            }
+
+            Element initialValueElement = document.createElement("InitialValue");
+            initialValueElement.appendChild(document.createTextNode(String.valueOf(initialValue)));
+            atmosphere.appendChild(initialValueElement);
+
+            Element finalValueElement = document.createElement("FinalValue");
+            finalValueElement.appendChild(document.createTextNode(String.valueOf(finalValue)));
+            atmosphere.appendChild(finalValueElement);
+
+            Element telescope = document.createElement("Telescope");
+            rootElement.appendChild(telescope);
+
+            Element laser = document.createElement("Laser");
+            rootElement.appendChild(laser);
+
+            Element monochromator = document.createElement("Monochromator");
+            rootElement.appendChild(monochromator);
+
+            Element linkBudget = document.createElement("LinkBudget");
+            rootElement.appendChild(linkBudget);
+            this.document.getDocumentElement().normalize();
+
+            this.transformerFactory = TransformerFactory.newInstance();
+            this.transformer = transformerFactory.newTransformer();
+            this.source = new DOMSource(document);
+            this.result = new StreamResult(new File(project.getProjectLocation() + project.getProjectName() + ".xml"));
+
+            transformer.transform(source, result);
+
+            System.out.println("File saved!");
+
+        } catch (ParserConfigurationException pce) {
+            pce.printStackTrace();
+        } catch (TransformerException tfe) {
+            tfe.printStackTrace();
         }
 
-        System.out.println("File saved!");
     }
+
 
     public static void main(String args[]) {
         SimulationProject test = SimulationProject.getInstance();
         test.setProjectName("Proyecto Prueba");
-        test.setProjectLocation("/Users/oscar_sgc/Documents/");
+        test.setProjectLocation("/Users/oscar_sgc/Desktop/");
         new FileWriter().saveProject(test);
-    }
 
+    }
 }
+
