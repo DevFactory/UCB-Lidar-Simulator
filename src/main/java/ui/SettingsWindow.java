@@ -6,15 +6,13 @@
 package ui;
 
 import atmosphere.gui.GraphicsConfiguration;
+import atmosphere.gui.GraphicsVisualizer;
+import project.SimulationProject;
 
-import java.awt.*;
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import atmosphere.gui.GraphicsVisualizer;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import project.SimulationProject;
 
 /**
  *
@@ -372,7 +370,7 @@ public class SettingsWindow extends javax.swing.JFrame {
             finalAltitude = this.simulationProject.getData().get(this.simulationProject.getData().size() - 1).doubleValue();
 
             this.detailsTextPane.setText("ATMOSPHERE DETAILS:\n" + "Initial altitude: " + initialAltitude + "\n" + "Final altitude: " + finalAltitude + "\n" +
-                    "ATMOSPHERE GRAPHICS DETAILS:\n" + "Temperature: "+ colors.get(0)+"\n"+ "Pressure: "+ colors.get(1)+ "\n"+"Mie: "+ colors.get(2)+"\n"+
+                    "ATMOSPHERE GRAPHICS DETAILS:\n" + "Temperature: "+ colors.get(0) +"\n"+ "Pressure: "+ colors.get(1)+ "\n"+"Mie: "+ colors.get(2)+"\n"+
                     "Alpha Rayleigh: " + colors.get(3) + "\n"+ "Beta Rayleigh: " + colors.get(4) + "\n"+ "Atmosphere: " + colors.get(5));
         } else {
             this.detailsTextPane.setText("ATMOSPHERE DETAILS:\n" + "Initial altitude: Not defined\n" + "Final altitude: Not defined\n" +

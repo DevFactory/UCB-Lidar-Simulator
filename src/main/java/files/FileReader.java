@@ -111,11 +111,4 @@ public class FileReader {
             e.printStackTrace();
         }
     }
-
-
-    public static void main(String argv[]) {
-
-        FileReader fr = new FileReader();
-        fr.openFile("/Users/oscar_sgc/Desktop/Prueba.xml");
-    }
 }
