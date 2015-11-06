@@ -20,6 +20,7 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import java.awt.*;
 import java.io.File;
 
 import project.SimulationProject;
@@ -73,6 +74,34 @@ public class FileWriter {
             finalValueElement.appendChild(document.createTextNode(String.valueOf(finalValue)));
             atmosphere.appendChild(finalValueElement);
 
+            Element colors = document.createElement("Colors");
+
+            Element temperatureColor = document.createElement("Temperature");
+            temperatureColor.appendChild(document.createTextNode(String.valueOf(project.getColorsInString().get(0))));
+            colors.appendChild(temperatureColor);
+
+            Element pressureColor = document.createElement("Pressure");
+            pressureColor.appendChild(document.createTextNode(String.valueOf(project.getColorsInString().get(1))));
+            colors.appendChild(pressureColor);
+
+            Element mieColor = document.createElement("Mie");
+            mieColor.appendChild(document.createTextNode(String.valueOf(project.getColorsInString().get(2))));
+            colors.appendChild(mieColor);
+
+            Element alphaColor = document.createElement("Alpha");
+            alphaColor.appendChild(document.createTextNode(String.valueOf(project.getColorsInString().get(3))));
+            colors.appendChild(alphaColor);
+
+            Element betaColor = document.createElement("Beta");
+            betaColor.appendChild(document.createTextNode(String.valueOf(project.getColorsInString().get(4))));
+            colors.appendChild(betaColor);
+
+            Element atmosphereColor = document.createElement("AtmosphereColor");
+            atmosphereColor.appendChild(document.createTextNode(String.valueOf(project.getColorsInString().get(5))));
+            colors.appendChild(atmosphereColor);
+
+            atmosphere.appendChild(colors);
+
             Element telescope = document.createElement("Telescope");
             rootElement.appendChild(telescope);
 
@@ -103,7 +132,6 @@ public class FileWriter {
 
     }
 
-
     public static void main(String args[]) {
         SimulationProject test = SimulationProject.getInstance();
         test.setProjectName("Proyecto Prueba");
@@ -112,4 +140,3 @@ public class FileWriter {
 
     }
 }
-

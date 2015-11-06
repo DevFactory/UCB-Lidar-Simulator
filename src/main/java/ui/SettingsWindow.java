@@ -6,12 +6,13 @@
 package ui;
 
 import atmosphere.gui.GraphicsConfiguration;
+
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.Locale;
 
 import atmosphere.gui.GraphicsVisualizer;
-import java.io.File;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import project.SimulationProject;
 
@@ -365,12 +366,18 @@ public class SettingsWindow extends javax.swing.JFrame {
     private void atmosphereDetailsLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atmosphereDetailsLabelMouseClicked
         double initialAltitude = 0;
         double finalAltitude = 0;
+        ArrayList<String> colors = this.simulationProject.getColorsInString();
         if (simulationProject.getData() != null) {
             initialAltitude = this.simulationProject.getData().get(0).doubleValue();
             finalAltitude = this.simulationProject.getData().get(this.simulationProject.getData().size() - 1).doubleValue();
-            this.detailsTextPane.setText("ATMOSPHERE DETAILS:\n" + "Initial altitude: " + initialAltitude + "\n" + "Final altitude: " + finalAltitude + "\n");
+
+            this.detailsTextPane.setText("ATMOSPHERE DETAILS:\n" + "Initial altitude: " + initialAltitude + "\n" + "Final altitude: " + finalAltitude + "\n" +
+                    "ATMOSPHERE GRAPHICS DETAILS:\n" + "Temperature: "+ colors.get(0)+"\n"+ "Pressure: "+ colors.get(1)+ "\n"+"Mie: "+ colors.get(2)+"\n"+
+                    "Alpha Rayleigh: " + colors.get(3) + "\n"+ "Beta Rayleigh: " + colors.get(4) + "\n"+ "Atmosphere: " + colors.get(5));
         } else {
-            this.detailsTextPane.setText("ATMOSPHERE DETAILS:\n" + "Initial altitude: Not defined\n" + "Final altitude: Not defined\n");
+            this.detailsTextPane.setText("ATMOSPHERE DETAILS:\n" + "Initial altitude: Not defined\n" + "Final altitude: Not defined\n" +
+                    "ATMOSPHERE GRAPHICS DETAILS:\n" + "Temperature: Not defined\n"+ "Pressure: Not defined\n"+"Mie: Not defined\n"+
+                    "Alpha Rayleigh: Not defined\n"+ "Beta Rayleigh: Not defined\n"+ "Atmosphere: Not defined");
         }
     }//GEN-LAST:event_atmosphereDetailsLabelMouseClicked
 

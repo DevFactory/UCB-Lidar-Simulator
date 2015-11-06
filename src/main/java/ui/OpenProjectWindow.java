@@ -129,9 +129,9 @@ public class OpenProjectWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_browseButtonActionPerformed
 
     private void openButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openButtonActionPerformed
-        FileReader fr = new FileReader();
+        FileReader fileReader = new FileReader();
         if (this.projectTextField.getText() != "") {
-            if (fr.validFile(this.projectTextField.getText())){
+            if (fileReader.validFile(this.projectTextField.getText())){
             SimulationProject simulationProject = SimulationProject.getInstance();
             simulationProject.openProject(this.projectTextField.getText());
             SettingsWindow w = new SettingsWindow();

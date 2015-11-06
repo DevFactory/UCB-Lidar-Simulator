@@ -70,7 +70,7 @@ public class GraphicsController {
         Atmosphere atmosphere = new Atmosphere(mie, rayleigh);
         atmosphere.generate();
         this.simulationProject.getLidar().setAtmosphere(atmosphere);
-        this.functionPlotter.setChart(atmosphere.generateChart(this.simulationProject.getColors().get(4)));
+        this.functionPlotter.setChart(atmosphere.generateChart(this.simulationProject.getColors().get(5)));
         this.chartPanels.add(this.functionPlotter.getChartPanel());
     }
 

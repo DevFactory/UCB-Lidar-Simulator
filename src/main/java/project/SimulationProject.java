@@ -11,6 +11,7 @@ import files.FileWriter;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import lidar.Lidar;
 
@@ -23,7 +24,8 @@ public class SimulationProject {
     FileWriter fileWriter = new FileWriter();
     FileReader fileReader = new FileReader();
     private ArrayList<Number> data;
-    private ArrayList<Color> colors;
+    private ArrayList<Color> colors = new ArrayList<Color>();
+    private ArrayList<String> colorsInString = new ArrayList<String>();
     private String projectName;
     private String projectLocation;
     private double initialValue;
@@ -32,7 +34,31 @@ public class SimulationProject {
     private static SimulationProject simulationProject = new SimulationProject();
 
     private SimulationProject() {
+        for(int i = 0; i<10; i++){
+            this.colors.add(Color.RED);
+        }
+        colorsToString();
+    }
 
+    public void colorsToString(){
+        this.colorsInString.clear();
+        for (int i = 0; i < this.colors.size(); i++) {
+            if (this.colors.get(i) == Color.RED){
+                this.colorsInString.add("RED");
+            }
+
+            if (this.colors.get(i) == Color.BLACK){
+                this.colorsInString.add("BLACK");
+            }
+
+            if (this.colors.get(i) == Color.BLUE){
+                this.colorsInString.add("BLUE");
+            }
+
+            if (this.colors.get(i) == Color.GREEN){
+                this.colorsInString.add("GREEN");
+            }
+        }
     }
 
     public void saveProject() {
@@ -45,6 +71,7 @@ public class SimulationProject {
         for (double i = this.initialValue; i < this.finalValue; i += 0.001) {
             this.data.add(i);
         }
+        colorsToString();
     }
 
     private SimulationProject(String projectName, String projectLocation) {
@@ -100,7 +127,9 @@ public class SimulationProject {
     }
 
     public void setColors(ArrayList<Color> colors) {
+        this.colors.clear();
         this.colors = colors;
+        colorsToString();
     }
 
     public FileWriter getFileWriter() {
@@ -134,4 +163,19 @@ public class SimulationProject {
     public void setFinalValue(double finalValue) {
         this.finalValue = finalValue;
     }
+
+    public ArrayList<String> getColorsInString() {
+        return colorsInString;
+    }
+
+    public void setColorsInString(ArrayList<String> colorsInString) {
+        this.colorsInString = colorsInString;
+    }
+
+    public static void main(String args[]){
+
+    }
+
 }
+
+
