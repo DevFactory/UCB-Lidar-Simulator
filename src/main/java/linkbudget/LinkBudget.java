@@ -145,7 +145,7 @@ public class LinkBudget {
         /* Elastic channel integration pulses to achieve SNR=snrint */
         ArrayList<Double> helper = findFunction(this.SNR0);
         this.in0 = helper.indexOf(Collections.min(helper));
-        this.niE = this.snrint/ ;
+//        this.niE = this.snrint/ ;
 
     }
 

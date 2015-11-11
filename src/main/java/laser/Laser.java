@@ -2,7 +2,7 @@ package laser;
 
 public class Laser {
 
-    private int emissionWavelength;
+    private double emissionWavelength;
     private double energy;
     private double PRF;
     private double beamWidth;
@@ -22,11 +22,11 @@ public class Laser {
         this.divergence = divergence;
     }
 
-    public int getEmissionWavelength() {
+    public double getEmissionWavelength() {
         return emissionWavelength;
     }
 
-    public void setEmissionWavelength(int emissionWavelength) {
+    public void setEmissionWavelength(double emissionWavelength) {
         this.emissionWavelength = emissionWavelength;
     }
 
