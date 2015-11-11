@@ -32,7 +32,7 @@ public class Lidar {
     private Atmosphere atmosphere;
 
     public Lidar() {
-        this.k = ((this.laser.getOutputEnergyPerPulse() * this.monochromator.getOverlapFactor()) / 2) * this.telescope.getAr();
+        //this.k = ((this.laser.getOutputEnergyPerPulse() * this.monochromator.getOverlapFactor()) / 2) * this.telescope.getAr();
     }
 
     public Lidar(Collection<Number> altitudes, Rayleigh rayleigh, Mie mie, Monochromator monochromator, Telescope telescope, Laser laser) {
@@ -42,7 +42,7 @@ public class Lidar {
         this.monochromator = monochromator;
         this.telescope = telescope;
         this.laser = laser;
-        this.k = ((this.laser.getOutputEnergyPerPulse() * this.monochromator.getOverlapFactor()) / 2) * this.telescope.getAr();
+        //this.k = ((this.laser.getOutputEnergyPerPulse() * this.monochromator.getOverlapFactor()) / 2) * this.telescope.getAr();
         this.integralSolver.setFunction(this.mie);
     }
 

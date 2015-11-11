@@ -2,110 +2,63 @@ package laser;
 
 public class Laser {
 
-    private double outputWaveLength;//nm
-    private double outputEnergyPerPulse;// uJ
-    private double repetitionRate;//kHz
-    private double pulseDuration; //ns
-    private double effectiveAperture; //cm^2
-    private double FOV; //urad
-    private double filterBandwidth;//nm
-    private double acquisitionTime;//s
-    private double verticalResolution;//m
-
+    private int emissionWavelength;
+    private double energy;
+    private double PRF;
+    private double beamWidth;
+    private double divergence;
 
     public Laser() {
-        this.outputWaveLength = 532.0;
-        this.outputEnergyPerPulse = 4.0;
-        this.repetitionRate = 5.0;
-        this.pulseDuration = 0.99;
-        this.effectiveAperture = 314.0;
-        this.FOV = 55.0;
-        this.filterBandwidth = 0.5;
-        this.acquisitionTime = 0.8;
-        this.verticalResolution = 15.0;
+        this.emissionWavelength = 532;
+        this.divergence = 0.5e-3;
+
     }
 
-    public Laser(double outputWaveLength, double outputEnergyPerPulse, double repetitionRate, double pulseDuration, double effectiveAperture, double FOV, double filterBandwidth, double acquisitionTime, double verticalResolution) {
-        this.outputWaveLength = outputWaveLength;
-        this.outputEnergyPerPulse = outputEnergyPerPulse;
-        this.repetitionRate = repetitionRate;
-        this.pulseDuration = pulseDuration;
-        this.effectiveAperture = effectiveAperture;
-        this.FOV = FOV;
-        this.filterBandwidth = filterBandwidth;
-        this.acquisitionTime = acquisitionTime;
-        this.verticalResolution = verticalResolution;
+    public Laser(int emissionWavelength, double energy, double PRF, double beamWidth, double divergence) {
+        this.emissionWavelength = emissionWavelength;
+        this.energy = energy;
+        this.PRF = PRF;
+        this.beamWidth = beamWidth;
+        this.divergence = divergence;
     }
 
-    public double getAcquisitionTime() {
-        return acquisitionTime;
+    public int getEmissionWavelength() {
+        return emissionWavelength;
     }
 
-    public void setAcquisitionTime(double acquisitionTime) {
-        this.acquisitionTime = acquisitionTime;
+    public void setEmissionWavelength(int emissionWavelength) {
+        this.emissionWavelength = emissionWavelength;
     }
 
-    public double getVerticalResolution() {
-        return verticalResolution;
+    public double getEnergy() {
+        return energy;
     }
 
-    public void setVerticalResolution(double verticalResolution) {
-        this.verticalResolution = verticalResolution;
+    public void setEnergy(double energy) {
+        this.energy = energy;
     }
 
-    public double getOutputWaveLength() {
-        return outputWaveLength;
+    public double getPRF() {
+        return PRF;
     }
 
-    public void setOutputWaveLength(double outputWaveLength) {
-        this.outputWaveLength = outputWaveLength;
+    public void setPRF(double PRF) {
+        this.PRF = PRF;
     }
 
-    public double getOutputEnergyPerPulse() {
-        return outputEnergyPerPulse;
+    public double getBeamWidth() {
+        return beamWidth;
     }
 
-    public void setOutputEnergyPerPulse(double outputEnergyPerPulse) {
-        this.outputEnergyPerPulse = outputEnergyPerPulse;
+    public void setBeamWidth(double beamWidth) {
+        this.beamWidth = beamWidth;
     }
 
-    public double getRepetitionRate() {
-        return repetitionRate;
+    public double getDivergence() {
+        return divergence;
     }
 
-    public void setRepetitionRate(double repetitionRate) {
-        this.repetitionRate = repetitionRate;
-    }
-
-    public double getPulseDuration() {
-        return pulseDuration;
-    }
-
-    public void setPulseDuration(double pulseDuration) {
-        this.pulseDuration = pulseDuration;
-    }
-
-    public double getEffectiveAperture() {
-        return effectiveAperture;
-    }
-
-    public void setEffectiveAperture(double effectiveAperture) {
-        this.effectiveAperture = effectiveAperture;
-    }
-
-    public double getFOV() {
-        return FOV;
-    }
-
-    public void setFOV(double FOV) {
-        this.FOV = FOV;
-    }
-
-    public double getFilterBandwidth() {
-        return filterBandwidth;
-    }
-
-    public void setFilterBandwidth(double filterBandwidth) {
-        this.filterBandwidth = filterBandwidth;
+    public void setDivergence(double divergence) {
+        this.divergence = divergence;
     }
 }

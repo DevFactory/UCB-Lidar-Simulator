@@ -30,7 +30,7 @@ public class Rayleigh extends Function {
     private Collection<Number> alphaScattering = new ArrayList<Number>();//
     private Collection<Number> betaScattering = new ArrayList<Number>();//
     private double kingFactor;//
-    private double wavelength = 300.0;//Lambda-nm
+    private double wavelength = 355.0;//Lambda-nm
     private double t;//US Standard atmosphere temperature profile
     private double p;//US Standard atmosphere pressure profile
     private double rayleighExtinction;
