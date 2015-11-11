@@ -7,6 +7,7 @@ import monochromator.Monochromator;
 import telescope.Telescope;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 
 /**
@@ -63,7 +64,7 @@ public class LinkBudget {
     private double loss0;
     private double Rv;
     private double cons0;
-    private ArrayList s0;
+    private ArrayList<Double> s0;
     private double B;
     private double a0;
     private double snrgoal;
@@ -75,7 +76,9 @@ public class LinkBudget {
     private double Nth;
     private double NEP_0;
     private double NEPs_0;
-    private ArrayList SNR
+    private ArrayList<Double> SNR0;
+    private double in0;
+    private double snrint;
 
 
     public LinkBudget() {
@@ -96,6 +99,7 @@ public class LinkBudget {
         rMax = this.altitudes.get(this.altitudes.size() - 1).doubleValue();
         this.rPBL = 500;
         this.fOVF = 1;
+        this.snrint = 1;
     }
 
     public void backgroundComponent() {
@@ -136,13 +140,32 @@ public class LinkBudget {
         this.Nth = this.c0;
         this.NEP_0 = Math.sqrt(2 * this.q * (this.monochromator.getIds() + this.monochromator.getF() * (Math.pow(this.monochromator.getM(), 2)) * this.monochromator.getIdb())) / this.Ri;
         this.NEPs_0 = Math.sqrt(2 * this.q * (this.monochromator.getIds() + this.monochromator.getF() * (Math.pow(this.monochromator.getM(), 2)) * this.monochromator.getIdb()) + (this.monochromator.getNv() / Math.pow(this.monochromator.getGT(), 2))) / (this.Ri * this.loss0);
-        this.SNR0 = this.s0 / Math.sqrt(this.Nshs0 + this.Nshd0 + this.Nth);
+        this.SNR0 = snr0Generation();
 
-
-
+        /* Elastic channel integration pulses to achieve SNR=snrint */
+        ArrayList<Double> helper = findFunction(this.SNR0);
+        this.in0 = helper.indexOf(Collections.min(helper));
+        this.niE = this.snrint/ ;
 
     }
 
+    private ArrayList<Double> findFunction(ArrayList<Double> array) {
+        ArrayList<Double> aux = new ArrayList<Double>();
+        for (int i = 0; i < array.size(); i++) {
+            if (array.get(i) > 0) {
+                aux.add(array.get(i));
+            }
+        }
+        return aux;
+    }
+
+    private ArrayList<Double> snr0Generation() {
+        ArrayList<Double> aux = new ArrayList<Double>();
+        for (int i = 0; i <= this.Nshs0.size(); i++) {
+            aux.add(this.s0.get(i) / (this.Nshs0.get(i).doubleValue() + this.Nshd0 + this.Nth));
+        }
+        return aux;
+    }
 
 
     private ArrayList<Double> nshs0Generation(double a0, ArrayList<Double> results, double powb0) {
