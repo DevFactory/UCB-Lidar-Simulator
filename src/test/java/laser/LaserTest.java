@@ -86,7 +86,7 @@ public class LaserTest extends TestCase {
     public void testShouldCreateAnObjectFromLaserClass() {
         this.laser = new Laser(543, 0.5e-3, 7868.54, 232.23, 983.98);
         assertEquals(543.0, this.laser.getEmissionWavelength());
-        assertEquals(0.5e-3,this.laser.getEnergy());
+        assertEquals(0.5e-3, this.laser.getEnergy());
         assertEquals(7868.54, this.laser.getPRF());
         assertEquals(232.23, this.laser.getBeamWidth());
         assertEquals(983.98, this.laser.getDivergence());
