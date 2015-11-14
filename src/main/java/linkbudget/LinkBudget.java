@@ -141,22 +141,6 @@ public class LinkBudget {
         this.NEP_0 = Math.sqrt(2 * this.q * (this.monochromator.getIds() + this.monochromator.getF() * (Math.pow(this.monochromator.getM(), 2)) * this.monochromator.getIdb())) / this.Ri;
         this.NEPs_0 = Math.sqrt(2 * this.q * (this.monochromator.getIds() + this.monochromator.getF() * (Math.pow(this.monochromator.getM(), 2)) * this.monochromator.getIdb()) + (this.monochromator.getNv() / Math.pow(this.monochromator.getGT(), 2))) / (this.Ri * this.loss0);
         this.SNR0 = snr0Generation();
-
-        /* Elastic channel integration pulses to achieve SNR=snrint */
-        ArrayList<Double> helper = findFunction(this.SNR0);
-        this.in0 = helper.indexOf(Collections.min(helper));
-//        this.niE = this.snrint/ ;
-
-    }
-
-    private ArrayList<Double> findFunction(ArrayList<Double> array) {
-        ArrayList<Double> aux = new ArrayList<Double>();
-        for (int i = 0; i < array.size(); i++) {
-            if (array.get(i) > 0) {
-                aux.add(array.get(i));
-            }
-        }
-        return aux;
     }
 
     private ArrayList<Double> snr0Generation() {

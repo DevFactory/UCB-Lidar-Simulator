@@ -15,6 +15,7 @@ public class Monochromator {
     private double GT;
     private double Nv;
     private double sigampA; //Current noise density
+    private double B;   //Preamplifier limits
 
     public Monochromator() {
         this.overlapFactor = 1;

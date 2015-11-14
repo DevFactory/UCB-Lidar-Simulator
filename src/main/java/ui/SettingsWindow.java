@@ -44,19 +44,16 @@ public class SettingsWindow extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(45, 0), new java.awt.Dimension(50, 0), new java.awt.Dimension(60, 32767));
-        jLabel5 = new javax.swing.JLabel();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(60, 0), new java.awt.Dimension(60, 0), new java.awt.Dimension(60, 32767));
-        jLabel6 = new javax.swing.JLabel();
+        opticsLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         atmosphereDetailsLabel = new javax.swing.JLabel();
-        telescopeDetailsLabel = new javax.swing.JLabel();
         laserDetailsLabel = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         atmosphereConfigurationButton = new javax.swing.JButton();
         filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(60, 0), new java.awt.Dimension(60, 0), new java.awt.Dimension(32767, 0));
-        telescopeSettingsButton = new javax.swing.JButton();
         filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(60, 0), new java.awt.Dimension(60, 0), new java.awt.Dimension(32767, 0));
-        laserSettingsButton = new javax.swing.JButton();
+        opticsSettingsButton = new javax.swing.JButton();
         detailsPanel = new javax.swing.JPanel();
         jScrollPane = new javax.swing.JScrollPane();
         detailsTextPane = new javax.swing.JTextPane();
@@ -85,13 +82,10 @@ public class SettingsWindow extends javax.swing.JFrame {
         jLabel4.setText(bundle.getString("SettingsWindow.jLabel4.text")); // NOI18N
         jPanel1.add(jLabel4);
         jPanel1.add(filler1);
-
-        jLabel5.setText(bundle.getString("SettingsWindow.jLabel5.text")); // NOI18N
-        jPanel1.add(jLabel5);
         jPanel1.add(filler2);
 
-        jLabel6.setText(bundle.getString("SettingsWindow.jLabel6.text")); // NOI18N
-        jPanel1.add(jLabel6);
+        opticsLabel.setText(bundle.getString("SettingsWindow.opticsLabel.text")); // NOI18N
+        jPanel1.add(opticsLabel);
 
         configurationsPanel.add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
@@ -107,18 +101,7 @@ public class SettingsWindow extends javax.swing.JFrame {
             }
         });
         jPanel2.add(atmosphereDetailsLabel);
-        atmosphereDetailsLabel.setBounds(80, 10, 77, 16);
-
-        telescopeDetailsLabel.setForeground(new java.awt.Color(51, 51, 255));
-        telescopeDetailsLabel.setText(bundle.getString("SettingsWindow.telescopeDetailsLabel.text")); // NOI18N
-        telescopeDetailsLabel.setToolTipText(bundle.getString("SettingsWindow.telescopeDetailsLabel.toolTipText")); // NOI18N
-        telescopeDetailsLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                telescopeDetailsLabelMouseClicked(evt);
-            }
-        });
-        jPanel2.add(telescopeDetailsLabel);
-        telescopeDetailsLabel.setBounds(210, 10, 77, 16);
+        atmosphereDetailsLabel.setBounds(110, 10, 77, 16);
 
         laserDetailsLabel.setForeground(new java.awt.Color(51, 51, 255));
         laserDetailsLabel.setText(bundle.getString("SettingsWindow.laserDetailsLabel.text")); // NOI18N
@@ -129,7 +112,7 @@ public class SettingsWindow extends javax.swing.JFrame {
             }
         });
         jPanel2.add(laserDetailsLabel);
-        laserDetailsLabel.setBounds(330, 10, 77, 16);
+        laserDetailsLabel.setBounds(300, 10, 77, 16);
 
         configurationsPanel.add(jPanel2, java.awt.BorderLayout.PAGE_END);
 
@@ -144,23 +127,17 @@ public class SettingsWindow extends javax.swing.JFrame {
             }
         });
         jPanel3.add(atmosphereConfigurationButton);
-        atmosphereConfigurationButton.setBounds(90, 10, 60, 60);
+        atmosphereConfigurationButton.setBounds(120, 10, 60, 60);
         jPanel3.add(filler3);
         filler3.setBounds(119, 35, 60, 0);
-
-        telescopeSettingsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/telescope.png"))); // NOI18N
-        telescopeSettingsButton.setToolTipText(bundle.getString("SettingsWindow.telescopeSettingsButton.toolTipText")); // NOI18N
-        telescopeSettingsButton.setPreferredSize(new java.awt.Dimension(60, 60));
-        jPanel3.add(telescopeSettingsButton);
-        telescopeSettingsButton.setBounds(220, 10, 60, 60);
         jPanel3.add(filler4);
         filler4.setBounds(249, 35, 60, 0);
 
-        laserSettingsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/laser.png"))); // NOI18N
-        laserSettingsButton.setToolTipText(bundle.getString("SettingsWindow.laserSettingsButton.toolTipText")); // NOI18N
-        laserSettingsButton.setPreferredSize(new java.awt.Dimension(60, 60));
-        jPanel3.add(laserSettingsButton);
-        laserSettingsButton.setBounds(340, 10, 60, 60);
+        opticsSettingsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/laser.png"))); // NOI18N
+        opticsSettingsButton.setToolTipText(bundle.getString("SettingsWindow.opticsSettingsButton.toolTipText")); // NOI18N
+        opticsSettingsButton.setPreferredSize(new java.awt.Dimension(60, 60));
+        jPanel3.add(opticsSettingsButton);
+        opticsSettingsButton.setBounds(310, 10, 60, 60);
 
         configurationsPanel.add(jPanel3, java.awt.BorderLayout.CENTER);
 
@@ -266,7 +243,8 @@ public class SettingsWindow extends javax.swing.JFrame {
         editMenu.setText(bundle.getString("StartWindow.editMenu.text")); // NOI18N
 
         languageMenu.setText(bundle.getString("SettingsWindow.languageMenu.text")); // NOI18N
-        languageMenu.setLabel(bundle.getString("StartWindow.languageMenu.label")); // NOI18N
+        java.util.ResourceBundle bundle1 = java.util.ResourceBundle.getBundle("ui/Bundle"); // NOI18N
+        languageMenu.setLabel(bundle1.getString("StartWindow.languageMenu.label")); // NOI18N
 
         englishMenuItem.setText(bundle.getString("StartWindow.englishMenuItem.text")); // NOI18N
         englishMenuItem.setToolTipText(bundle.getString("StartWindow.englishMenuItem.toolTipText")); // NOI18N
@@ -351,15 +329,6 @@ public class SettingsWindow extends javax.swing.JFrame {
                 + "cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n"
                 + "proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
     }//GEN-LAST:event_laserDetailsLabelMouseClicked
-
-    private void telescopeDetailsLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_telescopeDetailsLabelMouseClicked
-        this.detailsTextPane.setText("Telescopio: \n Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n"
-                + "tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n"
-                + "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n"
-                + "consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n"
-                + "cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n"
-                + "proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
-    }//GEN-LAST:event_telescopeDetailsLabelMouseClicked
 
     private void atmosphereDetailsLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atmosphereDetailsLabelMouseClicked
         double initialAltitude = 0;
@@ -463,8 +432,6 @@ public class SettingsWindow extends javax.swing.JFrame {
     private javax.swing.Box.Filler filler3;
     private javax.swing.Box.Filler filler4;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -472,14 +439,13 @@ public class SettingsWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JMenu languageMenu;
     private javax.swing.JLabel laserDetailsLabel;
-    private javax.swing.JButton laserSettingsButton;
+    private javax.swing.JLabel opticsLabel;
+    private javax.swing.JButton opticsSettingsButton;
     private javax.swing.JButton resultsButton;
     private javax.swing.JMenuItem saveAsMenuItem;
     private javax.swing.JButton saveConfigurationsButton;
     private javax.swing.JMenuItem saveMenuItem;
     private javax.swing.JMenuItem spanishMenuItem;
-    private javax.swing.JLabel telescopeDetailsLabel;
-    private javax.swing.JButton telescopeSettingsButton;
     private javax.swing.JButton viewGraphicsButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="resizable" type="boolean" value="false"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,61,0,0,1,54"/>
+  </AuxValues>
+
+  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="jPanel1">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder/>
+          </Border>
+        </Property>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+          <BorderConstraints direction="Last"/>
+        </Constraint>
+      </Constraints>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                  <Component id="backjButton" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="80" max="32767" attributes="0"/>
+                  <Component id="savejButton" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="backjButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="savejButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JButton" name="backjButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Back"/>
+            <Property name="toolTipText" type="java.lang.String" value="Click to back previous window"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="savejButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Save"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="jPanel2">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Laser"/>
+          </Border>
+        </Property>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+          <BorderConstraints direction="First"/>
+        </Constraint>
+      </Constraints>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="beamDivergenceLabel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="divergenceTextField" min="-2" pref="104" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="waveLengthLabel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="waveLengthComboBox" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="49" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="waveLengthLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="waveLengthComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="beamDivergenceLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="divergenceTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="waveLengthLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Wave Length:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="beamDivergenceLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Beam Divergence:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="waveLengthComboBox">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="2">
+                <StringItem index="0" value="532 nm"/>
+                <StringItem index="1" value="355 nm"/>
+              </StringArray>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="divergenceTextField">
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="jPanel3">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Detector"/>
+          </Border>
+        </Property>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+          <BorderConstraints direction="Center"/>
+        </Constraint>
+      </Constraints>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="apdLabel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                          <Component id="apdSelectionjComboBox" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="bulkDarkCurrentjLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="transducerGainjLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="bulkDarkCurrentjTextField" max="32767" attributes="0"/>
+                                      <Component id="transducerGainjTextField" min="-2" pref="97" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="currentNoiseDensityjLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                                  <Component id="currentNoiseDensityjTextField" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="multiplicationFactorLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="xcessNoiseFactorjLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="surfaceDarkCurrentjLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cathodeSensitivityjLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="anodeDarkCurrentjLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="preamplifierLimitsjLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="anodeDarkCurrentjTextField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="multiplicationFactorTextField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="excessNoiseFactorjTextField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="surfaceDarkCurrentjTextField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="cathodeSensitivityTextField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="preamplifierLimitsjTextField" min="-2" pref="97" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="15" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="apdLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="apdSelectionjComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="multiplicationFactorLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="multiplicationFactorTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="excessNoiseFactorjTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="xcessNoiseFactorjLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="surfaceDarkCurrentjTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="surfaceDarkCurrentjLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="cathodeSensitivityTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cathodeSensitivityjLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="anodeDarkCurrentjTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="anodeDarkCurrentjLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="preamplifierLimitsjTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="preamplifierLimitsjLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="currentNoiseDensityjLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="currentNoiseDensityjTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="bulkDarkCurrentjLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="bulkDarkCurrentjTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="transducerGainjLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="transducerGainjTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="11" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="apdLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="APD Type:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="apdSelectionjComboBox">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="5">
+                <StringItem index="0" value="R7400U-03"/>
+                <StringItem index="1" value="R7400P-03"/>
+                <StringItem index="2" value="C30956E"/>
+                <StringItem index="3" value="oldAPD"/>
+                <StringItem index="4" value="Custom..."/>
+              </StringArray>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="multiplicationFactorLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Multiplication Factor:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="multiplicationFactorTextField">
+        </Component>
+        <Component class="javax.swing.JLabel" name="xcessNoiseFactorjLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Excess noise Factor:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="excessNoiseFactorjTextField">
+        </Component>
+        <Component class="javax.swing.JLabel" name="surfaceDarkCurrentjLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Surface Dark Current:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="surfaceDarkCurrentjTextField">
+        </Component>
+        <Component class="javax.swing.JLabel" name="cathodeSensitivityjLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cathode Sensitivity:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="cathodeSensitivityTextField">
+        </Component>
+        <Component class="javax.swing.JLabel" name="anodeDarkCurrentjLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Anode Dark Current:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="anodeDarkCurrentjTextField">
+        </Component>
+        <Component class="javax.swing.JLabel" name="bulkDarkCurrentjLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Bulk Dark Current:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="bulkDarkCurrentjTextField">
+        </Component>
+        <Component class="javax.swing.JLabel" name="transducerGainjLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Transducer Gain:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="transducerGainjTextField">
+        </Component>
+        <Component class="javax.swing.JLabel" name="preamplifierLimitsjLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Pre-Amplifier Limits:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="preamplifierLimitsjTextField">
+        </Component>
+        <Component class="javax.swing.JLabel" name="currentNoiseDensityjLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Current Noise Density:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="currentNoiseDensityjTextField">
+        </Component>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>
