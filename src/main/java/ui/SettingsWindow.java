@@ -136,6 +136,11 @@ public class SettingsWindow extends javax.swing.JFrame {
         opticsSettingsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/laser.png"))); // NOI18N
         opticsSettingsButton.setToolTipText(bundle.getString("SettingsWindow.opticsSettingsButton.toolTipText")); // NOI18N
         opticsSettingsButton.setPreferredSize(new java.awt.Dimension(60, 60));
+        opticsSettingsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opticsSettingsButtonActionPerformed(evt);
+            }
+        });
         jPanel3.add(opticsSettingsButton);
         opticsSettingsButton.setBounds(310, 10, 60, 60);
 
@@ -380,6 +385,12 @@ public class SettingsWindow extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "File not saved, please try again");
         }
     }//GEN-LAST:event_saveAsMenuItemActionPerformed
+
+    private void opticsSettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opticsSettingsButtonActionPerformed
+        OpticalConfigurationWindow w = new OpticalConfigurationWindow();
+        this.dispose();
+        w.setVisible(true);
+    }//GEN-LAST:event_opticsSettingsButtonActionPerformed
 
     /**
      * @param args the command line arguments

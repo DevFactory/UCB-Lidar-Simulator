@@ -9,12 +9,12 @@ package ui;
  *
  * @author oscar_sgc
  */
-public class OpticalConfiguration extends javax.swing.JFrame {
+public class OpticalConfigurationWindow extends javax.swing.JFrame {
 
     /**
      * Creates new form OpticalConfiguration
      */
-    public OpticalConfiguration() {
+    public OpticalConfigurationWindow() {
         initComponents();
     }
 
@@ -64,6 +64,11 @@ public class OpticalConfiguration extends javax.swing.JFrame {
 
         backjButton.setText("Back");
         backjButton.setToolTipText("Click to back previous window");
+        backjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backjButtonActionPerformed(evt);
+            }
+        });
 
         savejButton.setText("Save");
 
@@ -178,25 +183,28 @@ public class OpticalConfiguration extends javax.swing.JFrame {
                                     .addComponent(bulkDarkCurrentjTextField)
                                     .addComponent(transducerGainjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(currentNoiseDensityjLabel)
-                                .addGap(23, 23, 23)
-                                .addComponent(currentNoiseDensityjTextField))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(multiplicationFactorLabel)
                                     .addComponent(xcessNoiseFactorjLabel)
                                     .addComponent(surfaceDarkCurrentjLabel)
                                     .addComponent(cathodeSensitivityjLabel)
                                     .addComponent(anodeDarkCurrentjLabel)
-                                    .addComponent(preamplifierLimitsjLabel))
-                                .addGap(31, 31, 31)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(anodeDarkCurrentjTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(multiplicationFactorTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(excessNoiseFactorjTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(surfaceDarkCurrentjTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cathodeSensitivityTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(preamplifierLimitsjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(preamplifierLimitsjLabel)
+                                    .addComponent(currentNoiseDensityjLabel))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(23, 23, 23)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(anodeDarkCurrentjTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                                            .addComponent(multiplicationFactorTextField)
+                                            .addComponent(excessNoiseFactorjTextField)
+                                            .addComponent(surfaceDarkCurrentjTextField)
+                                            .addComponent(cathodeSensitivityTextField)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(currentNoiseDensityjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(preamplifierLimitsjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -251,6 +259,12 @@ public class OpticalConfiguration extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void backjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backjButtonActionPerformed
+        SettingsWindow w = new SettingsWindow();
+        this.dispose();
+        w.setVisible(true);
+    }//GEN-LAST:event_backjButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -268,20 +282,21 @@ public class OpticalConfiguration extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(OpticalConfiguration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OpticalConfigurationWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(OpticalConfiguration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OpticalConfigurationWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(OpticalConfiguration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OpticalConfigurationWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(OpticalConfiguration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OpticalConfigurationWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new OpticalConfiguration().setVisible(true);
+                new OpticalConfigurationWindow().setVisible(true);
             }
         });
     }

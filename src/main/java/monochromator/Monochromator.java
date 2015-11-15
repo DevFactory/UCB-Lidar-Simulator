@@ -16,6 +16,7 @@ public class Monochromator {
     private double Nv;
     private double sigampA; //Current noise density
     private double B;   //Preamplifier limits
+    private double k = 1.38e-23;                    // Boltzmann's constant [J·K-1]
 
     public Monochromator() {
         this.overlapFactor = 1;
