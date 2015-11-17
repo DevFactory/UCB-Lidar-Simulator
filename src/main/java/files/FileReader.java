@@ -15,9 +15,6 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
 
-/**
- * Created by oscar_sgc on 10/14/15.
- */
 public class FileReader {
 
 

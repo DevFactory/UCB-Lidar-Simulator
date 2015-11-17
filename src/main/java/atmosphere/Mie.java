@@ -10,9 +10,6 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
-/**
- * Created by Oscar on 7/2/15.
- */
 public class Mie extends Function {
 
     private Collection<Number> results = new ArrayList<Number>();

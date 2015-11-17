@@ -11,9 +11,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-/**
- * Created by Oscar on 6/24/15.
- */
 public class Rayleigh extends Function {
 
     private final double NA = 6.0221367e23;//avogadro's number

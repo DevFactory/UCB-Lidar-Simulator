@@ -7,9 +7,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collection;
 
-/**
- * Created by Oscar on 6/23/15.
- */
 public class Hyperbolic extends Function {
 
     private Collection<Number> xData = new ArrayList<Number>();

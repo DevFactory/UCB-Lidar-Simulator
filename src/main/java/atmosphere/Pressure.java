@@ -10,9 +10,6 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
-/**
- * Created by Oscar on 6/23/15.
- */
 public class Pressure extends Function {
 
     public static final double CONSTANT = 5.2561;

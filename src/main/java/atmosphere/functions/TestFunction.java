@@ -1,17 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package atmosphere.functions;
 
 import com.xeiam.xchart.Chart;
 
 import java.awt.*;
 
-/**
- * @author Internet
- */
 public class TestFunction extends Function {
 
     @Override

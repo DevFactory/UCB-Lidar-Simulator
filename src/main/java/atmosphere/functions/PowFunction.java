@@ -4,9 +4,6 @@ import com.xeiam.xchart.Chart;
 
 import java.awt.*;
 
-/**
- * Created by Oscar on 9/15/15.
- */
 public class PowFunction extends Function {
     @Override
     public double getY(double x) {

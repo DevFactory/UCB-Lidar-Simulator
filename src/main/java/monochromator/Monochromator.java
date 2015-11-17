@@ -1,10 +1,7 @@
 package monochromator;
 
-/**
- * Created by Oscar on 9/14/15.
- */
 public class Monochromator {
-    private int overlapFactor;
+    private double overlapFactor;
     private double M;   //PMT Multiplication factor
     private double F;   //PMT Excess noise factor
     private double Ids; //Surface Dark Current
@@ -26,11 +23,11 @@ public class Monochromator {
         this.overlapFactor = overlapFactor;
     }
 
-    public int getOverlapFactor() {
+    public double getOverlapFactor() {
         return overlapFactor;
     }
 
-    public void setOverlapFactor(int overlapFactor) {
+    public void setOverlapFactor(double overlapFactor) {
         this.overlapFactor = overlapFactor;
     }
 
@@ -112,5 +109,21 @@ public class Monochromator {
 
     public void setSigampA(double sigampA) {
         this.sigampA = sigampA;
+    }
+
+    public double getB() {
+        return B;
+    }
+
+    public void setB(double b) {
+        B = b;
+    }
+
+    public double getK() {
+        return k;
+    }
+
+    public void setK(double k) {
+        this.k = k;
     }
 }

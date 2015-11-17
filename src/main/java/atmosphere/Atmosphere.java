@@ -11,9 +11,6 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/**
- * Created by Oscar on 9/7/15.
- */
 public class Atmosphere extends Function {
     private Mie mie = new Mie();
     private Rayleigh rayleigh = new Rayleigh();
