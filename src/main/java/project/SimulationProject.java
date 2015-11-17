@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import lidar.Lidar;
+import monochromator.Monochromator;
 
 /**
  * @author oscar_sgc
@@ -34,28 +35,28 @@ public class SimulationProject {
     private static SimulationProject simulationProject = new SimulationProject();
 
     private SimulationProject() {
-        for(int i = 0; i<10; i++){
+        for (int i = 0; i < 10; i++) {
             this.colors.add(Color.RED);
         }
         colorsToString();
     }
 
-    public void colorsToString(){
+    public void colorsToString() {
         this.colorsInString.clear();
         for (int i = 0; i < this.colors.size(); i++) {
-            if (this.colors.get(i) == Color.RED){
+            if (this.colors.get(i) == Color.RED) {
                 this.colorsInString.add("RED");
             }
 
-            if (this.colors.get(i) == Color.BLACK){
+            if (this.colors.get(i) == Color.BLACK) {
                 this.colorsInString.add("BLACK");
             }
 
-            if (this.colors.get(i) == Color.BLUE){
+            if (this.colors.get(i) == Color.BLUE) {
                 this.colorsInString.add("BLUE");
             }
 
-            if (this.colors.get(i) == Color.GREEN){
+            if (this.colors.get(i) == Color.GREEN) {
                 this.colorsInString.add("GREEN");
             }
         }
@@ -79,23 +80,11 @@ public class SimulationProject {
         this.projectLocation = projectLocation;
     }
 
-    private SimulationProject(Lidar lidar) {
-        this.lidar = lidar;
-    }
-
     public static SimulationProject getInstance() {
         if (simulationProject == null) {
             simulationProject = new SimulationProject();
         }
         return simulationProject;
-    }
-
-    public Lidar getLidar() {
-        return this.lidar;
-    }
-
-    public void setLidar(Lidar lidar) {
-        this.lidar = lidar;
     }
 
     public ArrayList<Number> getData() {
@@ -172,7 +161,16 @@ public class SimulationProject {
         this.colorsInString = colorsInString;
     }
 
-    public static void main(String args[]){
+
+    public Lidar getLidar() {
+        return lidar;
+    }
+
+    public void setLidar(Lidar lidar) {
+        this.lidar = lidar;
+    }
+
+    public static void main(String args[]) {
 
     }
 

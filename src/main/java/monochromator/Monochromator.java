@@ -14,6 +14,7 @@ public class Monochromator {
     private double sigampA; //Current noise density
     private double B;   //Preamplifier limits
     private double k = 1.38e-23;                    // Boltzmann's constant [J·K-1]
+    private double T = 300;         //Equivalent Noise Temperature,T=300[K]
 
     public Monochromator() {
         this.overlapFactor = 1;
@@ -21,6 +22,34 @@ public class Monochromator {
 
     public Monochromator(int overlapFactor) {
         this.overlapFactor = overlapFactor;
+    }
+
+    //First and second APD Constructor
+    public Monochromator(double m, double f, double ids, double rio, double ida, double idb, double r) {
+        this.overlapFactor = 1;
+        this.M = m;
+        this.F = f;
+        this.Ids = ids;
+        this.Rio = rio;
+        this.Ida = ida;
+        this.Idb = idb;
+        this.R = r;
+        this.GT = this.R;
+        this.Nv = 4 * this.k * this.T * this.R;
+    }
+
+    //Third and fourth APD Constructor
+    public Monochromator(double m, double f, double ids, double rio, double idb, double b, double sigampa, double gt) {
+        this.overlapFactor = 1;
+        this.M = m;
+        this.F = f;
+        this.Ids = ids;
+        this.Rio = rio;
+        this.Idb = idb;
+        this.B = b;
+        this.sigampA = sigampa;
+        this.GT = gt;
+        this.Nv = Math.pow(this.sigampA, 2) * Math.pow(this.GT, 2);
     }
 
     public double getOverlapFactor() {
@@ -125,5 +154,13 @@ public class Monochromator {
 
     public void setK(double k) {
         this.k = k;
+    }
+
+    public double getT() {
+        return T;
+    }
+
+    public void setT(double t) {
+        T = t;
     }
 }

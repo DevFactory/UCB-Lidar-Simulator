@@ -5,8 +5,13 @@
  */
 package ui;
 
+import monochromator.Monochromator;
+import project.SimulationProject;
+
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+
 /**
- *
  * @author oscar_sgc
  */
 public class OpticalConfigurationWindow extends javax.swing.JFrame {
@@ -14,8 +19,12 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
     /**
      * Creates new form OpticalConfiguration
      */
+    SimulationProject project = SimulationProject.getInstance();
+    private Monochromator monochromator;
+
     public OpticalConfigurationWindow() {
         initComponents();
+        setFirstAPD(0);
     }
 
     /**
@@ -75,22 +84,22 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(backjButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                .addComponent(savejButton)
-                .addGap(38, 38, 38))
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(38, 38, 38)
+                                .addComponent(backjButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                                .addComponent(savejButton)
+                                .addGap(38, 38, 38))
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backjButton)
-                    .addComponent(savejButton))
-                .addGap(20, 20, 20))
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(backjButton)
+                                        .addComponent(savejButton))
+                                .addGap(20, 20, 20))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_END);
@@ -101,37 +110,42 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
 
         beamDivergenceLabel.setText("Beam Divergence:");
 
-        waveLengthComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "532 nm", "355 nm" }));
+        waveLengthComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"532 nm", "355 nm"}));
+        waveLengthComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                waveLengthComboBoxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(beamDivergenceLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(divergenceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(waveLengthLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(waveLengthComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(49, Short.MAX_VALUE))
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                                .addComponent(beamDivergenceLabel)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(divergenceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(waveLengthLabel)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(waveLengthComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(49, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(waveLengthLabel)
-                    .addComponent(waveLengthComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(beamDivergenceLabel)
-                    .addComponent(divergenceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21))
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(waveLengthLabel)
+                                        .addComponent(waveLengthComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(beamDivergenceLabel)
+                                        .addComponent(divergenceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(21, 21, 21))
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_START);
@@ -140,117 +154,140 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
 
         apdLabel.setText("APD Type:");
 
-        apdSelectionjComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "R7400U-03", "R7400P-03", "C30956E", "oldAPD", "Custom..." }));
+        apdSelectionjComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"R7400U-03", "R7400P-03", "C30956E", "oldAPD", "Custom..."}));
+        apdSelectionjComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                apdSelectionjComboBoxActionPerformed(evt);
+            }
+        });
 
         multiplicationFactorLabel.setText("Multiplication Factor:");
 
+        multiplicationFactorTextField.setEditable(false);
+
         xcessNoiseFactorjLabel.setText("Excess noise Factor:");
+
+        excessNoiseFactorjTextField.setEditable(false);
 
         surfaceDarkCurrentjLabel.setText("Surface Dark Current:");
 
+        surfaceDarkCurrentjTextField.setEditable(false);
+
         cathodeSensitivityjLabel.setText("Cathode Sensitivity:");
+
+        cathodeSensitivityTextField.setEditable(false);
 
         anodeDarkCurrentjLabel.setText("Anode Dark Current:");
 
+        anodeDarkCurrentjTextField.setEditable(false);
+
         bulkDarkCurrentjLabel.setText("Bulk Dark Current:");
+
+        bulkDarkCurrentjTextField.setEditable(false);
 
         transducerGainjLabel.setText("Transducer Gain:");
 
+        transducerGainjTextField.setEditable(false);
+
         preamplifierLimitsjLabel.setText("Pre-Amplifier Limits:");
 
+        preamplifierLimitsjTextField.setEditable(false);
+
         currentNoiseDensityjLabel.setText("Current Noise Density:");
+
+        currentNoiseDensityjTextField.setEditable(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(apdLabel)
-                        .addGap(51, 51, 51)
-                        .addComponent(apdSelectionjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(bulkDarkCurrentjLabel)
-                                    .addComponent(transducerGainjLabel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(bulkDarkCurrentjTextField)
-                                    .addComponent(transducerGainjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(multiplicationFactorLabel)
-                                    .addComponent(xcessNoiseFactorjLabel)
-                                    .addComponent(surfaceDarkCurrentjLabel)
-                                    .addComponent(cathodeSensitivityjLabel)
-                                    .addComponent(anodeDarkCurrentjLabel)
-                                    .addComponent(preamplifierLimitsjLabel)
-                                    .addComponent(currentNoiseDensityjLabel))
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGap(23, 23, 23)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(anodeDarkCurrentjTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-                                            .addComponent(multiplicationFactorTextField)
-                                            .addComponent(excessNoiseFactorjTextField)
-                                            .addComponent(surfaceDarkCurrentjTextField)
-                                            .addComponent(cathodeSensitivityTextField)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(currentNoiseDensityjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(preamplifierLimitsjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
-                .addContainerGap(15, Short.MAX_VALUE))
+                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addComponent(apdLabel)
+                                                .addGap(51, 51, 51)
+                                                .addComponent(apdSelectionjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addGap(6, 6, 6)
+                                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(bulkDarkCurrentjLabel)
+                                                                        .addComponent(transducerGainjLabel))
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                                        .addComponent(transducerGainjTextField)
+                                                                        .addComponent(bulkDarkCurrentjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(multiplicationFactorLabel)
+                                                                        .addComponent(xcessNoiseFactorjLabel)
+                                                                        .addComponent(surfaceDarkCurrentjLabel)
+                                                                        .addComponent(cathodeSensitivityjLabel)
+                                                                        .addComponent(anodeDarkCurrentjLabel)
+                                                                        .addComponent(preamplifierLimitsjLabel)
+                                                                        .addComponent(currentNoiseDensityjLabel))
+                                                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                                                                .addGap(23, 23, 23)
+                                                                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                                                        .addComponent(anodeDarkCurrentjTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                                                                                        .addComponent(multiplicationFactorTextField)
+                                                                                        .addComponent(excessNoiseFactorjTextField)
+                                                                                        .addComponent(surfaceDarkCurrentjTextField)
+                                                                                        .addComponent(cathodeSensitivityTextField)))
+                                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                        .addComponent(currentNoiseDensityjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                        .addComponent(preamplifierLimitsjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
+                                .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(apdLabel)
-                    .addComponent(apdSelectionjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(multiplicationFactorLabel)
-                    .addComponent(multiplicationFactorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(excessNoiseFactorjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(xcessNoiseFactorjLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(surfaceDarkCurrentjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(surfaceDarkCurrentjLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cathodeSensitivityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cathodeSensitivityjLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(anodeDarkCurrentjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(anodeDarkCurrentjLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(preamplifierLimitsjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(preamplifierLimitsjLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(currentNoiseDensityjLabel)
-                    .addComponent(currentNoiseDensityjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bulkDarkCurrentjLabel)
-                    .addComponent(bulkDarkCurrentjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(transducerGainjLabel)
-                    .addComponent(transducerGainjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(11, Short.MAX_VALUE))
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(apdLabel)
+                                        .addComponent(apdSelectionjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(multiplicationFactorLabel)
+                                        .addComponent(multiplicationFactorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(excessNoiseFactorjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(xcessNoiseFactorjLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(surfaceDarkCurrentjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(surfaceDarkCurrentjLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(cathodeSensitivityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(cathodeSensitivityjLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(anodeDarkCurrentjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(anodeDarkCurrentjLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(preamplifierLimitsjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(preamplifierLimitsjLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(currentNoiseDensityjLabel)
+                                        .addComponent(currentNoiseDensityjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(bulkDarkCurrentjLabel)
+                                        .addComponent(bulkDarkCurrentjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(transducerGainjLabel)
+                                        .addComponent(transducerGainjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.CENTER);
@@ -265,6 +302,141 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
         w.setVisible(true);
     }//GEN-LAST:event_backjButtonActionPerformed
 
+    private void apdSelectionjComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apdSelectionjComboBoxActionPerformed
+        int var = this.apdSelectionjComboBox.getSelectedIndex();
+        switch (var) {
+            case 0:
+                disableFields();
+                setFirstAPD(this.waveLengthComboBox.getSelectedIndex());
+                break;
+            case 1:
+                disableFields();
+                setSecondAPD(this.waveLengthComboBox.getSelectedIndex());
+                break;
+            case 2:
+                disableFields();
+                setThirdAPD();
+                break;
+            case 3:
+                disableFields();
+                setFourthAPD();
+                break;
+            case 4:
+                enableFields();
+                break;
+        }
+
+    }//GEN-LAST:event_apdSelectionjComboBoxActionPerformed
+
+    private void waveLengthComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_waveLengthComboBoxActionPerformed
+        apdSelectionjComboBoxActionPerformed(evt);
+
+    }//GEN-LAST:event_waveLengthComboBoxActionPerformed
+
+
+    private void setFirstAPD(int wavelenght) {
+        double idb, rioAux = 0;
+        this.multiplicationFactorTextField.setText("7e5");
+        this.excessNoiseFactorjTextField.setText("1.3");
+        this.surfaceDarkCurrentjTextField.setText("0");
+        switch (wavelenght) {
+            case 0:
+                this.cathodeSensitivityTextField.setText("30e-3");
+                rioAux = 30e-3;
+                break;
+            case 1:
+                this.cathodeSensitivityTextField.setText("55e-3");
+                rioAux = 55e-3;
+                break;
+        }
+        this.anodeDarkCurrentjTextField.setText("0.01e-9");
+        idb = 0.01e-9 / 7e5;
+        this.bulkDarkCurrentjTextField.setText(String.valueOf(idb));
+        this.transducerGainjTextField.setText("50");
+        this.preamplifierLimitsjTextField.setText("-");
+        this.currentNoiseDensityjTextField.setText("-");
+        this.monochromator = new Monochromator(7e5, 1.3, 0, rioAux, 0.01e-9, idb, 50);
+        this.project.getLidar().setMonochromator(this.monochromator);
+    }
+
+    private void setSecondAPD(int wavelenght) {
+        double idb, rioAux = 0;
+        this.multiplicationFactorTextField.setText("1e6");
+        this.excessNoiseFactorjTextField.setText("1.3");
+        this.surfaceDarkCurrentjTextField.setText("0");
+        switch (wavelenght) {
+            case 0:
+                this.cathodeSensitivityTextField.setText("30e-3");
+                rioAux = 30e-3;
+                break;
+            case 1:
+                this.cathodeSensitivityTextField.setText("55e-3");
+                rioAux = 55e-3;
+                break;
+        }
+        this.anodeDarkCurrentjTextField.setText("0.08e-9");
+        idb = 0.08e-9 / 1e6;
+        this.bulkDarkCurrentjTextField.setText(String.valueOf(idb));
+        this.transducerGainjTextField.setText("50");
+        this.preamplifierLimitsjTextField.setText("-");
+        this.currentNoiseDensityjTextField.setText("-");
+        this.monochromator = new Monochromator(1e6, 1.3, 0, rioAux, 0.08e-9, idb, 50);
+        this.project.getLidar().setMonochromator(this.monochromator);
+    }
+
+    private void setThirdAPD() {
+        this.multiplicationFactorTextField.setText("100");
+        this.excessNoiseFactorjTextField.setText("4");
+        this.surfaceDarkCurrentjTextField.setText("7.73e-8");
+        this.cathodeSensitivityTextField.setText("340e-3");
+        this.anodeDarkCurrentjTextField.setText("-");
+        this.bulkDarkCurrentjTextField.setText("1.19e-10");
+        this.transducerGainjTextField.setText("-");
+        this.preamplifierLimitsjTextField.setText("10e6");
+        this.currentNoiseDensityjTextField.setText("7.2e-12");
+        this.monochromator = new Monochromator(100, 4, 7.73e-8, 340e-3, 1.19e-10, 10e6, 7.2e-12, 11e3);
+        this.project.getLidar().setMonochromator(this.monochromator);
+    }
+
+    private void setFourthAPD() {
+        this.multiplicationFactorTextField.setText("150");
+        this.excessNoiseFactorjTextField.setText("4.5");
+        this.surfaceDarkCurrentjTextField.setText("7.64e-8");
+        this.cathodeSensitivityTextField.setText("240e-3");
+        this.anodeDarkCurrentjTextField.setText("-");
+        this.bulkDarkCurrentjTextField.setText("3.10e-10");
+        this.transducerGainjTextField.setText("-");
+        this.preamplifierLimitsjTextField.setText("-");
+        this.currentNoiseDensityjTextField.setText("5e-12");
+        this.monochromator = new Monochromator(150, 4.5, 7.64e-8, 240e-3, 3.10e-10, 0, 5e-12, 5750 * 20.3);
+        this.project.getLidar().setMonochromator(this.monochromator);
+    }
+
+
+    private void disableFields() {
+        this.multiplicationFactorTextField.setEditable(false);
+        this.excessNoiseFactorjTextField.setEditable(false);
+        this.surfaceDarkCurrentjTextField.setEditable(false);
+        this.cathodeSensitivityTextField.setEditable(false);
+        this.anodeDarkCurrentjTextField.setEditable(false);
+        this.preamplifierLimitsjTextField.setEditable(false);
+        this.currentNoiseDensityjTextField.setEditable(false);
+        this.bulkDarkCurrentjTextField.setEditable(false);
+        this.transducerGainjTextField.setEditable(false);
+    }
+
+    private void enableFields() {
+        this.multiplicationFactorTextField.setEditable(true);
+        this.excessNoiseFactorjTextField.setEditable(true);
+        this.surfaceDarkCurrentjTextField.setEditable(true);
+        this.cathodeSensitivityTextField.setEditable(true);
+        this.anodeDarkCurrentjTextField.setEditable(true);
+        this.preamplifierLimitsjTextField.setEditable(true);
+        this.currentNoiseDensityjTextField.setEditable(true);
+        this.bulkDarkCurrentjTextField.setEditable(true);
+        this.transducerGainjTextField.setEditable(true);
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -275,12 +447,9 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
+            System.setProperty("apple.laf.useScreenMenuBar", "true");
+            System.setProperty("com.apple.mrj.application.apple.menu.about.name", "WikiTeX");
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(OpticalConfigurationWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
@@ -332,4 +501,5 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
     private javax.swing.JLabel waveLengthLabel;
     private javax.swing.JLabel xcessNoiseFactorjLabel;
     // End of variables declaration//GEN-END:variables
+
 }

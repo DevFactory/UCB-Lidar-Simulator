@@ -153,6 +153,9 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="waveLengthComboBoxActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="divergenceTextField">
         </Component>
@@ -193,8 +196,8 @@
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="bulkDarkCurrentjTextField" max="32767" attributes="0"/>
-                                      <Component id="transducerGainjTextField" min="-2" pref="97" max="-2" attributes="0"/>
+                                      <Component id="transducerGainjTextField" max="32767" attributes="0"/>
+                                      <Component id="bulkDarkCurrentjTextField" min="-2" pref="97" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -310,6 +313,9 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="apdSelectionjComboBoxActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="multiplicationFactorLabel">
           <Properties>
@@ -317,6 +323,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="multiplicationFactorTextField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="xcessNoiseFactorjLabel">
           <Properties>
@@ -324,6 +333,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="excessNoiseFactorjTextField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="surfaceDarkCurrentjLabel">
           <Properties>
@@ -331,6 +343,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="surfaceDarkCurrentjTextField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="cathodeSensitivityjLabel">
           <Properties>
@@ -338,6 +353,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="cathodeSensitivityTextField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="anodeDarkCurrentjLabel">
           <Properties>
@@ -345,6 +363,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="anodeDarkCurrentjTextField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="bulkDarkCurrentjLabel">
           <Properties>
@@ -352,6 +373,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="bulkDarkCurrentjTextField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="transducerGainjLabel">
           <Properties>
@@ -359,6 +383,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="transducerGainjTextField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="preamplifierLimitsjLabel">
           <Properties>
@@ -366,6 +393,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="preamplifierLimitsjTextField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="currentNoiseDensityjLabel">
           <Properties>
@@ -373,6 +403,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="currentNoiseDensityjTextField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

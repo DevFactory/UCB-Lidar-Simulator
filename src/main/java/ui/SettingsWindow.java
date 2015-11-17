@@ -13,7 +13,6 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Locale;
 
-
 /**
  *
  * @author oscar_sgc
@@ -343,13 +342,13 @@ public class SettingsWindow extends javax.swing.JFrame {
             initialAltitude = this.simulationProject.getData().get(0).doubleValue();
             finalAltitude = this.simulationProject.getData().get(this.simulationProject.getData().size() - 1).doubleValue();
 
-            this.detailsTextPane.setText("ATMOSPHERE DETAILS:\n" + "Initial altitude: " + initialAltitude + "\n" + "Final altitude: " + finalAltitude + "\n" +
-                    "ATMOSPHERE GRAPHICS DETAILS:\n" + "Temperature: "+ colors.get(0) +"\n"+ "Pressure: "+ colors.get(1)+ "\n"+"Mie: "+ colors.get(2)+"\n"+
-                    "Alpha Rayleigh: " + colors.get(3) + "\n"+ "Beta Rayleigh: " + colors.get(4) + "\n"+ "Atmosphere: " + colors.get(5));
+            this.detailsTextPane.setText("ATMOSPHERE DETAILS:\n" + "Initial altitude: " + initialAltitude + "\n" + "Final altitude: " + finalAltitude + "\n"
+                    + "ATMOSPHERE GRAPHICS DETAILS:\n" + "Temperature: " + colors.get(0) + "\n" + "Pressure: " + colors.get(1) + "\n" + "Mie: " + colors.get(2) + "\n"
+                    + "Alpha Rayleigh: " + colors.get(3) + "\n" + "Beta Rayleigh: " + colors.get(4) + "\n" + "Atmosphere: " + colors.get(5));
         } else {
-            this.detailsTextPane.setText("ATMOSPHERE DETAILS:\n" + "Initial altitude: Not defined\n" + "Final altitude: Not defined\n" +
-                    "ATMOSPHERE GRAPHICS DETAILS:\n" + "Temperature: Not defined\n"+ "Pressure: Not defined\n"+"Mie: Not defined\n"+
-                    "Alpha Rayleigh: Not defined\n"+ "Beta Rayleigh: Not defined\n"+ "Atmosphere: Not defined");
+            this.detailsTextPane.setText("ATMOSPHERE DETAILS:\n" + "Initial altitude: Not defined\n" + "Final altitude: Not defined\n"
+                    + "ATMOSPHERE GRAPHICS DETAILS:\n" + "Temperature: Not defined\n" + "Pressure: Not defined\n" + "Mie: Not defined\n"
+                    + "Alpha Rayleigh: Not defined\n" + "Beta Rayleigh: Not defined\n" + "Atmosphere: Not defined");
         }
     }//GEN-LAST:event_atmosphereDetailsLabelMouseClicked
 
@@ -364,7 +363,7 @@ public class SettingsWindow extends javax.swing.JFrame {
             GraphicsVisualizer graphicsVisualizer = new GraphicsVisualizer();
             this.dispose();
             graphicsVisualizer.setVisible(true);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Atmosphere Data is empty... please fill data first");
         }
     }//GEN-LAST:event_viewGraphicsButtonActionPerformed
@@ -402,12 +401,9 @@ public class SettingsWindow extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
+            System.setProperty("apple.laf.useScreenMenuBar", "true");
+            System.setProperty("com.apple.mrj.application.apple.menu.about.name", "WikiTeX");
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(SettingsWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
