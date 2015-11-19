@@ -330,6 +330,7 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
                 break;
             case 4:
                 enableFields();
+                setFifthAPD();
                 break;
         }
 
@@ -341,7 +342,6 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_waveLengthComboBoxActionPerformed
 
     private void savejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savejButtonActionPerformed
-
         double aux = 0;
         if (this.divergenceTextField.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please set Beam divergence");
@@ -359,6 +359,7 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
             this.laser.setEmissionWavelength(aux);
             this.project.getSimulation().setLaser(this.laser);
             if (this.monochromator != null) {
+                this.project.saveProject();
                 JOptionPane.showMessageDialog(null, "Optical Values Established");
                 SettingsWindow w = new SettingsWindow();
                 this.dispose();
@@ -391,7 +392,7 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
         this.transducerGainjTextField.setText("50");
         this.preamplifierLimitsjTextField.setText("-");
         this.currentNoiseDensityjTextField.setText("-");
-        this.monochromator = new Monochromator(7e5, 1.3, 0, rioAux, 0.01e-9, idb, 50);
+        this.monochromator = new Monochromator(7e5, 1.3, 0, rioAux, 0.01e-9, idb, 50, "R7400U-03");
         this.project.getSimulation().setMonochromator(this.monochromator);
     }
 
@@ -416,7 +417,7 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
         this.transducerGainjTextField.setText("50");
         this.preamplifierLimitsjTextField.setText("-");
         this.currentNoiseDensityjTextField.setText("-");
-        this.monochromator = new Monochromator(1e6, 1.3, 0, rioAux, 0.08e-9, idb, 50);
+        this.monochromator = new Monochromator(1e6, 1.3, 0, rioAux, 0.08e-9, idb, 50, "R7400P-03");
         this.project.getSimulation().setMonochromator(this.monochromator);
     }
 
@@ -430,7 +431,7 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
         this.transducerGainjTextField.setText("-");
         this.preamplifierLimitsjTextField.setText("10e6");
         this.currentNoiseDensityjTextField.setText("7.2e-12");
-        this.monochromator = new Monochromator(100, 4, 7.73e-8, 340e-3, 1.19e-10, 10e6, 7.2e-12, 11e3);
+        this.monochromator = new Monochromator(100, 4, 7.73e-8, 340e-3, 1.19e-10, 10e6, 7.2e-12, 11e3, "C30956E");
         this.project.getSimulation().setMonochromator(this.monochromator);
     }
 
@@ -444,7 +445,21 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
         this.transducerGainjTextField.setText("-");
         this.preamplifierLimitsjTextField.setText("-");
         this.currentNoiseDensityjTextField.setText("5e-12");
-        this.monochromator = new Monochromator(150, 4.5, 7.64e-8, 240e-3, 3.10e-10, 0, 5e-12, 5750 * 20.3);
+        this.monochromator = new Monochromator(150, 4.5, 7.64e-8, 240e-3, 3.10e-10, 0, 5e-12, 5750 * 20.3, "oldAPD");
+        this.project.getSimulation().setMonochromator(this.monochromator);
+    }
+
+    private void setFifthAPD() {
+        double multiplicationFactor = Double.parseDouble(this.multiplicationFactorTextField.getText());
+        double excessNoiseFactor = Double.parseDouble(this.excessNoiseFactorjTextField.getText());
+        double surfaceDarkCurrent = Double.parseDouble(this.surfaceDarkCurrentjTextField.getText());
+        double cathodeSensitivity = Double.parseDouble(this.cathodeSensitivityTextField.getText());
+        double anodeDarkCurrent = Double.parseDouble(this.anodeDarkCurrentjTextField.getText());
+        double bulkDarkCurrent = Double.parseDouble(this.bulkDarkCurrentjTextField.getText());
+        double transducerGain = Double.parseDouble(this.transducerGainjTextField.getText());
+        double preamplifierLimits = Double.parseDouble(this.preamplifierLimitsjTextField.getText());
+        double currentNoiseDensity = Double.parseDouble(this.currentNoiseDensityjTextField.getText());
+        this.monochromator = new Monochromator(multiplicationFactor, excessNoiseFactor, surfaceDarkCurrent, cathodeSensitivity, anodeDarkCurrent, bulkDarkCurrent, transducerGain, preamplifierLimits, currentNoiseDensity, "Custom");
         this.project.getSimulation().setMonochromator(this.monochromator);
     }
 

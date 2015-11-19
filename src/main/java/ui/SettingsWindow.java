@@ -7,6 +7,9 @@ package ui;
 
 import atmosphere.gui.GraphicsConfiguration;
 import atmosphere.gui.GraphicsVisualizer;
+import laser.Laser;
+import linkbudget.LinkBudget;
+import monochromator.Monochromator;
 import project.SimulationProject;
 
 import javax.swing.*;
@@ -14,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 /**
- *
  * @author oscar_sgc
  */
 public class SettingsWindow extends javax.swing.JFrame {
@@ -156,17 +158,17 @@ public class SettingsWindow extends javax.swing.JFrame {
         javax.swing.GroupLayout detailsPanelLayout = new javax.swing.GroupLayout(detailsPanel);
         detailsPanel.setLayout(detailsPanelLayout);
         detailsPanelLayout.setHorizontalGroup(
-            detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(detailsPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(detailsPanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         detailsPanelLayout.setVerticalGroup(
-            detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(detailsPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-                .addContainerGap())
+                detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(detailsPanelLayout.createSequentialGroup()
+                                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                                .addContainerGap())
         );
 
         actionPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("SettingsWindow.actionPanel.border.title"))); // NOI18N
@@ -186,30 +188,30 @@ public class SettingsWindow extends javax.swing.JFrame {
         javax.swing.GroupLayout actionPanelLayout = new javax.swing.GroupLayout(actionPanel);
         actionPanel.setLayout(actionPanelLayout);
         actionPanelLayout.setHorizontalGroup(
-            actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(actionPanelLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addGroup(actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(viewGraphicsButton)
-                    .addGroup(actionPanelLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(saveConfigurationsButton)
-                            .addGroup(actionPanelLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(resultsButton)))))
-                .addGap(44, 44, 44))
+                actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(actionPanelLayout.createSequentialGroup()
+                                .addGap(44, 44, 44)
+                                .addGroup(actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(viewGraphicsButton)
+                                        .addGroup(actionPanelLayout.createSequentialGroup()
+                                                .addGap(12, 12, 12)
+                                                .addGroup(actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(saveConfigurationsButton)
+                                                        .addGroup(actionPanelLayout.createSequentialGroup()
+                                                                .addGap(6, 6, 6)
+                                                                .addComponent(resultsButton)))))
+                                .addGap(44, 44, 44))
         );
         actionPanelLayout.setVerticalGroup(
-            actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(actionPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(viewGraphicsButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(saveConfigurationsButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(resultsButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(actionPanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(viewGraphicsButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(saveConfigurationsButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(resultsButton)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         fileMenu.setText(bundle.getString("StartWindow.fileMenu.text")); // NOI18N
@@ -277,27 +279,27 @@ public class SettingsWindow extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(configurationsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(detailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(actionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(configurationsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(detailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(actionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(configurationsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(detailsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(actionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(configurationsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(detailsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(actionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap())
         );
 
         pack();
@@ -326,12 +328,32 @@ public class SettingsWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_spanishMenuItemActionPerformed
 
     private void laserDetailsLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laserDetailsLabelMouseClicked
-        this.detailsTextPane.setText("Laser: \n Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n"
-                + "tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n"
-                + "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n"
-                + "consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n"
-                + "cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n"
-                + "proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+        Laser laser = this.simulationProject.getSimulation().getLaser();
+        Monochromator monochromator = this.simulationProject.getSimulation().getMonochromator();
+        if (laser != null && monochromator != null) {
+            this.detailsTextPane.setText("Optical Details: \n" + "Laser Details: \n" + "Wavelength: " + laser.getEmissionWavelength() + "\n"
+                    + "Beam divergence: " + laser.getDivergence() + "\n"
+                    + "-------------------------\n"
+                    + "Monochromator Details: \n" + "Type:  " + monochromator.getApdName() + "\n"
+                    + "Multiplication factor: " + monochromator.getM() + "\n"
+                    + "Excess Noise factor: " + monochromator.getF() + "\n"
+                    + "Surface Dark Current: " + monochromator.getIds() + "\n"
+                    + "Cathode Sensitivity: " + monochromator.getRio() + "\n"
+                    + "Bulk Dark Current: " + monochromator.getIdb() + "\n"
+                    + "Overlap Factor: " + monochromator.getOverlapFactor());
+        } else {
+            this.detailsTextPane.setText("Optical Details: \n" + "Laser Details: \n" + "Wavelength: Not defined\n"
+                    + "Beam divergence: Not defined \n"
+                    + "-------------------------\n"
+                    + "Monochromator Details: \n" + "Type: Not defined \n"
+                    + "Multiplication factor: Not defined \n"
+                    + "Excess Noise factor: Not defined \n"
+                    + "Surface Dark Current: Not defined \n"
+                    + "Cathode Sensitivity: Not defined \n"
+                    + "Bulk Dark Current: Not defined \n"
+                    + "Overlap Factor: Not defined");
+        }
+
     }//GEN-LAST:event_laserDetailsLabelMouseClicked
 
     private void atmosphereDetailsLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atmosphereDetailsLabelMouseClicked
@@ -342,12 +364,12 @@ public class SettingsWindow extends javax.swing.JFrame {
             initialAltitude = this.simulationProject.getData().get(0).doubleValue();
             finalAltitude = this.simulationProject.getData().get(this.simulationProject.getData().size() - 1).doubleValue();
 
-            this.detailsTextPane.setText("ATMOSPHERE DETAILS:\n" + "Initial altitude: " + initialAltitude + "\n" + "Final altitude: " + finalAltitude + "\n"
-                    + "ATMOSPHERE GRAPHICS DETAILS:\n" + "Temperature: " + colors.get(0) + "\n" + "Pressure: " + colors.get(1) + "\n" + "Mie: " + colors.get(2) + "\n"
+            this.detailsTextPane.setText("Atmosphere Details:\n" + "Initial altitude: " + initialAltitude + "\n" + "Final altitude: " + finalAltitude + "\n"
+                    + "Atmosphere graphics details:\n" + "Temperature: " + colors.get(0) + "\n" + "Pressure: " + colors.get(1) + "\n" + "Mie: " + colors.get(2) + "\n"
                     + "Alpha Rayleigh: " + colors.get(3) + "\n" + "Beta Rayleigh: " + colors.get(4) + "\n" + "Atmosphere: " + colors.get(5));
         } else {
-            this.detailsTextPane.setText("ATMOSPHERE DETAILS:\n" + "Initial altitude: Not defined\n" + "Final altitude: Not defined\n"
-                    + "ATMOSPHERE GRAPHICS DETAILS:\n" + "Temperature: Not defined\n" + "Pressure: Not defined\n" + "Mie: Not defined\n"
+            this.detailsTextPane.setText("Atmosphere Details:\n" + "Initial altitude: Not defined\n" + "Final altitude: Not defined\n"
+                    + "Atmosphere graphics details:\n" + "Temperature: Not defined\n" + "Pressure: Not defined\n" + "Mie: Not defined\n"
                     + "Alpha Rayleigh: Not defined\n" + "Beta Rayleigh: Not defined\n" + "Atmosphere: Not defined");
         }
     }//GEN-LAST:event_atmosphereDetailsLabelMouseClicked
