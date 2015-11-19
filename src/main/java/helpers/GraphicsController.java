@@ -31,7 +31,7 @@ public class GraphicsController {
     private void prepairTemperatureChartPanel() {
         Temperature temperature = new Temperature(this.simulationProject.getData());
         temperature.generate();
-        this.simulationProject.getLidar().setTemperature(temperature);
+        this.simulationProject.getSimulation().setTemperature(temperature);
         this.functionPlotter = new FunctionPlotter((temperature.generateChart(this.simulationProject.getColors().get(0))));
         this.chartPanels.add(this.functionPlotter.getChartPanel());
     }
@@ -39,7 +39,7 @@ public class GraphicsController {
     private void prepairPressureChartPanel() {
         Pressure pressure = new Pressure(this.simulationProject.getData());
         pressure.generate();
-        this.simulationProject.getLidar().setPressure(pressure);
+        this.simulationProject.getSimulation().setPressure(pressure);
         this.functionPlotter.setChart(pressure.generateChart(this.simulationProject.getColors().get(1)));
         this.chartPanels.add(this.functionPlotter.getChartPanel());
     }
@@ -47,7 +47,7 @@ public class GraphicsController {
     private void prepairMieChartPanel() {
         Mie mie = new Mie(this.simulationProject.getData());
         mie.generate();
-        this.simulationProject.getLidar().setMie(mie);
+        this.simulationProject.getSimulation().setMie(mie);
         this.functionPlotter.setChart(mie.generateChart(this.simulationProject.getColors().get(2)));
         this.chartPanels.add(this.functionPlotter.getChartPanel());
     }
@@ -55,7 +55,7 @@ public class GraphicsController {
     private void prepairRayleighPanels() {
         Rayleigh rayleigh = new Rayleigh(this.simulationProject.getData());
         rayleigh.generate();
-        this.simulationProject.getLidar().setRayleigh(rayleigh);
+        this.simulationProject.getSimulation().setRayleigh(rayleigh);
         this.functionPlotter.setChart(rayleigh.getAlfaScatteringChart(this.simulationProject.getColors().get(3)));
         this.chartPanels.add(this.functionPlotter.getChartPanel());
         this.functionPlotter.setChart(rayleigh.getBetaScatteringChart(this.simulationProject.getColors().get(4)));
@@ -69,7 +69,7 @@ public class GraphicsController {
         rayleigh.generate();
         Atmosphere atmosphere = new Atmosphere(mie, rayleigh);
         atmosphere.generate();
-        this.simulationProject.getLidar().setAtmosphere(atmosphere);
+        this.simulationProject.getSimulation().setAtmosphere(atmosphere);
         this.functionPlotter.setChart(atmosphere.generateChart(this.simulationProject.getColors().get(5)));
         this.chartPanels.add(this.functionPlotter.getChartPanel());
     }

@@ -5,6 +5,7 @@
  */
 package ui;
 
+import laser.Laser;
 import monochromator.Monochromator;
 import project.SimulationProject;
 
@@ -21,6 +22,7 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
      */
     SimulationProject project = SimulationProject.getInstance();
     private Monochromator monochromator;
+    private Laser laser;
 
     public OpticalConfigurationWindow() {
         initComponents();
@@ -80,6 +82,11 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
         });
 
         savejButton.setText("Save");
+        savejButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                savejButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -333,6 +340,35 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
 
     }//GEN-LAST:event_waveLengthComboBoxActionPerformed
 
+    private void savejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savejButtonActionPerformed
+
+        double aux = 0;
+        if (this.divergenceTextField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please set Beam divergence");
+        } else {
+            switch (this.waveLengthComboBox.getSelectedIndex()) {
+                case 0:
+                    aux = 532;
+                    break;
+                case 1:
+                    aux = 355;
+                    break;
+            }
+            this.laser = new Laser();
+            this.laser.setDivergence(Double.parseDouble(this.divergenceTextField.getText()));
+            this.laser.setEmissionWavelength(aux);
+            this.project.getSimulation().setLaser(this.laser);
+            if (this.monochromator != null) {
+                JOptionPane.showMessageDialog(null, "Optical Values Established");
+                SettingsWindow w = new SettingsWindow();
+                this.dispose();
+                w.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Please set optical values");
+            }
+        }
+
+    }//GEN-LAST:event_savejButtonActionPerformed
 
     private void setFirstAPD(int wavelenght) {
         double idb, rioAux = 0;
@@ -356,7 +392,7 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
         this.preamplifierLimitsjTextField.setText("-");
         this.currentNoiseDensityjTextField.setText("-");
         this.monochromator = new Monochromator(7e5, 1.3, 0, rioAux, 0.01e-9, idb, 50);
-        this.project.getLidar().setMonochromator(this.monochromator);
+        this.project.getSimulation().setMonochromator(this.monochromator);
     }
 
     private void setSecondAPD(int wavelenght) {
@@ -381,7 +417,7 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
         this.preamplifierLimitsjTextField.setText("-");
         this.currentNoiseDensityjTextField.setText("-");
         this.monochromator = new Monochromator(1e6, 1.3, 0, rioAux, 0.08e-9, idb, 50);
-        this.project.getLidar().setMonochromator(this.monochromator);
+        this.project.getSimulation().setMonochromator(this.monochromator);
     }
 
     private void setThirdAPD() {
@@ -395,7 +431,7 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
         this.preamplifierLimitsjTextField.setText("10e6");
         this.currentNoiseDensityjTextField.setText("7.2e-12");
         this.monochromator = new Monochromator(100, 4, 7.73e-8, 340e-3, 1.19e-10, 10e6, 7.2e-12, 11e3);
-        this.project.getLidar().setMonochromator(this.monochromator);
+        this.project.getSimulation().setMonochromator(this.monochromator);
     }
 
     private void setFourthAPD() {
@@ -409,9 +445,8 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
         this.preamplifierLimitsjTextField.setText("-");
         this.currentNoiseDensityjTextField.setText("5e-12");
         this.monochromator = new Monochromator(150, 4.5, 7.64e-8, 240e-3, 3.10e-10, 0, 5e-12, 5750 * 20.3);
-        this.project.getLidar().setMonochromator(this.monochromator);
+        this.project.getSimulation().setMonochromator(this.monochromator);
     }
-
 
     private void disableFields() {
         this.multiplicationFactorTextField.setEditable(false);

@@ -1,5 +1,6 @@
 package linkbudget;
 
+import atmosphere.Atmosphere;
 import atmosphere.Mie;
 import atmosphere.Rayleigh;
 import helpers.IntegralSolver;
@@ -8,6 +9,7 @@ import monochromator.Monochromator;
 import telescope.Telescope;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 
 /**
@@ -22,6 +24,7 @@ public class LinkBudget {
     private Laser laser;
     private IntegralSolver integralSolver;
     private Mie mie;
+    private Atmosphere atmosphere;
     private ArrayList<Double> r; //Range Vector
     private ArrayList<Number> altitudes;
     private ArrayList<Double> pow0; //Optical Return Powers
@@ -67,7 +70,22 @@ public class LinkBudget {
         this.laser = new Laser();
         this.integralSolver = new IntegralSolver();
         this.integralSolver.setFunction(this.mie);
-        c = 2.99793e8;
+        this.c = 2.99793e8;
+        initializeComponents();
+    }
+
+    public LinkBudget(Laser laser, Monochromator monochromator, Telescope telescope, Atmosphere atmosphere, ArrayList<Number> altitudes) {
+        this.integralSolver = new IntegralSolver();
+        this.laser = laser;
+        this.monochromator = monochromator;
+        this.telescope = telescope;
+        this.atmosphere = atmosphere;
+        this.mie = this.atmosphere.getMie();
+        this.rayleigh = this.atmosphere.getRayleigh();
+        this.altitudes = altitudes;
+        this.integralSolver.setFunction(this.mie);
+        this.c = 2.99793e8;
+        initializeComponents();
     }
 
     public void initializeComponents() {
@@ -79,6 +97,10 @@ public class LinkBudget {
         rMin = this.altitudes.get(0).doubleValue();
         rMax = this.altitudes.get(this.altitudes.size() - 1).doubleValue();
         this.rPBL = 0.500;
+        backgroundComponent();
+        rangeCalculations();
+        powerLevelCalculations();
+        elasticSNR();
     }
 
     public void backgroundComponent() {
@@ -169,5 +191,325 @@ public class LinkBudget {
             aux.add(min + (i * dx));
         }
         return aux;
+    }
+
+    public Telescope getTelescope() {
+        return telescope;
+    }
+
+    public void setTelescope(Telescope telescope) {
+        this.telescope = telescope;
+    }
+
+    public Monochromator getMonochromator() {
+        return monochromator;
+    }
+
+    public void setMonochromator(Monochromator monochromator) {
+        this.monochromator = monochromator;
+    }
+
+    public Rayleigh getRayleigh() {
+        return rayleigh;
+    }
+
+    public void setRayleigh(Rayleigh rayleigh) {
+        this.rayleigh = rayleigh;
+    }
+
+    public Laser getLaser() {
+        return laser;
+    }
+
+    public void setLaser(Laser laser) {
+        this.laser = laser;
+    }
+
+    public IntegralSolver getIntegralSolver() {
+        return integralSolver;
+    }
+
+    public void setIntegralSolver(IntegralSolver integralSolver) {
+        this.integralSolver = integralSolver;
+    }
+
+    public Mie getMie() {
+        return mie;
+    }
+
+    public void setMie(Mie mie) {
+        this.mie = mie;
+    }
+
+    public Atmosphere getAtmosphere() {
+        return atmosphere;
+    }
+
+    public void setAtmosphere(Atmosphere atmosphere) {
+        this.atmosphere = atmosphere;
+    }
+
+    public ArrayList<Double> getR() {
+        return r;
+    }
+
+    public void setR(ArrayList<Double> r) {
+        this.r = r;
+    }
+
+    public ArrayList<Number> getAltitudes() {
+        return altitudes;
+    }
+
+    public void setAltitudes(ArrayList<Number> altitudes) {
+        this.altitudes = altitudes;
+    }
+
+    public ArrayList<Double> getPow0() {
+        return pow0;
+    }
+
+    public void setPow0(ArrayList<Double> pow0) {
+        this.pow0 = pow0;
+    }
+
+    public ArrayList<Double> getNshs0() {
+        return Nshs0;
+    }
+
+    public void setNshs0(ArrayList<Double> nshs0) {
+        Nshs0 = nshs0;
+    }
+
+    public ArrayList<Double> getSNR0() {
+        return SNR0;
+    }
+
+    public void setSNR0(ArrayList<Double> SNR0) {
+        this.SNR0 = SNR0;
+    }
+
+    public ArrayList<Double> getS0() {
+        return s0;
+    }
+
+    public void setS0(ArrayList<Double> s0) {
+        this.s0 = s0;
+    }
+
+    public double getL() {
+        return L;
+    }
+
+    public void setL(double l) {
+        L = l;
+    }
+
+    public double getK() {
+        return k;
+    }
+
+    public void setK(double k) {
+        this.k = k;
+    }
+
+    public double getC() {
+        return c;
+    }
+
+    public void setC(double c) {
+        this.c = c;
+    }
+
+    public double getAr() {
+        return Ar;
+    }
+
+    public void setAr(double ar) {
+        Ar = ar;
+    }
+
+    public double getdFiber() {
+        return dFiber;
+    }
+
+    public void setdFiber(double dFiber) {
+        this.dFiber = dFiber;
+    }
+
+    public double getFov() {
+        return fov;
+    }
+
+    public void setFov(double fov) {
+        this.fov = fov;
+    }
+
+    public double getdOmega() {
+        return dOmega;
+    }
+
+    public void setdOmega(double dOmega) {
+        this.dOmega = dOmega;
+    }
+
+    public double getrMin() {
+        return rMin;
+    }
+
+    public void setrMin(double rMin) {
+        this.rMin = rMin;
+    }
+
+    public double getrMax() {
+        return rMax;
+    }
+
+    public void setrMax(double rMax) {
+        this.rMax = rMax;
+    }
+
+    public double getrPBL() {
+        return rPBL;
+    }
+
+    public void setrPBL(double rPBL) {
+        this.rPBL = rPBL;
+    }
+
+    public double getdLambda0() {
+        return dLambda0;
+    }
+
+    public void setdLambda0(double dLambda0) {
+        this.dLambda0 = dLambda0;
+    }
+
+    public double getB() {
+        return B;
+    }
+
+    public void setB(double b) {
+        B = b;
+    }
+
+    public double getQ() {
+        return q;
+    }
+
+    public void setQ(double q) {
+        this.q = q;
+    }
+
+    public double getnSamples() {
+        return nSamples;
+    }
+
+    public void setnSamples(double nSamples) {
+        this.nSamples = nSamples;
+    }
+
+    public double getOvf() {
+        return ovf;
+    }
+
+    public void setOvf(double ovf) {
+        this.ovf = ovf;
+    }
+
+    public double getPowb0() {
+        return powb0;
+    }
+
+    public void setPowb0(double powb0) {
+        this.powb0 = powb0;
+    }
+
+    public double getRi() {
+        return Ri;
+    }
+
+    public void setRi(double ri) {
+        Ri = ri;
+    }
+
+    public double getLoss0() {
+        return loss0;
+    }
+
+    public void setLoss0(double loss0) {
+        this.loss0 = loss0;
+    }
+
+    public double getRv() {
+        return Rv;
+    }
+
+    public void setRv(double rv) {
+        Rv = rv;
+    }
+
+    public double getCons0() {
+        return cons0;
+    }
+
+    public void setCons0(double cons0) {
+        this.cons0 = cons0;
+    }
+
+    public double getA0() {
+        return a0;
+    }
+
+    public void setA0(double a0) {
+        this.a0 = a0;
+    }
+
+    public double getB0() {
+        return b0;
+    }
+
+    public void setB0(double b0) {
+        this.b0 = b0;
+    }
+
+    public double getC0() {
+        return c0;
+    }
+
+    public void setC0(double c0) {
+        this.c0 = c0;
+    }
+
+    public double getNshd0() {
+        return Nshd0;
+    }
+
+    public void setNshd0(double nshd0) {
+        Nshd0 = nshd0;
+    }
+
+    public double getNth() {
+        return Nth;
+    }
+
+    public void setNth(double nth) {
+        Nth = nth;
+    }
+
+    public double getNEP_0() {
+        return NEP_0;
+    }
+
+    public void setNEP_0(double NEP_0) {
+        this.NEP_0 = NEP_0;
+    }
+
+    public double getNEPs_0() {
+        return NEPs_0;
+    }
+
+    public void setNEPs_0(double NEPs_0) {
+        this.NEPs_0 = NEPs_0;
     }
 }

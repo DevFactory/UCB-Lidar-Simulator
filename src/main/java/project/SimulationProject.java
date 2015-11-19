@@ -5,23 +5,20 @@
  */
 package project;
 
-import atmosphere.Atmosphere;
 import files.FileReader;
 import files.FileWriter;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
-import lidar.Lidar;
-import monochromator.Monochromator;
+import simulation.Simulation;
 
 /**
  * @author oscar_sgc
  */
 public class SimulationProject {
 
-    private Lidar lidar = new Lidar();
+    private Simulation simulation = new Simulation();
     FileWriter fileWriter = new FileWriter();
     FileReader fileReader = new FileReader();
     private ArrayList<Number> data;
@@ -31,6 +28,7 @@ public class SimulationProject {
     private String projectLocation;
     private double initialValue;
     private double finalValue;
+
 
     private static SimulationProject simulationProject = new SimulationProject();
 
@@ -162,12 +160,12 @@ public class SimulationProject {
     }
 
 
-    public Lidar getLidar() {
-        return lidar;
+    public Simulation getSimulation() {
+        return simulation;
     }
 
-    public void setLidar(Lidar lidar) {
-        this.lidar = lidar;
+    public void setSimulation(Simulation simulation) {
+        this.simulation = simulation;
     }
 
     public static void main(String args[]) {

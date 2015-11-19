@@ -1,26 +1,15 @@
 package files;
 
-import atmosphere.Mie;
-import atmosphere.Pressure;
-import atmosphere.Rayleigh;
-import laser.Laser;
-import lidar.Lidar;
-import linkbudget.LinkBudget;
-import monochromator.Monochromator;
 import org.w3c.dom.*;
-
-import telescope.Telescope;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.awt.*;
 import java.io.File;
 
 import project.SimulationProject;

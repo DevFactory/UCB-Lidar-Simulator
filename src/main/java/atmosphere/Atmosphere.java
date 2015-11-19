@@ -106,4 +106,11 @@ public class Atmosphere extends Function {
         this.rayleigh = rayleigh;
     }
 
+    public Mie getMie() {
+        return mie;
+    }
+
+    public void setMie(Mie mie) {
+        this.mie = mie;
+    }
 }
