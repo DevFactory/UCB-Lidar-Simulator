@@ -97,9 +97,7 @@ public class LinkBudget extends Function {
     public void initializeComponents() {
         this.pow0 = new ArrayList<Double>();
         this.Ar = Math.PI * ((Math.pow((this.telescope.getDiameter() / 2), 2)) - (Math.pow((this.telescope.getShadeDiameter() / 2), 2)));
-        System.out.println("AR: " + this.Ar);
         this.k = ((this.laser.getEnergy() * this.c) / 2) * this.Ar;
-        System.out.println("K:" + this.k);
         this.dFiber = 3e-3;
         this.fov = this.dFiber / (2 * this.telescope.getFocalLength());
         this.dOmega = Math.PI * Math.pow(Math.sin(this.fov), 2);
@@ -134,42 +132,23 @@ public class LinkBudget extends Function {
         if (this.r.get(0) == 1) {
             pow0generation();
         }
-        System.out.println("POW 0");
-        for (int i = 0; i < this.pow0.size(); i++) {
-            System.out.println(this.pow0.get(i));
-        }
         this.powb0 = this.L * 1e4 * this.dLambda0 * this.Ar * this.dOmega;
     }
 
     public void elasticSNR() {
         this.Ri = this.monochromator.getRio() * this.monochromator.getM();
-        System.out.println("Ri: " + this.Ri);
         this.Rv = this.Ri * this.monochromator.getGT();
-        System.out.println("RV: " + this.Rv);
         this.cons0 = this.Rv * this.loss0;
-        System.out.println("Cons0:" + this.cons0);
-
         this.s0 = s0Generation();
         this.a0 = 2 * this.q * Math.pow(this.monochromator.getGT(), 2) * this.monochromator.getF() * Math.pow(this.monochromator.getM(), 2) * this.monochromator.getRio() * this.loss0 * this.B;
         this.b0 = 2 * this.q * Math.pow(this.monochromator.getGT(), 2) * (this.monochromator.getIds() + this.monochromator.getIdb() * this.monochromator.getF() * Math.pow(this.monochromator.getM(), 2)) * this.B;
         this.c0 = this.monochromator.getNv() * this.B;
-        System.out.println("a0" + this.a0);
-        System.out.println("b0" + this.b0);
         this.Nshs0 = nshs0Generation(this.a0, this.pow0, this.powb0);
-//        for (int i = 0; i < this.Nshs0.size(); i++) {
-//            System.out.println(this.Nshs0.get(i));
-//        }
         this.Nshd0 = this.b0;
         this.Nth = this.c0;
-
         this.NEP_0 = Math.sqrt(2 * this.q * (this.monochromator.getIds() + this.monochromator.getF() * (Math.pow(this.monochromator.getM(), 2)) * this.monochromator.getIdb())) / this.Ri;
         this.NEPs_0 = Math.sqrt(2 * this.q * (this.monochromator.getIds() + this.monochromator.getF() * (Math.pow(this.monochromator.getM(), 2)) * this.monochromator.getIdb()) + (this.monochromator.getNv() / Math.pow(this.monochromator.getGT(), 2))) / (this.Ri * this.loss0);
         this.SNR0 = snr0Generation();
-
-//        for (int i = 0; i < this.SNR0.size(); i++) {
-//            System.out.println(this.SNR0.get(i));
-//        }
-
     }
 
     private ArrayList<Double> snr0Generation() {
