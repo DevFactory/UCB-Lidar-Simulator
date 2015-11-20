@@ -31,29 +31,8 @@ public class Simulation {
     private ArrayList<Number> altitudes;
 
     public Simulation() {
+        this.telescope = new Telescope();
 
-    }
-
-    public Chart generateChart(Color color) {
-        Chart chart = new Chart(10, 10);
-        chart.setChartTitle("SNR");
-        chart.setXAxisTitle("Altitude");
-        chart.setYAxisTitle("SNR");
-        chart.getStyleManager().setPlotBackgroundColor(Color.WHITE);
-        chart.getStyleManager().setPlotGridLinesColor(Color.GRAY);
-        chart.getStyleManager().setChartBackgroundColor(Color.WHITE);
-        chart.getStyleManager().setLegendBackgroundColor(Color.WHITE);
-        chart.getStyleManager().setChartFontColor(Color.BLACK);
-        chart.getStyleManager().setChartTitleBoxVisible(false);
-        chart.getStyleManager().setPlotGridLinesVisible(true);
-
-        Series series;
-        series = chart.addSeries("SNR(Altitude)", this.mie.getAltitudes(), this.linkBudget.getSNR0());
-        series.setLineColor(color);
-        series.setMarkerColor(color);
-        series.setMarker(SeriesMarker.NONE);
-        series.setLineStyle(SeriesLineStyle.SOLID);
-        return chart;
     }
 
     public LinkBudget getLinkBudget() {

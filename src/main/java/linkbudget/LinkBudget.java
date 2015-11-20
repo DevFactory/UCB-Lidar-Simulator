@@ -3,11 +3,17 @@ package linkbudget;
 import atmosphere.Atmosphere;
 import atmosphere.Mie;
 import atmosphere.Rayleigh;
+import atmosphere.functions.Function;
+import com.xeiam.xchart.Chart;
+import com.xeiam.xchart.Series;
+import com.xeiam.xchart.SeriesLineStyle;
+import com.xeiam.xchart.SeriesMarker;
 import helpers.IntegralSolver;
 import laser.Laser;
 import monochromator.Monochromator;
 import telescope.Telescope;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -15,7 +21,7 @@ import java.util.Iterator;
 /**
  * Created by Oscar on 9/30/15.
  */
-public class LinkBudget {
+public class LinkBudget extends Function {
 
 
     private Telescope telescope;
@@ -61,7 +67,6 @@ public class LinkBudget {
     private double NEPs_0;
 
 
-
     public LinkBudget() {
         this.mie = new Mie();
         this.telescope = new Telescope();
@@ -85,18 +90,28 @@ public class LinkBudget {
         this.altitudes = altitudes;
         this.integralSolver.setFunction(this.mie);
         this.c = 2.99793e8;
+        this.nSamples = this.altitudes.size();
         initializeComponents();
     }
 
     public void initializeComponents() {
+        this.pow0 = new ArrayList<Double>();
         this.Ar = Math.PI * ((Math.pow((this.telescope.getDiameter() / 2), 2)) - (Math.pow((this.telescope.getShadeDiameter() / 2), 2)));
+        System.out.println("AR: " + this.Ar);
         this.k = ((this.laser.getEnergy() * this.c) / 2) * this.Ar;
+        System.out.println("K:" + this.k);
         this.dFiber = 3e-3;
         this.fov = this.dFiber / (2 * this.telescope.getFocalLength());
         this.dOmega = Math.PI * Math.pow(Math.sin(this.fov), 2);
         rMin = this.altitudes.get(0).doubleValue();
         rMax = this.altitudes.get(this.altitudes.size() - 1).doubleValue();
         this.rPBL = 0.500;
+        this.loss0 = 0.39;
+    }
+
+    @Override
+    public void generate() {
+        initializeComponents();
         backgroundComponent();
         rangeCalculations();
         powerLevelCalculations();
@@ -117,32 +132,49 @@ public class LinkBudget {
     public void powerLevelCalculations() {
         this.ovf = this.monochromator.getOverlapFactor();
         if (this.r.get(0) == 1) {
-            generate();
+            pow0generation();
+        }
+        System.out.println("POW 0");
+        for (int i = 0; i < this.pow0.size(); i++) {
+            System.out.println(this.pow0.get(i));
         }
         this.powb0 = this.L * 1e4 * this.dLambda0 * this.Ar * this.dOmega;
     }
 
     public void elasticSNR() {
         this.Ri = this.monochromator.getRio() * this.monochromator.getM();
+        System.out.println("Ri: " + this.Ri);
         this.Rv = this.Ri * this.monochromator.getGT();
+        System.out.println("RV: " + this.Rv);
         this.cons0 = this.Rv * this.loss0;
+        System.out.println("Cons0:" + this.cons0);
 
-        s0 = s0Generation(this.cons0, this.pow0);
+        this.s0 = s0Generation();
         this.a0 = 2 * this.q * Math.pow(this.monochromator.getGT(), 2) * this.monochromator.getF() * Math.pow(this.monochromator.getM(), 2) * this.monochromator.getRio() * this.loss0 * this.B;
         this.b0 = 2 * this.q * Math.pow(this.monochromator.getGT(), 2) * (this.monochromator.getIds() + this.monochromator.getIdb() * this.monochromator.getF() * Math.pow(this.monochromator.getM(), 2)) * this.B;
         this.c0 = this.monochromator.getNv() * this.B;
+        System.out.println("a0" + this.a0);
+        System.out.println("b0" + this.b0);
         this.Nshs0 = nshs0Generation(this.a0, this.pow0, this.powb0);
+//        for (int i = 0; i < this.Nshs0.size(); i++) {
+//            System.out.println(this.Nshs0.get(i));
+//        }
         this.Nshd0 = this.b0;
         this.Nth = this.c0;
 
         this.NEP_0 = Math.sqrt(2 * this.q * (this.monochromator.getIds() + this.monochromator.getF() * (Math.pow(this.monochromator.getM(), 2)) * this.monochromator.getIdb())) / this.Ri;
         this.NEPs_0 = Math.sqrt(2 * this.q * (this.monochromator.getIds() + this.monochromator.getF() * (Math.pow(this.monochromator.getM(), 2)) * this.monochromator.getIdb()) + (this.monochromator.getNv() / Math.pow(this.monochromator.getGT(), 2))) / (this.Ri * this.loss0);
         this.SNR0 = snr0Generation();
+
+//        for (int i = 0; i < this.SNR0.size(); i++) {
+//            System.out.println(this.SNR0.get(i));
+//        }
+
     }
 
     private ArrayList<Double> snr0Generation() {
         ArrayList<Double> aux = new ArrayList<Double>();
-        for (int i = 0; i <= this.Nshs0.size(); i++) {
+        for (int i = 0; i < this.Nshs0.size(); i++) {
             aux.add(this.s0.get(i) / (this.Nshs0.get(i).doubleValue() + this.Nshd0 + this.Nth));
         }
         return aux;
@@ -151,21 +183,22 @@ public class LinkBudget {
 
     private ArrayList<Double> nshs0Generation(double a0, ArrayList<Double> results, double powb0) {
         ArrayList<Double> aux = new ArrayList<Double>();
-        for (int i = 0; i <= this.pow0.size(); i++) {
+        for (int i = 0; i < this.pow0.size(); i++) {
             aux.add(this.powb0 + this.pow0.get(i));
         }
         return aux;
     }
 
-    private ArrayList s0Generation(double cons0, ArrayList<Double> results) {
+    private ArrayList s0Generation() {
         ArrayList<Double> aux = new ArrayList<Double>();
-        for (int i = 0; i <= this.pow0.size(); i++) {
-            aux.add(cons0 * this.pow0.get(i));
+        for (int i = 0; i <= this.pow0.size() - 1; i++) {
+            aux.add(this.cons0 * this.pow0.get(i));
         }
         return aux;
     }
 
-    public void generate() {
+
+    public void pow0generation() {
         double aux;
         Iterator<Number> backScatterIterator = this.rayleigh.getBetaScattering().iterator();
         Iterator<Number> altitudesIterator = this.altitudes.iterator();
@@ -191,6 +224,39 @@ public class LinkBudget {
             aux.add(min + (i * dx));
         }
         return aux;
+    }
+
+    @Override
+    public double getY(double x) {
+        return 0;
+    }
+
+    @Override
+    protected String getName() {
+        return "SNR";
+    }
+
+    @Override
+    public Chart generateChart(Color color) {
+        Chart chart = new Chart(10, 10);
+        chart.setChartTitle("SNR");
+        chart.setXAxisTitle("Altitude");
+        chart.setYAxisTitle("SNR");
+        chart.getStyleManager().setPlotBackgroundColor(Color.WHITE);
+        chart.getStyleManager().setPlotGridLinesColor(Color.GRAY);
+        chart.getStyleManager().setChartBackgroundColor(Color.WHITE);
+        chart.getStyleManager().setLegendBackgroundColor(Color.WHITE);
+        chart.getStyleManager().setChartFontColor(Color.BLACK);
+        chart.getStyleManager().setChartTitleBoxVisible(false);
+        chart.getStyleManager().setPlotGridLinesVisible(true);
+
+        Series series;
+        series = chart.addSeries("SNR(Altitude)", this.altitudes, this.getSNR0());
+        series.setLineColor(color);
+        series.setMarkerColor(color);
+        series.setMarker(SeriesMarker.NONE);
+        series.setLineStyle(SeriesLineStyle.SOLID);
+        return chart;
     }
 
     public Telescope getTelescope() {

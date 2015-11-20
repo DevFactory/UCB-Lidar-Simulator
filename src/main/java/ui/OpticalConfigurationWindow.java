@@ -357,6 +357,7 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
             this.laser = new Laser();
             this.laser.setDivergence(Double.parseDouble(this.divergenceTextField.getText()));
             this.laser.setEmissionWavelength(aux);
+            this.laser.setEnergy(160);
             this.project.getSimulation().setLaser(this.laser);
             if (this.monochromator != null) {
                 this.project.saveProject();

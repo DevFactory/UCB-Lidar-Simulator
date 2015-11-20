@@ -11,6 +11,7 @@ public class Laser {
     public Laser() {
         this.emissionWavelength = 532;
         this.divergence = 0.5e-3;
+        this.energy = 160;
 
     }
 

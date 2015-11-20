@@ -18,7 +18,7 @@ public class Telescope {
     public Telescope(double shadeDiameter, double focalLength, double transmissivity, double diameter) {
         this.shadeDiameter = shadeDiameter;
         this.focalLength = focalLength;
-        Transmissivity = transmissivity;
+        this.Transmissivity = transmissivity;
         this.diameter = diameter;
     }
 
@@ -46,7 +46,7 @@ public class Telescope {
     }
 
     public void setTransmissivity(double transmissivity) {
-        Transmissivity = transmissivity;
+        this.Transmissivity = transmissivity;
     }
 
     public double getDiameter() {

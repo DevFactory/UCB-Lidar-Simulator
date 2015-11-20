@@ -8,7 +8,6 @@ package ui;
 import atmosphere.gui.GraphicsConfiguration;
 import atmosphere.gui.GraphicsVisualizer;
 import laser.Laser;
-import linkbudget.LinkBudget;
 import monochromator.Monochromator;
 import project.SimulationProject;
 

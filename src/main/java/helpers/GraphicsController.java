@@ -2,9 +2,14 @@ package helpers;
 
 import atmosphere.*;
 import atmosphere.functions.plotter.FunctionPlotter;
+import laser.Laser;
+import linkbudget.LinkBudget;
+import monochromator.Monochromator;
 import project.SimulationProject;
+import telescope.Telescope;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -26,11 +31,13 @@ public class GraphicsController {
         prepairMieChartPanel();
         prepairRayleighPanels();
         prepairAtmospherePanels();
+        prepairSNRPanels();
     }
 
     private void prepairTemperatureChartPanel() {
         Temperature temperature = new Temperature(this.simulationProject.getData());
         temperature.generate();
+        this.simulationProject.getSimulation().setAltitudes((ArrayList<Number>) temperature.getAltitudes());
         this.simulationProject.getSimulation().setTemperature(temperature);
         this.functionPlotter = new FunctionPlotter((temperature.generateChart(this.simulationProject.getColors().get(0))));
         this.chartPanels.add(this.functionPlotter.getChartPanel());
@@ -71,6 +78,19 @@ public class GraphicsController {
         atmosphere.generate();
         this.simulationProject.getSimulation().setAtmosphere(atmosphere);
         this.functionPlotter.setChart(atmosphere.generateChart(this.simulationProject.getColors().get(5)));
+        this.chartPanels.add(this.functionPlotter.getChartPanel());
+    }
+
+    private void prepairSNRPanels() {
+        Laser laser = this.simulationProject.getSimulation().getLaser();
+        Monochromator monochromator = this.simulationProject.getSimulation().getMonochromator();
+        Telescope telescope = this.simulationProject.getSimulation().getTelescope();
+        Atmosphere atmosphere = this.simulationProject.getSimulation().getAtmosphere();
+        ArrayList<Number> altitudes = this.simulationProject.getSimulation().getAltitudes();
+        LinkBudget linkBudget = new LinkBudget(laser, monochromator, telescope, atmosphere, altitudes);
+        linkBudget.generate();
+        this.simulationProject.getSimulation().setLinkBudget(linkBudget);
+        this.functionPlotter.setChart(linkBudget.generateChart(Color.RED));
         this.chartPanels.add(this.functionPlotter.getChartPanel());
     }
 
