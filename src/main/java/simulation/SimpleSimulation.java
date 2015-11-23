@@ -17,7 +17,7 @@ import java.util.ArrayList;
 /**
  * Created by Oscar on 9/14/15.
  */
-public class Simulation {
+public class SimpleSimulation {
 
     private LinkBudget linkBudget;
     private Laser laser;
@@ -30,7 +30,7 @@ public class Simulation {
     private Rayleigh rayleigh;
     private ArrayList<Number> altitudes;
 
-    public Simulation() {
+    public SimpleSimulation() {
         this.telescope = new Telescope();
 
     }

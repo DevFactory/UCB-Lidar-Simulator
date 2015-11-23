@@ -12,6 +12,7 @@ import monochromator.Monochromator;
 import project.SimulationProject;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -24,7 +25,7 @@ public class SettingsWindow extends javax.swing.JFrame {
      * Creates new form SettingsWindow
      */
     SimulationProject simulationProject = SimulationProject.getInstance();
-
+    
     public SettingsWindow() {
         SimulationProject simulationProject = SimulationProject.getInstance();
         Locale.setDefault(new Locale(System.getProperty("user.language"), System.getProperty("user.country")));
@@ -43,24 +44,24 @@ public class SettingsWindow extends javax.swing.JFrame {
         configurationsPanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(45, 0), new java.awt.Dimension(50, 0), new java.awt.Dimension(60, 32767));
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(60, 0), new java.awt.Dimension(60, 0), new java.awt.Dimension(60, 32767));
-        opticsLabel = new javax.swing.JLabel();
+        opticalLabel = new javax.swing.JLabel();
+        filler5 = new javax.swing.Box.Filler(new java.awt.Dimension(70, 0), new java.awt.Dimension(70, 0), new java.awt.Dimension(70, 32767));
+        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         atmosphereDetailsLabel = new javax.swing.JLabel();
-        laserDetailsLabel = new javax.swing.JLabel();
+        opticalDetailsLabel = new javax.swing.JLabel();
+        simulationDetailsLabel = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         atmosphereConfigurationButton = new javax.swing.JButton();
-        filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(60, 0), new java.awt.Dimension(60, 0), new java.awt.Dimension(32767, 0));
-        filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(60, 0), new java.awt.Dimension(60, 0), new java.awt.Dimension(32767, 0));
-        opticsSettingsButton = new javax.swing.JButton();
+        simulationSettingsButton = new javax.swing.JButton();
+        opticalSettingsButton = new javax.swing.JButton();
         detailsPanel = new javax.swing.JPanel();
         jScrollPane = new javax.swing.JScrollPane();
         detailsTextPane = new javax.swing.JTextPane();
         actionPanel = new javax.swing.JPanel();
         viewGraphicsButton = new javax.swing.JButton();
         resultsButton = new javax.swing.JButton();
-        saveConfigurationsButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         saveMenuItem = new javax.swing.JMenuItem();
@@ -81,11 +82,14 @@ public class SettingsWindow extends javax.swing.JFrame {
 
         jLabel4.setText(bundle.getString("SettingsWindow.jLabel4.text")); // NOI18N
         jPanel1.add(jLabel4);
-        jPanel1.add(filler1);
         jPanel1.add(filler2);
 
-        opticsLabel.setText(bundle.getString("SettingsWindow.opticsLabel.text")); // NOI18N
-        jPanel1.add(opticsLabel);
+        opticalLabel.setText(bundle.getString("SettingsWindow.opticalLabel.text")); // NOI18N
+        jPanel1.add(opticalLabel);
+        jPanel1.add(filler5);
+
+        jLabel1.setText(bundle.getString("SettingsWindow.jLabel1.text")); // NOI18N
+        jPanel1.add(jLabel1);
 
         configurationsPanel.add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
@@ -101,18 +105,29 @@ public class SettingsWindow extends javax.swing.JFrame {
             }
         });
         jPanel2.add(atmosphereDetailsLabel);
-        atmosphereDetailsLabel.setBounds(110, 10, 77, 16);
+        atmosphereDetailsLabel.setBounds(80, 10, 77, 16);
 
-        laserDetailsLabel.setForeground(new java.awt.Color(51, 51, 255));
-        laserDetailsLabel.setText(bundle.getString("SettingsWindow.laserDetailsLabel.text")); // NOI18N
-        laserDetailsLabel.setToolTipText(bundle.getString("SettingsWindow.laserDetailsLabel.toolTipText")); // NOI18N
-        laserDetailsLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+        opticalDetailsLabel.setForeground(new java.awt.Color(51, 51, 255));
+        opticalDetailsLabel.setText(bundle.getString("SettingsWindow.opticalDetailsLabel.text")); // NOI18N
+        opticalDetailsLabel.setToolTipText(bundle.getString("SettingsWindow.opticalDetailsLabel.toolTipText")); // NOI18N
+        opticalDetailsLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                laserDetailsLabelMouseClicked(evt);
+                opticalDetailsLabelMouseClicked(evt);
             }
         });
-        jPanel2.add(laserDetailsLabel);
-        laserDetailsLabel.setBounds(300, 10, 77, 16);
+        jPanel2.add(opticalDetailsLabel);
+        opticalDetailsLabel.setBounds(210, 10, 77, 16);
+
+        simulationDetailsLabel.setForeground(new java.awt.Color(51, 51, 255));
+        simulationDetailsLabel.setText(bundle.getString("SettingsWindow.simulationDetailsLabel.text")); // NOI18N
+        simulationDetailsLabel.setToolTipText(bundle.getString("SettingsWindow.simulationDetailsLabel.toolTipText")); // NOI18N
+        simulationDetailsLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                simulationDetailsLabelMouseClicked(evt);
+            }
+        });
+        jPanel2.add(simulationDetailsLabel);
+        simulationDetailsLabel.setBounds(340, 10, 77, 16);
 
         configurationsPanel.add(jPanel2, java.awt.BorderLayout.PAGE_END);
 
@@ -127,22 +142,29 @@ public class SettingsWindow extends javax.swing.JFrame {
             }
         });
         jPanel3.add(atmosphereConfigurationButton);
-        atmosphereConfigurationButton.setBounds(120, 10, 60, 60);
-        jPanel3.add(filler3);
-        filler3.setBounds(119, 35, 60, 0);
-        jPanel3.add(filler4);
-        filler4.setBounds(249, 35, 60, 0);
+        atmosphereConfigurationButton.setBounds(90, 10, 60, 60);
 
-        opticsSettingsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/laser.png"))); // NOI18N
-        opticsSettingsButton.setToolTipText(bundle.getString("SettingsWindow.opticsSettingsButton.toolTipText")); // NOI18N
-        opticsSettingsButton.setPreferredSize(new java.awt.Dimension(60, 60));
-        opticsSettingsButton.addActionListener(new java.awt.event.ActionListener() {
+        simulationSettingsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/simulation.png"))); // NOI18N
+        simulationSettingsButton.setToolTipText(bundle.getString("SettingsWindow.simulationSettingsButton.toolTipText")); // NOI18N
+        simulationSettingsButton.setPreferredSize(new java.awt.Dimension(60, 60));
+        simulationSettingsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opticsSettingsButtonActionPerformed(evt);
+                simulationSettingsButtonActionPerformed(evt);
             }
         });
-        jPanel3.add(opticsSettingsButton);
-        opticsSettingsButton.setBounds(310, 10, 60, 60);
+        jPanel3.add(simulationSettingsButton);
+        simulationSettingsButton.setBounds(350, 10, 60, 60);
+
+        opticalSettingsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/laser.png"))); // NOI18N
+        opticalSettingsButton.setToolTipText(bundle.getString("SettingsWindow.opticalSettingsButton.toolTipText")); // NOI18N
+        opticalSettingsButton.setPreferredSize(new java.awt.Dimension(60, 60));
+        opticalSettingsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opticalSettingsButtonActionPerformed(evt);
+            }
+        });
+        jPanel3.add(opticalSettingsButton);
+        opticalSettingsButton.setBounds(220, 10, 60, 60);
 
         configurationsPanel.add(jPanel3, java.awt.BorderLayout.CENTER);
 
@@ -157,22 +179,23 @@ public class SettingsWindow extends javax.swing.JFrame {
         javax.swing.GroupLayout detailsPanelLayout = new javax.swing.GroupLayout(detailsPanel);
         detailsPanel.setLayout(detailsPanelLayout);
         detailsPanelLayout.setHorizontalGroup(
-                detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(detailsPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(detailsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         detailsPanelLayout.setVerticalGroup(
-                detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(detailsPanelLayout.createSequentialGroup()
-                                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-                                .addContainerGap())
+            detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(detailsPanelLayout.createSequentialGroup()
+                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         actionPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("SettingsWindow.actionPanel.border.title"))); // NOI18N
 
         viewGraphicsButton.setText(bundle.getString("SettingsWindow.viewGraphicsButton.text")); // NOI18N
+        viewGraphicsButton.setToolTipText(bundle.getString("SettingsWindow.viewGraphicsButton.toolTipText")); // NOI18N
         viewGraphicsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewGraphicsButtonActionPerformed(evt);
@@ -180,37 +203,29 @@ public class SettingsWindow extends javax.swing.JFrame {
         });
 
         resultsButton.setText(bundle.getString("SettingsWindow.resultsButton.text")); // NOI18N
-
-        saveConfigurationsButton.setText(bundle.getString("SettingsWindow.saveConfigurationsButton.text")); // NOI18N
-        saveConfigurationsButton.setToolTipText(bundle.getString("SettingsWindow.saveConfigurationsButton.toolTipText")); // NOI18N
+        resultsButton.setToolTipText(bundle.getString("SettingsWindow.resultsButton.toolTipText")); // NOI18N
 
         javax.swing.GroupLayout actionPanelLayout = new javax.swing.GroupLayout(actionPanel);
         actionPanel.setLayout(actionPanelLayout);
         actionPanelLayout.setHorizontalGroup(
-                actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(actionPanelLayout.createSequentialGroup()
-                                .addGap(44, 44, 44)
-                                .addGroup(actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(viewGraphicsButton)
-                                        .addGroup(actionPanelLayout.createSequentialGroup()
-                                                .addGap(12, 12, 12)
-                                                .addGroup(actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(saveConfigurationsButton)
-                                                        .addGroup(actionPanelLayout.createSequentialGroup()
-                                                                .addGap(6, 6, 6)
-                                                                .addComponent(resultsButton)))))
-                                .addGap(44, 44, 44))
+            actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(actionPanelLayout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addComponent(viewGraphicsButton)
+                .addGap(56, 56, 56))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, actionPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(resultsButton)
+                .addGap(42, 42, 42))
         );
         actionPanelLayout.setVerticalGroup(
-                actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(actionPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(viewGraphicsButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(saveConfigurationsButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(resultsButton)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(actionPanelLayout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(viewGraphicsButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(resultsButton)
+                .addContainerGap(114, Short.MAX_VALUE))
         );
 
         fileMenu.setText(bundle.getString("StartWindow.fileMenu.text")); // NOI18N
@@ -247,7 +262,6 @@ public class SettingsWindow extends javax.swing.JFrame {
 
         editMenu.setText(bundle.getString("StartWindow.editMenu.text")); // NOI18N
 
-        languageMenu.setText(bundle.getString("SettingsWindow.languageMenu.text")); // NOI18N
         java.util.ResourceBundle bundle1 = java.util.ResourceBundle.getBundle("ui/Bundle"); // NOI18N
         languageMenu.setLabel(bundle1.getString("StartWindow.languageMenu.label")); // NOI18N
 
@@ -278,27 +292,27 @@ public class SettingsWindow extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(configurationsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(detailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(actionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addContainerGap())
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(configurationsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(detailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(actionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(configurationsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(detailsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(actionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addContainerGap())
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(configurationsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(detailsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(actionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -321,17 +335,18 @@ public class SettingsWindow extends javax.swing.JFrame {
         System.setProperty("user.language", "es");
         System.setProperty("user.country", "ES");
         SettingsWindow w = new SettingsWindow();
-
+        
         w.setVisible(true);
         dispose();
     }//GEN-LAST:event_spanishMenuItemActionPerformed
 
-    private void laserDetailsLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laserDetailsLabelMouseClicked
-        Laser laser = this.simulationProject.getSimulation().getLaser();
-        Monochromator monochromator = this.simulationProject.getSimulation().getMonochromator();
+    private void opticalDetailsLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opticalDetailsLabelMouseClicked
+        Laser laser = this.simulationProject.getSimpleSimulation().getLaser();
+        Monochromator monochromator = this.simulationProject.getSimpleSimulation().getMonochromator();
         if (laser != null && monochromator != null) {
             this.detailsTextPane.setText("Optical Details: \n" + "Laser Details: \n" + "Wavelength: " + laser.getEmissionWavelength() + "\n"
                     + "Beam divergence: " + laser.getDivergence() + "\n"
+                    + "Laser Energy: " + laser.getEnergy() + "\n"
                     + "-------------------------\n"
                     + "Monochromator Details: \n" + "Type:  " + monochromator.getApdName() + "\n"
                     + "Multiplication factor: " + monochromator.getM() + "\n"
@@ -343,6 +358,7 @@ public class SettingsWindow extends javax.swing.JFrame {
         } else {
             this.detailsTextPane.setText("Optical Details: \n" + "Laser Details: \n" + "Wavelength: Not defined\n"
                     + "Beam divergence: Not defined \n"
+                    + "Laser Energy: Not defined \n"
                     + "-------------------------\n"
                     + "Monochromator Details: \n" + "Type: Not defined \n"
                     + "Multiplication factor: Not defined \n"
@@ -353,7 +369,7 @@ public class SettingsWindow extends javax.swing.JFrame {
                     + "Overlap Factor: Not defined");
         }
 
-    }//GEN-LAST:event_laserDetailsLabelMouseClicked
+    }//GEN-LAST:event_opticalDetailsLabelMouseClicked
 
     private void atmosphereDetailsLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atmosphereDetailsLabelMouseClicked
         double initialAltitude = 0;
@@ -362,7 +378,7 @@ public class SettingsWindow extends javax.swing.JFrame {
         if (simulationProject.getData() != null) {
             initialAltitude = this.simulationProject.getData().get(0).doubleValue();
             finalAltitude = this.simulationProject.getData().get(this.simulationProject.getData().size() - 1).doubleValue();
-
+            
             this.detailsTextPane.setText("Atmosphere Details:\n" + "Initial altitude: " + initialAltitude + "\n" + "Final altitude: " + finalAltitude + "\n"
                     + "Atmosphere graphics details:\n" + "Temperature: " + colors.get(0) + "\n" + "Pressure: " + colors.get(1) + "\n" + "Mie: " + colors.get(2) + "\n"
                     + "Alpha Rayleigh: " + colors.get(3) + "\n" + "Beta Rayleigh: " + colors.get(4) + "\n" + "Atmosphere: " + colors.get(5));
@@ -374,20 +390,57 @@ public class SettingsWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_atmosphereDetailsLabelMouseClicked
 
     private void atmosphereConfigurationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atmosphereConfigurationButtonActionPerformed
-        GraphicsConfiguration w = new GraphicsConfiguration();
+        GraphicsConfiguration w;
+        w = new GraphicsConfiguration();
         this.dispose();
         w.setVisible(true);
     }//GEN-LAST:event_atmosphereConfigurationButtonActionPerformed
 
     private void viewGraphicsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewGraphicsButtonActionPerformed
         if (this.simulationProject.getData() != null) {
-            GraphicsVisualizer graphicsVisualizer = new GraphicsVisualizer();
+            launch();
             this.dispose();
-            graphicsVisualizer.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Atmosphere Data is empty... please fill data first");
         }
     }//GEN-LAST:event_viewGraphicsButtonActionPerformed
+    
+    private void launch() {
+        
+        JDialog calculatingDialog = new JDialog(this, "Computing...", true);
+        JProgressBar progressBar = new JProgressBar(0, 30);
+        progressBar.setIndeterminate(true);
+        calculatingDialog.add(BorderLayout.CENTER, progressBar);
+        JPanel panel = new JPanel();
+        panel.add(BorderLayout.CENTER, new JLabel("Please wait while the system computes the data..."));
+        calculatingDialog.add(BorderLayout.NORTH, panel);
+        calculatingDialog.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        calculatingDialog.setSize(400, 100);
+        calculatingDialog.setLocationRelativeTo(this);
+        
+        SwingWorker<Void, Void> sw = new SwingWorker<Void, Void>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                GraphicsVisualizer graphicsVisualizer;
+                graphicsVisualizer = new GraphicsVisualizer();
+                graphicsVisualizer.setVisible(true);
+                return null;
+            }
+            
+            @Override
+            protected void done() {
+                calculatingDialog.dispose();
+            }
+        };
+        
+        Thread thread = new Thread(new Runnable() {
+            public void run() {
+                calculatingDialog.setVisible(true);
+            }
+        });
+        sw.execute();
+        calculatingDialog.setVisible(true);
+    }
 
     private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
         this.simulationProject.saveProject();
@@ -406,11 +459,21 @@ public class SettingsWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_saveAsMenuItemActionPerformed
 
-    private void opticsSettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opticsSettingsButtonActionPerformed
+    private void simulationSettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simulationSettingsButtonActionPerformed
+        CompleteSimulationSettingsWindow w = new CompleteSimulationSettingsWindow();
+        this.dispose();
+        w.setVisible(true);
+    }//GEN-LAST:event_simulationSettingsButtonActionPerformed
+
+    private void opticalSettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opticalSettingsButtonActionPerformed
         OpticalConfigurationWindow w = new OpticalConfigurationWindow();
         this.dispose();
         w.setVisible(true);
-    }//GEN-LAST:event_opticsSettingsButtonActionPerformed
+    }//GEN-LAST:event_opticalSettingsButtonActionPerformed
+
+    private void simulationDetailsLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simulationDetailsLabelMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_simulationDetailsLabelMouseClicked
 
     /**
      * @param args the command line arguments
@@ -455,10 +518,9 @@ public class SettingsWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem englishMenuItem;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
-    private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler2;
-    private javax.swing.Box.Filler filler3;
-    private javax.swing.Box.Filler filler4;
+    private javax.swing.Box.Filler filler5;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
@@ -466,13 +528,14 @@ public class SettingsWindow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JMenu languageMenu;
-    private javax.swing.JLabel laserDetailsLabel;
-    private javax.swing.JLabel opticsLabel;
-    private javax.swing.JButton opticsSettingsButton;
+    private javax.swing.JLabel opticalDetailsLabel;
+    private javax.swing.JLabel opticalLabel;
+    private javax.swing.JButton opticalSettingsButton;
     private javax.swing.JButton resultsButton;
     private javax.swing.JMenuItem saveAsMenuItem;
-    private javax.swing.JButton saveConfigurationsButton;
     private javax.swing.JMenuItem saveMenuItem;
+    private javax.swing.JLabel simulationDetailsLabel;
+    private javax.swing.JButton simulationSettingsButton;
     private javax.swing.JMenuItem spanishMenuItem;
     private javax.swing.JButton viewGraphicsButton;
     // End of variables declaration//GEN-END:variables

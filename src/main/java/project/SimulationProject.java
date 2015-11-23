@@ -11,14 +11,16 @@ import files.FileWriter;
 import java.awt.*;
 import java.util.ArrayList;
 
-import simulation.Simulation;
+import simulation.CompleteSimulation;
+import simulation.SimpleSimulation;
 
 /**
  * @author oscar_sgc
  */
 public class SimulationProject {
 
-    private Simulation simulation = new Simulation();
+    private SimpleSimulation simpleSimulation = new SimpleSimulation();
+    private CompleteSimulation completeSimulation = new CompleteSimulation();
     FileWriter fileWriter = new FileWriter();
     FileReader fileReader = new FileReader();
     private ArrayList<Number> data;
@@ -160,12 +162,20 @@ public class SimulationProject {
     }
 
 
-    public Simulation getSimulation() {
-        return simulation;
+    public SimpleSimulation getSimpleSimulation() {
+        return simpleSimulation;
     }
 
-    public void setSimulation(Simulation simulation) {
-        this.simulation = simulation;
+    public void setSimpleSimulation(SimpleSimulation simpleSimulation) {
+        this.simpleSimulation = simpleSimulation;
+    }
+
+    public CompleteSimulation getCompleteSimulation() {
+        return completeSimulation;
+    }
+
+    public void setCompleteSimulation(CompleteSimulation completeSimulation) {
+        this.completeSimulation = completeSimulation;
     }
 
     public static void main(String args[]) {

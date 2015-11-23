@@ -46,6 +46,8 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
         beamDivergenceLabel = new javax.swing.JLabel();
         waveLengthComboBox = new javax.swing.JComboBox();
         divergenceTextField = new javax.swing.JTextField();
+        laserEnergyLabel = new javax.swing.JLabel();
+        laserEnergyTextField = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         apdLabel = new javax.swing.JLabel();
         apdSelectionjComboBox = new javax.swing.JComboBox();
@@ -73,15 +75,17 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        backjButton.setText("Back");
-        backjButton.setToolTipText("Click to back previous window");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("UI/Bundle"); // NOI18N
+        backjButton.setText(bundle.getString("OpticalConfigurationWindow.backjButton.text")); // NOI18N
+        backjButton.setToolTipText(bundle.getString("OpticalConfigurationWindow.backjButton.toolTipText")); // NOI18N
         backjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backjButtonActionPerformed(evt);
             }
         });
 
-        savejButton.setText("Save");
+
+        savejButton.setText(bundle.getString("OpticalConfigurationWindow.savejButton.text")); // NOI18N
         savejButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 savejButtonActionPerformed(evt);
@@ -111,11 +115,14 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_END);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Laser"));
 
-        waveLengthLabel.setText("Wave Length:");
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("OpticalConfigurationWindow.jPanel2.border.title"))); // NOI18N
 
-        beamDivergenceLabel.setText("Beam Divergence:");
+
+        waveLengthLabel.setText(bundle.getString("OpticalConfigurationWindow.waveLengthLabel.text")); // NOI18N
+
+
+        beamDivergenceLabel.setText(bundle.getString("OpticalConfigurationWindow.beamDivergenceLabel.text")); // NOI18N
 
         waveLengthComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"532 nm", "355 nm"}));
         waveLengthComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -124,6 +131,9 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
             }
         });
 
+
+        laserEnergyLabel.setText(bundle.getString("OpticalConfigurationWindow.laserEnergyLabel.text")); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -131,14 +141,21 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(16, 16, 16)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                                .addComponent(beamDivergenceLabel)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(divergenceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addComponent(waveLengthLabel)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(waveLengthComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                                                .addComponent(waveLengthComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                                                .addComponent(beamDivergenceLabel)
+                                                                .addGap(18, 18, 18))
+                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                .addComponent(laserEnergyLabel)
+                                                                .addGap(46, 46, 46)))
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(laserEnergyTextField)
+                                                        .addComponent(divergenceTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE))))
                                 .addContainerGap(49, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -152,14 +169,20 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(beamDivergenceLabel)
                                         .addComponent(divergenceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(21, 21, 21))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(laserEnergyLabel)
+                                        .addComponent(laserEnergyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap())
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_START);
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Detector"));
 
-        apdLabel.setText("APD Type:");
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("OpticalConfigurationWindow.jPanel3.border.title"))); // NOI18N
+
+
+        apdLabel.setText(bundle.getString("OpticalConfigurationWindow.apdLabel.text")); // NOI18N
 
         apdSelectionjComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"R7400U-03", "R7400P-03", "C30956E", "oldAPD", "Custom..."}));
         apdSelectionjComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -168,39 +191,48 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
             }
         });
 
-        multiplicationFactorLabel.setText("Multiplication Factor:");
+
+        multiplicationFactorLabel.setText(bundle.getString("OpticalConfigurationWindow.multiplicationFactorLabel.text")); // NOI18N
 
         multiplicationFactorTextField.setEditable(false);
 
-        xcessNoiseFactorjLabel.setText("Excess noise Factor:");
+
+        xcessNoiseFactorjLabel.setText(bundle.getString("OpticalConfigurationWindow.xcessNoiseFactorjLabel.text")); // NOI18N
 
         excessNoiseFactorjTextField.setEditable(false);
 
-        surfaceDarkCurrentjLabel.setText("Surface Dark Current:");
+
+        surfaceDarkCurrentjLabel.setText(bundle.getString("OpticalConfigurationWindow.surfaceDarkCurrentjLabel.text")); // NOI18N
 
         surfaceDarkCurrentjTextField.setEditable(false);
 
-        cathodeSensitivityjLabel.setText("Cathode Sensitivity:");
+
+        cathodeSensitivityjLabel.setText(bundle.getString("OpticalConfigurationWindow.cathodeSensitivityjLabel.text")); // NOI18N
 
         cathodeSensitivityTextField.setEditable(false);
 
-        anodeDarkCurrentjLabel.setText("Anode Dark Current:");
+
+        anodeDarkCurrentjLabel.setText(bundle.getString("OpticalConfigurationWindow.anodeDarkCurrentjLabel.text")); // NOI18N
 
         anodeDarkCurrentjTextField.setEditable(false);
 
-        bulkDarkCurrentjLabel.setText("Bulk Dark Current:");
+
+        bulkDarkCurrentjLabel.setText(bundle.getString("OpticalConfigurationWindow.bulkDarkCurrentjLabel.text")); // NOI18N
 
         bulkDarkCurrentjTextField.setEditable(false);
 
-        transducerGainjLabel.setText("Transducer Gain:");
+
+        transducerGainjLabel.setText(bundle.getString("OpticalConfigurationWindow.transducerGainjLabel.text")); // NOI18N
 
         transducerGainjTextField.setEditable(false);
 
-        preamplifierLimitsjLabel.setText("Pre-Amplifier Limits:");
+
+        preamplifierLimitsjLabel.setText(bundle.getString("OpticalConfigurationWindow.preamplifierLimitsjLabel.text")); // NOI18N
 
         preamplifierLimitsjTextField.setEditable(false);
 
-        currentNoiseDensityjLabel.setText("Current Noise Density:");
+
+        currentNoiseDensityjLabel.setText(bundle.getString("OpticalConfigurationWindow.currentNoiseDensityjLabel.text")); // NOI18N
 
         currentNoiseDensityjTextField.setEditable(false);
 
@@ -294,7 +326,7 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(transducerGainjLabel)
                                         .addComponent(transducerGainjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(11, Short.MAX_VALUE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.CENTER);
@@ -344,32 +376,35 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
     private void savejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savejButtonActionPerformed
         double aux = 0;
         if (this.divergenceTextField.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please set Beam divergence");
+            JOptionPane.showMessageDialog(null, "Please set Beam divergence.", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
-            switch (this.waveLengthComboBox.getSelectedIndex()) {
-                case 0:
-                    aux = 532;
-                    break;
-                case 1:
-                    aux = 355;
-                    break;
-            }
-            this.laser = new Laser();
-            this.laser.setDivergence(Double.parseDouble(this.divergenceTextField.getText()));
-            this.laser.setEmissionWavelength(aux);
-            this.laser.setEnergy(160);
-            this.project.getSimulation().setLaser(this.laser);
-            if (this.monochromator != null) {
-                this.project.saveProject();
-                JOptionPane.showMessageDialog(null, "Optical Values Established");
-                SettingsWindow w = new SettingsWindow();
-                this.dispose();
-                w.setVisible(true);
+            if (this.laserEnergyTextField.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please set Laser Energy.", "Warning", JOptionPane.WARNING_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(null, "Please set optical values");
+                switch (this.waveLengthComboBox.getSelectedIndex()) {
+                    case 0:
+                        aux = 532;
+                        break;
+                    case 1:
+                        aux = 355;
+                        break;
+                }
+                this.laser = new Laser();
+                this.laser.setDivergence(Double.parseDouble(this.divergenceTextField.getText()));
+                this.laser.setEmissionWavelength(aux);
+                this.laser.setEnergy(Double.parseDouble(this.laserEnergyTextField.getText()));
+                this.project.getSimpleSimulation().setLaser(this.laser);
+                if (this.monochromator != null) {
+                    this.project.saveProject();
+                    JOptionPane.showMessageDialog(null, "Optical Values Established");
+                    SettingsWindow w = new SettingsWindow();
+                    this.dispose();
+                    w.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Please set Optical Values.", "Warning", JOptionPane.WARNING_MESSAGE);
+                }
             }
         }
-
     }//GEN-LAST:event_savejButtonActionPerformed
 
     private void setFirstAPD(int wavelenght) {
@@ -394,7 +429,7 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
         this.preamplifierLimitsjTextField.setText("-");
         this.currentNoiseDensityjTextField.setText("-");
         this.monochromator = new Monochromator(7e5, 1.3, 0, rioAux, 0.01e-9, idb, 50, "R7400U-03");
-        this.project.getSimulation().setMonochromator(this.monochromator);
+        this.project.getSimpleSimulation().setMonochromator(this.monochromator);
     }
 
     private void setSecondAPD(int wavelenght) {
@@ -419,7 +454,7 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
         this.preamplifierLimitsjTextField.setText("-");
         this.currentNoiseDensityjTextField.setText("-");
         this.monochromator = new Monochromator(1e6, 1.3, 0, rioAux, 0.08e-9, idb, 50, "R7400P-03");
-        this.project.getSimulation().setMonochromator(this.monochromator);
+        this.project.getSimpleSimulation().setMonochromator(this.monochromator);
     }
 
     private void setThirdAPD() {
@@ -433,7 +468,7 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
         this.preamplifierLimitsjTextField.setText("10e6");
         this.currentNoiseDensityjTextField.setText("7.2e-12");
         this.monochromator = new Monochromator(100, 4, 7.73e-8, 340e-3, 1.19e-10, 10e6, 7.2e-12, 11e3, "C30956E");
-        this.project.getSimulation().setMonochromator(this.monochromator);
+        this.project.getSimpleSimulation().setMonochromator(this.monochromator);
     }
 
     private void setFourthAPD() {
@@ -447,7 +482,7 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
         this.preamplifierLimitsjTextField.setText("-");
         this.currentNoiseDensityjTextField.setText("5e-12");
         this.monochromator = new Monochromator(150, 4.5, 7.64e-8, 240e-3, 3.10e-10, 0, 5e-12, 5750 * 20.3, "oldAPD");
-        this.project.getSimulation().setMonochromator(this.monochromator);
+        this.project.getSimpleSimulation().setMonochromator(this.monochromator);
     }
 
     private void setFifthAPD() {
@@ -461,7 +496,7 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
         double preamplifierLimits = Double.parseDouble(this.preamplifierLimitsjTextField.getText());
         double currentNoiseDensity = Double.parseDouble(this.currentNoiseDensityjTextField.getText());
         this.monochromator = new Monochromator(multiplicationFactor, excessNoiseFactor, surfaceDarkCurrent, cathodeSensitivity, anodeDarkCurrent, bulkDarkCurrent, transducerGain, preamplifierLimits, currentNoiseDensity, "Custom");
-        this.project.getSimulation().setMonochromator(this.monochromator);
+        this.project.getSimpleSimulation().setMonochromator(this.monochromator);
     }
 
     private void disableFields() {
@@ -539,6 +574,8 @@ public class OpticalConfigurationWindow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel laserEnergyLabel;
+    private javax.swing.JTextField laserEnergyTextField;
     private javax.swing.JLabel multiplicationFactorLabel;
     private javax.swing.JTextField multiplicationFactorTextField;
     private javax.swing.JLabel preamplifierLimitsjLabel;

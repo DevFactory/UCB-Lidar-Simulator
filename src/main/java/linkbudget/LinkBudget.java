@@ -18,9 +18,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-/**
- * Created by Oscar on 9/30/15.
- */
 public class LinkBudget extends Function {
 
 
@@ -76,7 +73,7 @@ public class LinkBudget extends Function {
         this.integralSolver = new IntegralSolver();
         this.integralSolver.setFunction(this.mie);
         this.c = 2.99793e8;
-        initializeComponents();
+        //initializeComponents();
     }
 
     public LinkBudget(Laser laser, Monochromator monochromator, Telescope telescope, Atmosphere atmosphere, ArrayList<Number> altitudes) {

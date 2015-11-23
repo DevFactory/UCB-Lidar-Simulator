@@ -1,30 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package atmosphere.gui;
 
-import atmosphere.Atmosphere;
-import atmosphere.Mie;
-import atmosphere.Pressure;
-import atmosphere.Rayleigh;
-import atmosphere.Temperature;
-import atmosphere.functions.Function;
 import atmosphere.functions.plotter.FunctionPlotter;
-//import helpers.SuffixSaveFilter;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Locale;
 import javax.swing.*;
-
 import helpers.GraphicsController;
 import project.SimulationProject;
 import ui.SettingsWindow;
-import ui.StartWindow;
 
 /**
  * @author Oscar
@@ -47,7 +30,7 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
         createMieTab(graphicsController.getChartPanels().get(2));
         createRayleighTabs(graphicsController.getChartPanels().get(3), graphicsController.getChartPanels().get(4));
         createAtmosphereTab(graphicsController.getChartPanels().get(5));
-        createSNRTab(graphicsController.getChartPanels().get(6));
+        //createSNRTab(graphicsController.getChartPanels().get(6));
     }
 
     private void createTemperatureTab(JPanel panel) {
@@ -79,11 +62,10 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
 
     }
 
-    private void createSNRTab(JPanel panel) {
-        this.snrPanel = panel;
-        graphicsTabbedPane.setComponentAt(6, this.snrPanel);
-    }
-
+    /*private void createSNRTab(JPanel panel) {
+     this.snrPanel = panel;
+     graphicsTabbedPane.setComponentAt(6, this.snrPanel);
+     }*/
     private void makeFrameFullSize() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screenSize.width, screenSize.height);
@@ -108,7 +90,6 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
         alphaRayleighPanel = new javax.swing.JPanel();
         betaRayleighPanel = new javax.swing.JPanel();
         atmospherePanel = new javax.swing.JPanel();
-        snrPanel = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         saveMenuItem = new javax.swing.JMenuItem();
@@ -144,7 +125,6 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
         graphicsTabbedPane.addTab(bundle.getString("GraphicsVisualizer.alphaRayleighPanel.TabConstraints.tabTitle"), null, alphaRayleighPanel, bundle.getString("GraphicsVisualizer.alphaRayleighPanel.TabConstraints.tabToolTip")); // NOI18N
         graphicsTabbedPane.addTab(bundle.getString("GraphicsVisualizer.betaRayleighPanel.TabConstraints.tabTitle"), null, betaRayleighPanel, bundle.getString("GraphicsVisualizer.betaRayleighPanel.TabConstraints.tabToolTip")); // NOI18N
         graphicsTabbedPane.addTab(bundle.getString("GraphicsVisualizer.atmospherePanel.TabConstraints.tabTitle"), null, atmospherePanel, bundle.getString("GraphicsVisualizer.atmospherePanel.TabConstraints.tabToolTip")); // NOI18N
-        graphicsTabbedPane.addTab(bundle.getString("GraphicsVisualizer.snrPanel.TabConstraints.tabTitle"), snrPanel); // NOI18N
 
         jPanel2.add(graphicsTabbedPane, java.awt.BorderLayout.CENTER);
 
@@ -311,7 +291,6 @@ public class GraphicsVisualizer extends javax.swing.JFrame {
     private javax.swing.JPanel pressurePanel;
     private javax.swing.JMenuItem saveAsMenuItem;
     private javax.swing.JMenuItem saveMenuItem;
-    private javax.swing.JPanel snrPanel;
     private javax.swing.JMenuItem spanishMenuItem;
     private javax.swing.JPanel temperaturePanel;
     // End of variables declaration//GEN-END:variables

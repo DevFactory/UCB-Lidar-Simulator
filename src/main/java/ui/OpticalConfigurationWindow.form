@@ -10,16 +10,17 @@
     <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <AuxValues>
-    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="1"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_formBundle" type="java.lang.String" value="UI/Bundle"/>
     <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
     <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
-    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="true"/>
     <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,61,0,0,1,54"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,81,0,0,1,54"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
@@ -66,8 +67,12 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="backjButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Back"/>
-            <Property name="toolTipText" type="java.lang.String" value="Click to back previous window"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="UI/Bundle.properties" key="OpticalConfigurationWindow.backjButton.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="UI/Bundle.properties" key="OpticalConfigurationWindow.backjButton.toolTipText" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backjButtonActionPerformed"/>
@@ -75,7 +80,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="savejButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Save"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="UI/Bundle.properties" key="OpticalConfigurationWindow.savejButton.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="savejButtonActionPerformed"/>
@@ -87,7 +94,9 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Laser"/>
+            <TitledBorder title="Laser">
+              <ResourceString PropertyName="titleX" bundle="UI/Bundle.properties" key="OpticalConfigurationWindow.jPanel2.border.title" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </TitledBorder>
           </Border>
         </Property>
       </Properties>
@@ -103,15 +112,26 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="beamDivergenceLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="divergenceTextField" min="-2" pref="104" max="-2" attributes="0"/>
-                      </Group>
                       <Group type="102" attributes="0">
                           <Component id="waveLengthLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="46" max="32767" attributes="0"/>
                           <Component id="waveLengthComboBox" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="beamDivergenceLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="laserEnergyLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="laserEnergyTextField" max="32767" attributes="0"/>
+                              <Component id="divergenceTextField" pref="104" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace pref="49" max="32767" attributes="0"/>
@@ -131,7 +151,12 @@
                       <Component id="beamDivergenceLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="divergenceTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="laserEnergyLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="laserEnergyTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -139,12 +164,16 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="waveLengthLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Wave Length:"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="UI/Bundle.properties" key="OpticalConfigurationWindow.waveLengthLabel.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="beamDivergenceLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Beam Divergence:"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="UI/Bundle.properties" key="OpticalConfigurationWindow.beamDivergenceLabel.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="waveLengthComboBox">
@@ -162,13 +191,24 @@
         </Component>
         <Component class="javax.swing.JTextField" name="divergenceTextField">
         </Component>
+        <Component class="javax.swing.JLabel" name="laserEnergyLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="UI/Bundle.properties" key="OpticalConfigurationWindow.laserEnergyLabel.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="laserEnergyTextField">
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel3">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Detector"/>
+            <TitledBorder title="Detector">
+              <ResourceString PropertyName="titleX" bundle="UI/Bundle.properties" key="OpticalConfigurationWindow.jPanel3.border.title" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </TitledBorder>
           </Border>
         </Property>
       </Properties>
@@ -293,7 +333,7 @@
                       <Component id="transducerGainjLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="transducerGainjTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="11" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -301,7 +341,9 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="apdLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="APD Type:"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="UI/Bundle.properties" key="OpticalConfigurationWindow.apdLabel.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="apdSelectionjComboBox">
@@ -322,7 +364,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="multiplicationFactorLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Multiplication Factor:"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="UI/Bundle.properties" key="OpticalConfigurationWindow.multiplicationFactorLabel.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="multiplicationFactorTextField">
@@ -332,7 +376,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="xcessNoiseFactorjLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Excess noise Factor:"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="UI/Bundle.properties" key="OpticalConfigurationWindow.xcessNoiseFactorjLabel.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="excessNoiseFactorjTextField">
@@ -342,7 +388,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="surfaceDarkCurrentjLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Surface Dark Current:"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="UI/Bundle.properties" key="OpticalConfigurationWindow.surfaceDarkCurrentjLabel.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="surfaceDarkCurrentjTextField">
@@ -352,7 +400,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="cathodeSensitivityjLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cathode Sensitivity:"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="UI/Bundle.properties" key="OpticalConfigurationWindow.cathodeSensitivityjLabel.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="cathodeSensitivityTextField">
@@ -362,7 +412,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="anodeDarkCurrentjLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Anode Dark Current:"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="UI/Bundle.properties" key="OpticalConfigurationWindow.anodeDarkCurrentjLabel.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="anodeDarkCurrentjTextField">
@@ -372,7 +424,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="bulkDarkCurrentjLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Bulk Dark Current:"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="UI/Bundle.properties" key="OpticalConfigurationWindow.bulkDarkCurrentjLabel.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="bulkDarkCurrentjTextField">
@@ -382,7 +436,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="transducerGainjLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Transducer Gain:"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="UI/Bundle.properties" key="OpticalConfigurationWindow.transducerGainjLabel.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="transducerGainjTextField">
@@ -392,7 +448,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="preamplifierLimitsjLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Pre-Amplifier Limits:"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="UI/Bundle.properties" key="OpticalConfigurationWindow.preamplifierLimitsjLabel.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="preamplifierLimitsjTextField">
@@ -402,7 +460,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="currentNoiseDensityjLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Current Noise Density:"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="UI/Bundle.properties" key="OpticalConfigurationWindow.currentNoiseDensityjLabel.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="currentNoiseDensityjTextField">
