@@ -30,7 +30,8 @@ public class SimulationWindow extends javax.swing.JFrame {
 
     private void createSimulationTab() {
         this.completeSimulationPanel = new PlotPanel();
-        this.graphicsTabbedPane.add(this.completeSimulationPanel, 0);
+        this.graphicsTabbedPane.setComponentAt(0, this.completeSimulationPanel);
+
     }
 
     private void makeFrameFullSize() {

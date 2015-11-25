@@ -27,7 +27,14 @@ public class PlotPanel extends JPanel {
         drawColorBar(g);
         drawAxes(g);
         calculateGraphicThickness(this.simulationController.getSimulationsQty());
+        //showCompleteArray();
         drawCompleteArray(g);
+    }
+
+    private void showCompleteArray() {
+        for (int i = 0; i < this.simulationController.getContainer().size(); i++) {
+            System.out.println(this.simulationController.getContainer().get(i).getValue());
+        }
     }
 
     private void drawAxes(Graphics g) {
@@ -80,6 +87,7 @@ public class PlotPanel extends JPanel {
             drawPoint(g, this.simulationController.getContainer().get(i).getValue(), x, y);
             y--;
             counter = this.simulationController.getContainer().get(i).getBelongingRange();
+            //System.out.println("Counter: " + counter);
             if (counter != previousCounter) {
                 previousCounter = counter;
                 x = x + this.thickness;

@@ -1,19 +1,13 @@
 
 package helpers;
 
-import atmosphere.Atmosphere;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 
-import laser.Laser;
-import linkbudget.LinkBudget;
-import monochromator.Monochromator;
-import project.SimulationProject;
 import simulation.SimpleSimulation;
-import telescope.Telescope;
 
 public class SimulationController {
 
@@ -35,20 +29,22 @@ public class SimulationController {
     public void setContentArrayForSimulationPlotting() {
         for (int i = 0; i < this.simpleSimulations.size(); i++) {
             for (int j = 0; j < this.correctValues.size(); j++) {
-                this.container.add(this.correctValues.get(i));
+                this.container.add(this.correctValues.get(j));
             }
+        }
+        sortContainerByRange();
+        for (int i = 0; i < this.container.size(); i++) {
+            System.out.println("Value: " + this.container.get(i).getValue() + " Range: " + this.container.get(i).getBelongingRange());
         }
     }
 
     public void setCorrectValuesArray() {
         for (int i = 0; i < this.simpleSimulations.size(); i++) {
             for (int j = 0; j < this.simpleSimulations.get(i).getLinkBudget().getSNR0().size(); j = j + (this.simpleSimulations.get(i).getLinkBudget().getSNR0().size() / this.pixelsQty)) {
-                System.out.println(j);
-                this.correctValues.add(new Content(this.simpleSimulations.get(i).getLinkBudget().getSNR0().get(j), this.simulationsQty));
-                j = j + 4;
+                this.correctValues.add(new Content(this.simpleSimulations.get(i).getLinkBudget().getSNR0().get(j), this.simpleSimulations.get(i).getRangeValue()));
+                j = j + 5;
             }
         }
-        System.out.println("Correct Values size: " + this.correctValues.size());
     }
 
     public void generate() {
@@ -58,12 +54,21 @@ public class SimulationController {
         setContentArrayForSimulationPlotting();
         getMaximumValueFromContainer();
         getMinimumValueFromContainer();
+
+    }
+
+    public void sortContainerByRange() {
+        Collections.sort(this.correctValues, new Comparator<Content>() {
+            public int compare(Content content1, Content content2) {
+                return Integer.compare(content1.getBelongingRange(), content2.getBelongingRange());
+            }
+        });
     }
 
     private void setCorrectPixelsQty() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.pixelsQty = screenSize.height;
-        System.out.println("Valores correctos" + this.pixelsQty);
+        System.out.println("Maximum Qty: " + this.pixelsQty);
     }
 
     public void getMaximumValueFromContainer() {

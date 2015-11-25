@@ -12,14 +12,26 @@ import java.util.Collection;
 
 public class Mie extends Function {
 
+    private int w;
+    private double x;
+    private double y;
+    private int z;
     private Collection<Number> results = new ArrayList<Number>();
     private Collection<Number> altitudes = new ArrayList<Number>();
 
     public Mie(Collection<Number> altitudes) {
         this.altitudes = altitudes;
+        this.w = 18;
+        this.x = 2.0;
+        this.y = 0.01;
+        this.z = 1500;
     }
 
     public Mie() {
+        this.w = 18;
+        this.x = 2.0;
+        this.y = 0.01;
+        this.z = 1500;
     }
 
     @Override
@@ -29,7 +41,7 @@ public class Mie extends Function {
 
     @Override
     public double getY(double x) {
-        return (18 + (Math.sin(0.25 * Math.PI * Math.pow(x, 2.0)) + (0.1 * Math.cos(0.5 * Math.PI * Math.pow(x, 3.0))) - (Math.pow((0.2 * x), 3.0)) - (0.01 * x + 1))) / 1500;
+        return (this.w + (Math.sin(0.25 * Math.PI * Math.pow(x, this.x)) + (0.1 * Math.cos(0.5 * Math.PI * Math.pow(x, 3.0))) - (Math.pow((0.2 * x), 3.0)) - (this.y * x + 1))) / this.z;
     }
 
     @Override
@@ -78,4 +90,35 @@ public class Mie extends Function {
         this.altitudes = altitudes;
     }
 
+    public int getW() {
+        return w;
+    }
+
+    public void setW(int w) {
+        this.w = w;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
+    public int getZ() {
+        return z;
+    }
+
+    public void setZ(int z) {
+        this.z = z;
+    }
 }

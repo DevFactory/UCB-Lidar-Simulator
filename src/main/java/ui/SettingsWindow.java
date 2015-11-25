@@ -6,6 +6,8 @@
 package ui;
 
 import atmosphere.Atmosphere;
+import atmosphere.Mie;
+import atmosphere.Rayleigh;
 import atmosphere.gui.GraphicsConfiguration;
 import atmosphere.gui.GraphicsVisualizer;
 import helpers.GraphicsController;
@@ -496,23 +498,10 @@ public class SettingsWindow extends javax.swing.JFrame {
     }
 
     public void createParams() {
-
-
-
-        Atmosphere atmosphere = this.simulationProject.getSimpleSimulation().getAtmosphere();
-
-
-        for (int i = 0; i < this.simulationController.getSimulationsQty(); i++) {
-            generateSimulation();
-            LinkBudget linkBudget = new LinkBudget(laser, monochromator, telescope, atmosphere, altitudes);
-            linkBudget.generate();
-            simpleSimulation.setLinkBudget(linkBudget);
-            this.simulationController.getSimpleSimulations().add(simpleSimulation);
-            this.simulationController.generate();
-            SimulationWindow w = new SimulationWindow();
-            w.setVisible(true);
-            this.dispose();
-        }
+        generateSimulation();
+        SimulationWindow w = new SimulationWindow();
+        w.setVisible(true);
+        this.dispose();
     }
 
     private void generateSimulation() {
@@ -521,7 +510,29 @@ public class SettingsWindow extends javax.swing.JFrame {
         Telescope telescope = this.simulationProject.getSimpleSimulation().getTelescope();
         ArrayList<Number> altitudes = this.simulationProject.getSimpleSimulation().getAltitudes();
         SimpleSimulation simpleSimulation = new SimpleSimulation();
+        Rayleigh rayleigh = this.simulationProject.getSimpleSimulation().getRayleigh();
 
+        for (int i = 0; i < this.simulationController.getSimulationsQty(); i++) {
+            Mie mie = mieCreator(altitudes);
+            Atmosphere atmosphere = new Atmosphere(mie, rayleigh);
+            LinkBudget linkBudget = new LinkBudget(laser, monochromator, telescope, atmosphere, altitudes);
+            linkBudget.generate();
+            simpleSimulation.setLinkBudget(linkBudget);
+            simpleSimulation.setRangeValue(i);
+            this.simulationController.getSimpleSimulations().add(simpleSimulation);
+            this.simulationController.generate();
+        }
+        this.simulationProject.setSimulationController(this.simulationController);
+    }
+
+    private Mie mieCreator(ArrayList<Number> altitudes) {
+        Mie mie = new Mie(altitudes);
+        mie.setW((int) (Math.random() * (16 - 19) + 19));
+        mie.setX(Math.random() * (1.5 - 3.0) + 3.0);
+        mie.setY(Math.random() * (0.008 - 0.03) + 0.03);
+        mie.setZ((int) (Math.random() * (1490 - 1520) + 1520));
+        mie.generate();
+        return mie;
     }
 
     /**
