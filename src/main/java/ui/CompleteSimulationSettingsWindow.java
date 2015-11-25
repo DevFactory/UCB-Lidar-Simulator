@@ -5,6 +5,7 @@
  */
 package ui;
 
+import helpers.SimulationController;
 import project.SimulationProject;
 
 import javax.swing.*;
@@ -187,6 +188,9 @@ public class CompleteSimulationSettingsWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        SimulationController simulationController = new SimulationController();
+        this.simulationProject.setSimulationController(simulationController);
+        this.simulationProject.getSimulationController().setPixelsQty(this.getWidth() - 101);
         if (this.hoursQtyTextField.getText().isEmpty() || Integer.parseInt(this.hoursQtyTextField.getText()) > 5 || Integer.parseInt(this.hoursQtyTextField.getText()) == 0) {
             JOptionPane.showMessageDialog(null, "Please Insert a valid hours qty.", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
@@ -199,22 +203,28 @@ public class CompleteSimulationSettingsWindow extends javax.swing.JFrame {
                     if (this.samplesTextField.getText().isEmpty() || Integer.parseInt(this.samplesTextField.getText()) > 6 || Integer.parseInt(this.samplesTextField.getText()) == 0) {
                         JOptionPane.showMessageDialog(null, "Please Insert a valid samples value.", "Warning", JOptionPane.WARNING_MESSAGE);
                     } else {
-                        this.simulationProject.getCompleteSimulation().setHoursQty(Integer.parseInt(this.hoursQtyTextField.getText()));
-                        this.simulationProject.getCompleteSimulation().setSamplesPerHour(Integer.parseInt(this.samplesTextField.getText()));
+                        this.simulationProject.getSimulationController().setHoursQty(Integer.parseInt(this.hoursQtyTextField.getText()));
+                        this.simulationProject.getSimulationController().setSimulationsPerHour(Integer.parseInt(this.samplesTextField.getText()));
                         try {
                             String str = this.startHourTextField.getText();
                             DateFormat formatter = new SimpleDateFormat("hh:mm");
                             Date date = formatter.parse(str);
-                            this.simulationProject.getCompleteSimulation().setStartingTime(date);
+                            this.simulationProject.getSimulationController().setStartingTime(date);
                             str = this.endHourTextField.getText();
                             date = formatter.parse(str);
-                            this.simulationProject.getCompleteSimulation().setEndingTime(date);
+                            this.simulationProject.getSimulationController().setEndingTime(date);
+                            this.simulationProject.getSimulationController().obtainSimulationsQty();
                         } catch (ParseException e) {
                             JOptionPane.showMessageDialog(null, "Please Insert valid hours for the range.", "Warning", JOptionPane.WARNING_MESSAGE);
                             e.printStackTrace();
                         }
-                        if ((this.simulationProject.getCompleteSimulation().getEndingTime().getHours() - this.simulationProject.getCompleteSimulation().getStartingTime().getHours()) != this.simulationProject.getCompleteSimulation().getHoursQty()) {
+                        if ((this.simulationProject.getSimulationController().getEndingTime().getHours() - this.simulationProject.getSimulationController().getStartingTime().getHours()) != this.simulationProject.getSimulationController().getHoursQty()) {
                             JOptionPane.showMessageDialog(null, "Please insert the correct range interval.", "Warning", JOptionPane.WARNING_MESSAGE);
+                        } else {
+                            System.out.println(this.simulationProject.getSimulationController().getSimulationsQty());
+                            SettingsWindow w = new SettingsWindow();
+                            w.setVisible(true);
+                            this.dispose();
                         }
                     }
                 }

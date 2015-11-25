@@ -29,7 +29,7 @@ public class GraphicsController {
         prepairMieChartPanel();
         prepairRayleighPanels();
         prepairAtmospherePanels();
-        prepairSNRPanels();
+        //prepairSNRPanels();
     }
 
     private void prepairTemperatureChartPanel() {

@@ -9,10 +9,10 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+
 import project.SimulationProject;
 
 /**
- *
  * @author oscar_sgc
  */
 public class SimulationWindow extends javax.swing.JFrame {
@@ -25,12 +25,19 @@ public class SimulationWindow extends javax.swing.JFrame {
     public SimulationWindow() {
         initComponents();
         makeFrameFullSize();
+        createSimulationTab();
     }
-        
-     private void makeFrameFullSize() {
+
+    private void createSimulationTab() {
+        this.completeSimulationPanel = new PlotPanel();
+        this.graphicsTabbedPane.add(this.completeSimulationPanel, 0);
+    }
+
+    private void makeFrameFullSize() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screenSize.width, screenSize.height);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,7 +52,6 @@ public class SimulationWindow extends javax.swing.JFrame {
         backButton = new javax.swing.JButton();
         graphicsTabbedPane = new javax.swing.JTabbedPane();
         completeSimulationPanel = new javax.swing.JPanel();
-        firstPeriodPanel = new javax.swing.JPanel();
         optionsMenuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         saveMenuItem = new javax.swing.JMenuItem();
@@ -75,28 +81,15 @@ public class SimulationWindow extends javax.swing.JFrame {
         javax.swing.GroupLayout completeSimulationPanelLayout = new javax.swing.GroupLayout(completeSimulationPanel);
         completeSimulationPanel.setLayout(completeSimulationPanelLayout);
         completeSimulationPanelLayout.setHorizontalGroup(
-            completeSimulationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 569, Short.MAX_VALUE)
+                completeSimulationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 569, Short.MAX_VALUE)
         );
         completeSimulationPanelLayout.setVerticalGroup(
-            completeSimulationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 307, Short.MAX_VALUE)
+                completeSimulationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 307, Short.MAX_VALUE)
         );
 
         graphicsTabbedPane.addTab("Complete Simulation", completeSimulationPanel);
-
-        javax.swing.GroupLayout firstPeriodPanelLayout = new javax.swing.GroupLayout(firstPeriodPanel);
-        firstPeriodPanel.setLayout(firstPeriodPanelLayout);
-        firstPeriodPanelLayout.setHorizontalGroup(
-            firstPeriodPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 569, Short.MAX_VALUE)
-        );
-        firstPeriodPanelLayout.setVerticalGroup(
-            firstPeriodPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 307, Short.MAX_VALUE)
-        );
-
-        graphicsTabbedPane.addTab("First Period", firstPeriodPanel);
 
         getContentPane().add(graphicsTabbedPane, java.awt.BorderLayout.CENTER);
 
@@ -189,15 +182,15 @@ public class SimulationWindow extends javax.swing.JFrame {
     private void englishMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_englishMenuItemActionPerformed
         System.setProperty("user.language", "en");
         System.setProperty("user.country", "US");
-        
-        
+
+
         this.dispose();
     }//GEN-LAST:event_englishMenuItemActionPerformed
 
     private void spanishMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spanishMenuItemActionPerformed
         System.setProperty("user.language", "es");
         System.setProperty("user.country", "ES");
-        
+
         this.dispose();
     }//GEN-LAST:event_spanishMenuItemActionPerformed
 
@@ -249,7 +242,6 @@ public class SimulationWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem englishMenuItem;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
-    private javax.swing.JPanel firstPeriodPanel;
     private javax.swing.JTabbedPane graphicsTabbedPane;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane1;

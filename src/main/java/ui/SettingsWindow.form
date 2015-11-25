@@ -513,6 +513,9 @@
               <ResourceString bundle="UI/Bundle.properties" key="SettingsWindow.resultsButton.toolTipText" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resultsButtonActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

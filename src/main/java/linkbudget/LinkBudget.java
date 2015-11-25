@@ -146,6 +146,7 @@ public class LinkBudget extends Function {
         this.NEP_0 = Math.sqrt(2 * this.q * (this.monochromator.getIds() + this.monochromator.getF() * (Math.pow(this.monochromator.getM(), 2)) * this.monochromator.getIdb())) / this.Ri;
         this.NEPs_0 = Math.sqrt(2 * this.q * (this.monochromator.getIds() + this.monochromator.getF() * (Math.pow(this.monochromator.getM(), 2)) * this.monochromator.getIdb()) + (this.monochromator.getNv() / Math.pow(this.monochromator.getGT(), 2))) / (this.Ri * this.loss0);
         this.SNR0 = snr0Generation();
+
     }
 
     private ArrayList<Double> snr0Generation() {

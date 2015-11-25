@@ -5,11 +5,17 @@
  */
 package ui;
 
+import atmosphere.Atmosphere;
 import atmosphere.gui.GraphicsConfiguration;
 import atmosphere.gui.GraphicsVisualizer;
+import helpers.GraphicsController;
+import helpers.SimulationController;
 import laser.Laser;
+import linkbudget.LinkBudget;
 import monochromator.Monochromator;
 import project.SimulationProject;
+import simulation.SimpleSimulation;
+import telescope.Telescope;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,9 +31,9 @@ public class SettingsWindow extends javax.swing.JFrame {
      * Creates new form SettingsWindow
      */
     SimulationProject simulationProject = SimulationProject.getInstance();
-    
+    SimulationController simulationController = this.simulationProject.getSimulationController();
+
     public SettingsWindow() {
-        SimulationProject simulationProject = SimulationProject.getInstance();
         Locale.setDefault(new Locale(System.getProperty("user.language"), System.getProperty("user.country")));
         initComponents();
     }
@@ -179,17 +185,17 @@ public class SettingsWindow extends javax.swing.JFrame {
         javax.swing.GroupLayout detailsPanelLayout = new javax.swing.GroupLayout(detailsPanel);
         detailsPanel.setLayout(detailsPanelLayout);
         detailsPanelLayout.setHorizontalGroup(
-            detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(detailsPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(detailsPanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         detailsPanelLayout.setVerticalGroup(
-            detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(detailsPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-                .addContainerGap())
+                detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(detailsPanelLayout.createSequentialGroup()
+                                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                                .addContainerGap())
         );
 
         actionPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("SettingsWindow.actionPanel.border.title"))); // NOI18N
@@ -204,28 +210,33 @@ public class SettingsWindow extends javax.swing.JFrame {
 
         resultsButton.setText(bundle.getString("SettingsWindow.resultsButton.text")); // NOI18N
         resultsButton.setToolTipText(bundle.getString("SettingsWindow.resultsButton.toolTipText")); // NOI18N
+        resultsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resultsButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout actionPanelLayout = new javax.swing.GroupLayout(actionPanel);
         actionPanel.setLayout(actionPanelLayout);
         actionPanelLayout.setHorizontalGroup(
-            actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(actionPanelLayout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addComponent(viewGraphicsButton)
-                .addGap(56, 56, 56))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, actionPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(resultsButton)
-                .addGap(42, 42, 42))
+                actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(actionPanelLayout.createSequentialGroup()
+                                .addGap(62, 62, 62)
+                                .addComponent(viewGraphicsButton)
+                                .addGap(56, 56, 56))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, actionPanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(resultsButton)
+                                .addGap(42, 42, 42))
         );
         actionPanelLayout.setVerticalGroup(
-            actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(actionPanelLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(viewGraphicsButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(resultsButton)
-                .addContainerGap(114, Short.MAX_VALUE))
+                actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(actionPanelLayout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addComponent(viewGraphicsButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(resultsButton)
+                                .addContainerGap(114, Short.MAX_VALUE))
         );
 
         fileMenu.setText(bundle.getString("StartWindow.fileMenu.text")); // NOI18N
@@ -292,27 +303,27 @@ public class SettingsWindow extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(configurationsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(detailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(actionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(configurationsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(detailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(actionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(configurationsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(detailsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(actionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(configurationsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(detailsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(actionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap())
         );
 
         pack();
@@ -335,7 +346,7 @@ public class SettingsWindow extends javax.swing.JFrame {
         System.setProperty("user.language", "es");
         System.setProperty("user.country", "ES");
         SettingsWindow w = new SettingsWindow();
-        
+
         w.setVisible(true);
         dispose();
     }//GEN-LAST:event_spanishMenuItemActionPerformed
@@ -378,7 +389,7 @@ public class SettingsWindow extends javax.swing.JFrame {
         if (simulationProject.getData() != null) {
             initialAltitude = this.simulationProject.getData().get(0).doubleValue();
             finalAltitude = this.simulationProject.getData().get(this.simulationProject.getData().size() - 1).doubleValue();
-            
+
             this.detailsTextPane.setText("Atmosphere Details:\n" + "Initial altitude: " + initialAltitude + "\n" + "Final altitude: " + finalAltitude + "\n"
                     + "Atmosphere graphics details:\n" + "Temperature: " + colors.get(0) + "\n" + "Pressure: " + colors.get(1) + "\n" + "Mie: " + colors.get(2) + "\n"
                     + "Alpha Rayleigh: " + colors.get(3) + "\n" + "Beta Rayleigh: " + colors.get(4) + "\n" + "Atmosphere: " + colors.get(5));
@@ -404,9 +415,9 @@ public class SettingsWindow extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Atmosphere Data is empty... please fill data first");
         }
     }//GEN-LAST:event_viewGraphicsButtonActionPerformed
-    
+
     private void launch() {
-        
+
         JDialog calculatingDialog = new JDialog(this, "Computing...", true);
         JProgressBar progressBar = new JProgressBar(0, 30);
         progressBar.setIndeterminate(true);
@@ -417,7 +428,7 @@ public class SettingsWindow extends javax.swing.JFrame {
         calculatingDialog.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         calculatingDialog.setSize(400, 100);
         calculatingDialog.setLocationRelativeTo(this);
-        
+
         SwingWorker<Void, Void> sw = new SwingWorker<Void, Void>() {
             @Override
             protected Void doInBackground() throws Exception {
@@ -426,13 +437,13 @@ public class SettingsWindow extends javax.swing.JFrame {
                 graphicsVisualizer.setVisible(true);
                 return null;
             }
-            
+
             @Override
             protected void done() {
                 calculatingDialog.dispose();
             }
         };
-        
+
         Thread thread = new Thread(new Runnable() {
             public void run() {
                 calculatingDialog.setVisible(true);
@@ -472,8 +483,46 @@ public class SettingsWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_opticalSettingsButtonActionPerformed
 
     private void simulationDetailsLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simulationDetailsLabelMouseClicked
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_simulationDetailsLabelMouseClicked
+
+    private void resultsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultsButtonActionPerformed
+        generateGraphics();
+        createParams();
+    }//GEN-LAST:event_resultsButtonActionPerformed
+
+    private void generateGraphics() {
+        GraphicsController controller = new GraphicsController();
+    }
+
+    public void createParams() {
+
+
+
+        Atmosphere atmosphere = this.simulationProject.getSimpleSimulation().getAtmosphere();
+
+
+        for (int i = 0; i < this.simulationController.getSimulationsQty(); i++) {
+            generateSimulation();
+            LinkBudget linkBudget = new LinkBudget(laser, monochromator, telescope, atmosphere, altitudes);
+            linkBudget.generate();
+            simpleSimulation.setLinkBudget(linkBudget);
+            this.simulationController.getSimpleSimulations().add(simpleSimulation);
+            this.simulationController.generate();
+            SimulationWindow w = new SimulationWindow();
+            w.setVisible(true);
+            this.dispose();
+        }
+    }
+
+    private void generateSimulation() {
+        Laser laser = this.simulationProject.getSimpleSimulation().getLaser();
+        Monochromator monochromator = this.simulationProject.getSimpleSimulation().getMonochromator();
+        Telescope telescope = this.simulationProject.getSimpleSimulation().getTelescope();
+        ArrayList<Number> altitudes = this.simulationProject.getSimpleSimulation().getAltitudes();
+        SimpleSimulation simpleSimulation = new SimpleSimulation();
+
+    }
 
     /**
      * @param args the command line arguments

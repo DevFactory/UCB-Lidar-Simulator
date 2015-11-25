@@ -1,22 +1,15 @@
 package simulation;
 
 import atmosphere.*;
-import com.xeiam.xchart.Chart;
-import com.xeiam.xchart.Series;
-import com.xeiam.xchart.SeriesLineStyle;
-import com.xeiam.xchart.SeriesMarker;
+import helpers.Content;
 import laser.Laser;
 import linkbudget.LinkBudget;
 import monochromator.Monochromator;
 import project.SimulationProject;
 import telescope.Telescope;
 
-import java.awt.*;
 import java.util.ArrayList;
 
-/**
- * Created by Oscar on 9/14/15.
- */
 public class SimpleSimulation {
 
     private LinkBudget linkBudget;
@@ -29,10 +22,12 @@ public class SimpleSimulation {
     private Mie mie;
     private Rayleigh rayleigh;
     private ArrayList<Number> altitudes;
+    private int rangeValue;
+    private int belongingRange;
+
 
     public SimpleSimulation() {
         this.telescope = new Telescope();
-
     }
 
     public LinkBudget getLinkBudget() {
@@ -114,4 +109,21 @@ public class SimpleSimulation {
     public void setAltitudes(ArrayList<Number> altitudes) {
         this.altitudes = altitudes;
     }
+
+    public int getRangeValue() {
+        return rangeValue;
+    }
+
+    public void setRangeValue(int rangeValue) {
+        this.rangeValue = rangeValue;
+    }
+
+    public int getBelongingRange() {
+        return belongingRange;
+    }
+
+    public void setBelongingRange(int belongingRange) {
+        this.belongingRange = belongingRange;
+    }
+
 }
