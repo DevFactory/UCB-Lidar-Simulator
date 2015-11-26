@@ -42,4 +42,71 @@ public class LinkBudgetTest extends TestCase {
         this.linkBudget.setAr(12.90);
         assertEquals(12.90, this.linkBudget.getAr());
     }
+
+    public void testShouldGetAndSetdFiberValue() {
+        this.linkBudget.setdFiber(12.90e-34);
+        assertEquals(12.90e-34, this.linkBudget.getdFiber());
+    }
+
+    public void testShouldGetAndSetFOV() {
+        this.linkBudget.setFov(12.98);
+        assertEquals(12.98, this.linkBudget.getFov());
+    }
+
+    public void testShouldGetAndSetdOmega() {
+        this.linkBudget.setdOmega(123.90);
+        assertEquals(123.90, this.linkBudget.getdOmega());
+    }
+
+    public void testShouldGetAndSetrMin() {
+        this.linkBudget.setrMin(0.034);
+        assertEquals(0.034, this.linkBudget.getrMin());
+    }
+
+    public void testShouldgetAndSetrMax() {
+        this.linkBudget.setrMax(0.034);
+        assertEquals(0.034, this.linkBudget.getrMax());
+    }
+
+    public void testShouldGetAndSetrPBL() {
+        this.linkBudget.setrPBL(140.23);
+        assertEquals(140.23, this.linkBudget.getrPBL());
+    }
+
+    public void testShouldGetAndSetdLambda0() {
+        this.linkBudget.setdLambda0(12.3e-45);
+        assertEquals(12.3e-45, this.linkBudget.getdLambda0());
+    }
+
+    public void testShouldgetAndSetB() {
+        this.linkBudget.setB(12.90);
+        assertEquals(12.90, this.linkBudget.getB());
+    }
+
+    public void testShouldGetDefaultqAndThenSetItAndGetIt() {
+        assertEquals(1.602e-19, this.linkBudget.getQ());
+        this.linkBudget.setQ(1.89e-34);
+        assertEquals(1.89e-34, this.linkBudget.getQ());
+    }
+
+    public void testShouldSetAndGetNsamples() {
+        this.linkBudget.setnSamples(12.0);
+        assertEquals(12.0, this.linkBudget.getnSamples());
+    }
+
+    public void testShouldSetAndGetOvf() {
+        this.linkBudget.setOvf(12.98);
+        assertEquals(12.98, this.linkBudget.getOvf());
+    }
+
+    public void testShoulSetAndGetPowb0() {
+        this.linkBudget.setPowb0(1.43e-4);
+        assertEquals(1.43e-4, this.linkBudget.getPowb0());
+    }
+
+    public void testShouldSetAndGetRi() {
+        this.linkBudget.setRi(12.90);
+        assertEquals(12.90, this.linkBudget.getRi());
+    }
+
 }
