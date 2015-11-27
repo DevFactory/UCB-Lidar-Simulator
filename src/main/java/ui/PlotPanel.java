@@ -58,11 +58,11 @@ public class PlotPanel extends JPanel {
     }
 
     public float colorForValue(double value) {
-        return (float) (((0.75 - 0.0) * (value - this.simulationController.getMinValue())) / (this.simulationController.getMaxValue() - this.simulationController.getMinValue())) + 0;
+        return (float) (((0.75) * (value - this.simulationController.getMinValue())) / (this.simulationController.getMaxValue() - this.simulationController.getMinValue()));
     }
 
     public void drawPoint(Graphics g, double value, int x, int y) {
-        g.setColor(Color.getHSBColor(colorForValue(value), 1.0f, 1.0f));
+        g.setColor(Color.getHSBColor(0.75f - colorForValue(value), 1.0f, 1.0f));
         g.fillRect(x, y, this.thickness, 1);
     }
 
@@ -75,7 +75,7 @@ public class PlotPanel extends JPanel {
     }
 
     public void calculateGraphicThickness(int value) {
-        this.thickness = (this.getWidth() - 150) / value;
+        this.thickness = (this.getWidth() - 250) / value;
     }
 
     public void drawCompleteArray(Graphics g) {
@@ -87,7 +87,6 @@ public class PlotPanel extends JPanel {
             drawPoint(g, this.simulationController.getContainer().get(i).getValue(), x, y);
             y--;
             counter = this.simulationController.getContainer().get(i).getBelongingRange();
-            //System.out.println("Counter: " + counter);
             if (counter != previousCounter) {
                 previousCounter = counter;
                 x = x + this.thickness;

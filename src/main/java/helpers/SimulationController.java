@@ -32,17 +32,12 @@ public class SimulationController {
                 this.container.add(this.correctValues.get(j));
             }
         }
-        sortContainerByRange();
-        for (int i = 0; i < this.container.size(); i++) {
-            System.out.println("Value: " + this.container.get(i).getValue() + " Range: " + this.container.get(i).getBelongingRange());
-        }
     }
 
     public void setCorrectValuesArray() {
         for (int i = 0; i < this.simpleSimulations.size(); i++) {
             for (int j = 0; j < this.simpleSimulations.get(i).getLinkBudget().getSNR0().size(); j = j + (this.simpleSimulations.get(i).getLinkBudget().getSNR0().size() / this.pixelsQty)) {
                 this.correctValues.add(new Content(this.simpleSimulations.get(i).getLinkBudget().getSNR0().get(j), this.simpleSimulations.get(i).getRangeValue()));
-                j = j + 5;
             }
         }
     }
@@ -67,26 +62,21 @@ public class SimulationController {
 
     private void setCorrectPixelsQty() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        this.pixelsQty = screenSize.height;
-        System.out.println("Maximum Qty: " + this.pixelsQty);
+        this.pixelsQty = screenSize.height - 250;
     }
 
     public void getMaximumValueFromContainer() {
         ArrayList<Double> aux = new ArrayList<Double>();
-        for (int i = 0; i < this.simpleSimulations.size(); i++) {
-            for (int j = 0; j < this.correctValues.size(); j++) {
-                aux.add(this.correctValues.get(i).getValue());
-            }
+        for (int j = 0; j < this.correctValues.size(); j++) {
+            aux.add(this.correctValues.get(j).getValue());
         }
         this.maxValue = Collections.max(aux);
     }
 
     public void getMinimumValueFromContainer() {
         ArrayList<Double> aux = new ArrayList<Double>();
-        for (int i = 0; i < this.simpleSimulations.size(); i++) {
-            for (int j = 0; j < this.correctValues.size(); j++) {
-                aux.add(this.correctValues.get(i).getValue());
-            }
+        for (int j = 0; j < this.correctValues.size(); j++) {
+            aux.add(this.correctValues.get(j).getValue());
         }
         this.minValue = Collections.min(aux);
     }
