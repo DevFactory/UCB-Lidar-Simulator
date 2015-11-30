@@ -12,6 +12,8 @@ import java.awt.*;
 import java.util.ArrayList;
 
 import helpers.SimulationController;
+import laser.Laser;
+import monochromator.Monochromator;
 import simulation.CompleteSimulation;
 import simulation.SimpleSimulation;
 
@@ -37,10 +39,14 @@ public class SimulationProject {
     private static SimulationProject simulationProject = new SimulationProject();
 
     private SimulationProject() {
+        this.simpleSimulation = new SimpleSimulation();
+        this.simpleSimulation.setLaser(new Laser());
+        this.simpleSimulation.setMonochromator(new Monochromator());
         for (int i = 0; i < 10; i++) {
             this.colors.add(Color.RED);
         }
         colorsToString();
+        setSimulationDefaultLaser();
     }
 
     public void colorsToString() {
@@ -121,6 +127,12 @@ public class SimulationProject {
         this.colors.clear();
         this.colors = colors;
         colorsToString();
+    }
+
+    public void setSimulationDefaultLaser() {
+        this.simpleSimulation.getLaser().setEmissionWavelength(532);
+        this.simpleSimulation.getLaser().setEnergy(0.0035);
+        this.simpleSimulation.getLaser().setDivergence(1);
     }
 
     public FileWriter getFileWriter() {

@@ -94,12 +94,39 @@ public class FileWriter {
             Element telescope = document.createElement("Telescope");
             rootElement.appendChild(telescope);
 
+            Element shadeDiameter = document.createElement("ShadeDiameter");
+            shadeDiameter.appendChild(document.createTextNode(String.valueOf(project.getSimpleSimulation().getTelescope().getShadeDiameter())));
+            telescope.appendChild(shadeDiameter);
+
+            Element diameter = document.createElement("Diameter");
+            diameter.appendChild(document.createTextNode(String.valueOf(project.getSimpleSimulation().getTelescope().getDiameter())));
+            telescope.appendChild(diameter);
+
+            Element focalLenght = document.createElement("FocalLenght");
+            focalLenght.appendChild(document.createTextNode(String.valueOf(project.getSimpleSimulation().getTelescope().getFocalLength())));
+            telescope.appendChild(focalLenght);
 
             Element laser = document.createElement("Laser");
             rootElement.appendChild(laser);
 
+            Element waveLength = document.createElement("WaveLength");
+            waveLength.appendChild(document.createTextNode(String.valueOf(project.getSimpleSimulation().getLaser().getEmissionWavelength())));
+            laser.appendChild(waveLength);
+
+            Element divergence = document.createElement("Divergence");
+            divergence.appendChild(document.createTextNode(String.valueOf(project.getSimpleSimulation().getLaser().getDivergence())));
+            laser.appendChild(divergence);
+
+            Element energy = document.createElement("Energy");
+            energy.appendChild(document.createTextNode(String.valueOf(project.getSimpleSimulation().getLaser().getEnergy())));
+            laser.appendChild(energy);
+
             Element monochromator = document.createElement("Monochromator");
             rootElement.appendChild(monochromator);
+
+            Element type = document.createElement("Type");
+            type.appendChild(document.createTextNode(project.getSimpleSimulation().getMonochromator().getApdName()));
+            monochromator.appendChild(type);
 
             Element linkBudget = document.createElement("LinkBudget");
             rootElement.appendChild(linkBudget);
