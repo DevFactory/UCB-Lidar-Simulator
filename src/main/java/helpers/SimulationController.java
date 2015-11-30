@@ -1,13 +1,12 @@
 
 package helpers;
 
+import simulation.SimpleSimulation;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
-
-import simulation.SimpleSimulation;
 
 public class SimulationController {
 
@@ -27,10 +26,8 @@ public class SimulationController {
     }
 
     public void setContentArrayForSimulationPlotting() {
-        for (int i = 0; i < this.simpleSimulations.size(); i++) {
-            for (int j = 0; j < this.correctValues.size(); j++) {
-                this.container.add(this.correctValues.get(j));
-            }
+        for (int j = 0; j < this.correctValues.size(); j++) {
+            this.container.add(this.correctValues.get(j));
         }
     }
 
@@ -49,15 +46,6 @@ public class SimulationController {
         setContentArrayForSimulationPlotting();
         getMaximumValueFromContainer();
         getMinimumValueFromContainer();
-
-    }
-
-    public void sortContainerByRange() {
-        Collections.sort(this.correctValues, new Comparator<Content>() {
-            public int compare(Content content1, Content content2) {
-                return Integer.compare(content1.getBelongingRange(), content2.getBelongingRange());
-            }
-        });
     }
 
     private void setCorrectPixelsQty() {

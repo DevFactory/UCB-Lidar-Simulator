@@ -3,7 +3,6 @@ package ui;
 import helpers.Content;
 import helpers.SimulationController;
 import project.SimulationProject;
-import simulation.CompleteSimulation;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,23 +24,37 @@ public class PlotPanel extends JPanel {
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, getWidth(), getHeight());
         drawColorBar(g);
-        drawAxes(g);
+        drawAxis(g);
         calculateGraphicThickness(this.simulationController.getSimulationsQty());
-        //showCompleteArray();
         drawCompleteArray(g);
     }
 
-    private void showCompleteArray() {
-        for (int i = 0; i < this.simulationController.getContainer().size(); i++) {
-            System.out.println(this.simulationController.getContainer().get(i).getValue());
+    private void drawAxis(Graphics g) {
+        g.setColor(Color.BLACK);
+        drawXAxis(g);
+        drawYAxis(g);
+
+
+    }
+
+    private void drawYAxis(Graphics g) {
+        g.drawLine(50, 20, 50, getHeight() - 50);
+        int range;
+        int res = (int) (this.simulationProject.getFinalValue() - this.simulationProject.getInitialValue());
+
+        range = (this.getHeight() - 80) / res;
+        int y = this.getHeight() - 51;
+
+        for (int i = (int) this.simulationProject.getInitialValue(); i <= (int) this.simulationProject.getFinalValue(); i++) {
+            g.drawString(String.valueOf(i), 37, y);
+            y = y - range;
         }
     }
 
-    private void drawAxes(Graphics g) {
-        g.setColor(Color.BLACK);
-        g.drawLine(50, 20, 50, getHeight() - 50);
+    private void drawXAxis(Graphics g) {
         g.drawLine(50, getHeight() - 50, getWidth() - 100, getHeight() - 50);
     }
+
 
     private void drawColorBar(Graphics g) {
         int minimum, maximum, height;
@@ -58,7 +71,7 @@ public class PlotPanel extends JPanel {
     }
 
     public float colorForValue(double value) {
-        return (float) (((0.75) * (value - this.simulationController.getMinValue())) / (this.simulationController.getMaxValue() - this.simulationController.getMinValue()));
+        return (float) ((0.75 * (value - this.simulationController.getMinValue())) / (this.simulationController.getMaxValue() - this.simulationController.getMinValue()));
     }
 
     public void drawPoint(Graphics g, double value, int x, int y) {
@@ -79,20 +92,22 @@ public class PlotPanel extends JPanel {
     }
 
     public void drawCompleteArray(Graphics g) {
-        int y = getHeight() - 53;
+        int y = this.getHeight() - 53;
         int x = 51;
         int previousCounter = this.simulationController.getContainer().get(0).getBelongingRange();
         int counter;
         for (int i = 0; i < this.simulationController.getContainer().size(); i++) {
-            drawPoint(g, this.simulationController.getContainer().get(i).getValue(), x, y);
-            y--;
             counter = this.simulationController.getContainer().get(i).getBelongingRange();
             if (counter != previousCounter) {
+                System.out.println(previousCounter + "-> Change -> " + counter);
                 previousCounter = counter;
                 x = x + this.thickness;
-                y = getHeight() - 53;
+                y = this.getHeight() - 53;
             }
+            drawPoint(g, this.simulationController.getContainer().get(i).getValue(), x, y);
+            y--;
         }
+        System.out.println("Finished Draw");
     }
 
     public int getxPlotRange() {

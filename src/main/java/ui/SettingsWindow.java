@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui;
 
 import atmosphere.Atmosphere;
@@ -509,10 +504,11 @@ public class SettingsWindow extends javax.swing.JFrame {
         Monochromator monochromator = this.simulationProject.getSimpleSimulation().getMonochromator();
         Telescope telescope = this.simulationProject.getSimpleSimulation().getTelescope();
         ArrayList<Number> altitudes = this.simulationProject.getSimpleSimulation().getAltitudes();
-        SimpleSimulation simpleSimulation = new SimpleSimulation();
+        SimpleSimulation simpleSimulation;
         Rayleigh rayleigh = this.simulationProject.getSimpleSimulation().getRayleigh();
 
         for (int i = 0; i < this.simulationController.getSimulationsQty(); i++) {
+            simpleSimulation = new SimpleSimulation();
             Mie mie = mieCreator(altitudes);
             Atmosphere atmosphere = new Atmosphere(mie, rayleigh);
             LinkBudget linkBudget = new LinkBudget(laser, monochromator, telescope, atmosphere, altitudes);
@@ -520,8 +516,8 @@ public class SettingsWindow extends javax.swing.JFrame {
             simpleSimulation.setLinkBudget(linkBudget);
             simpleSimulation.setRangeValue(i);
             this.simulationController.getSimpleSimulations().add(simpleSimulation);
-            this.simulationController.generate();
         }
+        this.simulationController.generate();
         this.simulationProject.setSimulationController(this.simulationController);
     }
 
@@ -542,7 +538,7 @@ public class SettingsWindow extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             System.setProperty("apple.laf.useScreenMenuBar", "true");
