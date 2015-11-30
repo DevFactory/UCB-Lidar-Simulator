@@ -6,7 +6,9 @@ import project.SimulationProject;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class PlotPanel extends JPanel {
     private SimulationController simulationController;
@@ -24,8 +26,8 @@ public class PlotPanel extends JPanel {
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, getWidth(), getHeight());
         drawColorBar(g);
-        drawAxis(g);
         calculateGraphicThickness(this.simulationController.getSimulationsQty());
+        drawAxis(g);
         drawCompleteArray(g);
     }
 
@@ -41,18 +43,40 @@ public class PlotPanel extends JPanel {
         g.drawLine(50, 20, 50, getHeight() - 50);
         int range;
         int res = (int) (this.simulationProject.getFinalValue() - this.simulationProject.getInitialValue());
-
         range = (this.getHeight() - 80) / res;
         int y = this.getHeight() - 51;
-
         for (int i = (int) this.simulationProject.getInitialValue(); i <= (int) this.simulationProject.getFinalValue(); i++) {
-            g.drawString(String.valueOf(i), 37, y);
+            g.drawString(String.valueOf(i), 32, y);
             y = y - range;
         }
+
+        Graphics2D g2 = (Graphics2D) g;
+        AffineTransform orig = g2.getTransform();
+        AffineTransform at = AffineTransform.getQuadrantRotateInstance(3);
+        g2.setTransform(at);
+        g2.drawString("Altitudes (Km.)", -(this.getHeight() / 2), 25);
+        g2.setTransform(orig);
     }
 
     private void drawXAxis(Graphics g) {
         g.drawLine(50, getHeight() - 50, getWidth() - 100, getHeight() - 50);
+        drawXAxisLegend(g);
+    }
+
+    private void drawXAxisLegend(Graphics g) {
+        int initialHour = this.simulationController.getStartingTime().getHours();
+        int endindgHour = this.simulationController.getEndingTime().getHours();
+        ArrayList<String> times = new ArrayList<String>();
+        for (int i = initialHour; i <= endindgHour; i++) {
+            times.add(String.valueOf(i) + ":" + String.valueOf(this.simulationController.getStartingTime().getMinutes()));
+        }
+        int x = 50;
+        int y = this.getHeight() - 30;
+        System.out.println("value :" + this.thickness * this.simulationController.getSimulationsPerHour());
+        for (int j = 0; j < times.size(); j++) {
+            g.drawString(times.get(j), x, y);
+            x = x + (this.thickness * this.simulationController.getSimulationsPerHour());
+        }
     }
 
 

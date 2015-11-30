@@ -94,6 +94,7 @@ public class FileWriter {
             Element telescope = document.createElement("Telescope");
             rootElement.appendChild(telescope);
 
+
             Element laser = document.createElement("Laser");
             rootElement.appendChild(laser);
 
