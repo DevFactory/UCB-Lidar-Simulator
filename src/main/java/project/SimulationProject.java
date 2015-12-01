@@ -9,7 +9,11 @@ import files.FileReader;
 import files.FileWriter;
 
 import java.awt.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import helpers.SimulationController;
 import laser.Laser;
@@ -47,6 +51,22 @@ public class SimulationProject {
         }
         colorsToString();
         setSimulationDefaultLaser();
+
+        this.simulationController.setHoursQty(1);
+        String str = "1:00";
+
+        try {
+            DateFormat formatter = new SimpleDateFormat("hh:mm");
+            Date date = formatter.parse(str);
+            this.simulationController.setStartingTime(date);
+            str = "2:00";
+            date = formatter.parse(str);
+            this.simulationController.setEndingTime(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        this.simulationController.setSimulationsPerHour(1);
     }
 
     public void colorsToString() {

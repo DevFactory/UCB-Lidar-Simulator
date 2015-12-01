@@ -221,7 +221,8 @@ public class CompleteSimulationSettingsWindow extends javax.swing.JFrame {
                         if ((this.simulationProject.getSimulationController().getEndingTime().getHours() - this.simulationProject.getSimulationController().getStartingTime().getHours()) != this.simulationProject.getSimulationController().getHoursQty()) {
                             JOptionPane.showMessageDialog(null, "Please insert the correct range interval.", "Warning", JOptionPane.WARNING_MESSAGE);
                         } else {
-                            System.out.println(this.simulationProject.getSimulationController().getSimulationsQty());
+                            this.simulationProject.saveProject();
+                            JOptionPane.showMessageDialog(null, "Simulation Values Established");
                             SettingsWindow w = new SettingsWindow();
                             w.setVisible(true);
                             this.dispose();

@@ -100,9 +100,19 @@ public class FileReader {
                     } catch (Exception e) {
                         color = null;
                     }
-
                 }
             }
+
+
+            NodeList laserList = this.document.getElementsByTagName("Laser");
+            nNode = laserList.item(0);
+            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                Element current = (Element) nNode;
+                simulationProject.getSimpleSimulation().getLaser().setEmissionWavelength(Double.parseDouble(current.getElementsByTagName("WaveLength").item(0).getTextContent()));
+                simulationProject.getSimpleSimulation().getLaser().setDivergence(Double.parseDouble(current.getElementsByTagName("Divergence").item(0).getTextContent()));
+                simulationProject.getSimpleSimulation().getLaser().setEnergy(Double.parseDouble(current.getElementsByTagName("Energy").item(0).getTextContent()));
+            }
+
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -26,21 +26,6 @@ public class SimulationController {
     private ArrayList<Content> correctValues = new ArrayList<Content>();
 
     public SimulationController() {
-        this.hoursQty = 1;
-        String str = "1:00";
-
-        try {
-            DateFormat formatter = new SimpleDateFormat("hh:mm");
-            Date date = formatter.parse(str);
-            this.startingTime = date;
-            str = "2:00";
-            date = formatter.parse(str);
-            this.endingTime = date;
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        this.simulationsPerHour = 1;
     }
 
     public void setContentArrayForSimulationPlotting() {
