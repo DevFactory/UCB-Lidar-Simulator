@@ -493,10 +493,40 @@ public class SettingsWindow extends javax.swing.JFrame {
     }
 
     public void createParams() {
-        generateSimulation();
-        SimulationWindow w = new SimulationWindow();
-        w.setVisible(true);
-        this.dispose();
+        JDialog calculatingDialog = new JDialog(this, "Computing...", true);
+        JProgressBar progressBar = new JProgressBar(0, 30);
+        progressBar.setIndeterminate(true);
+        calculatingDialog.add(BorderLayout.CENTER, progressBar);
+        JPanel panel = new JPanel();
+        panel.add(BorderLayout.CENTER, new JLabel("Please wait while the system computes the data..."));
+        calculatingDialog.add(BorderLayout.NORTH, panel);
+        calculatingDialog.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        calculatingDialog.setSize(400, 100);
+        calculatingDialog.setLocationRelativeTo(this);
+
+        SwingWorker<Void, Void> sw = new SwingWorker<Void, Void>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                generateSimulation();
+
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                calculatingDialog.dispose();
+                SimulationWindow w = new SimulationWindow();
+                w.setVisible(true);
+            }
+        };
+
+        Thread thread = new Thread(new Runnable() {
+            public void run() {
+                calculatingDialog.setVisible(true);
+            }
+        });
+        sw.execute();
+        calculatingDialog.setVisible(true);
     }
 
     private void generateSimulation() {
@@ -519,6 +549,8 @@ public class SettingsWindow extends javax.swing.JFrame {
         }
         this.simulationController.generate();
         this.simulationProject.setSimulationController(this.simulationController);
+        this.dispose();
+
     }
 
     private Mie mieCreator(ArrayList<Number> altitudes) {

@@ -128,9 +128,27 @@ public class FileWriter {
             type.appendChild(document.createTextNode(project.getSimpleSimulation().getMonochromator().getApdName()));
             monochromator.appendChild(type);
 
-            Element linkBudget = document.createElement("LinkBudget");
-            rootElement.appendChild(linkBudget);
+            Element simulation = document.createElement("Simulation");
+            rootElement.appendChild(simulation);
+
+            Element hoursQTY = document.createElement("HoursQty");
+            hoursQTY.appendChild(document.createTextNode(String.valueOf(project.getSimulationController().getHoursQty())));
+            simulation.appendChild(hoursQTY);
+
+            Element start = document.createElement("Start");
+            start.appendChild(document.createTextNode(project.getSimulationController().getStartingTime().toString()));
+            simulation.appendChild(start);
+
+            Element end = document.createElement("End");
+            end.appendChild(document.createTextNode(project.getSimulationController().getEndingTime().toString()));
+            simulation.appendChild(end);
+
+            Element samples = document.createElement("Samples");
+            samples.appendChild(document.createTextNode(String.valueOf(project.getSimulationController().getSimulationsPerHour())));
+            simulation.appendChild(samples);
+
             this.document.getDocumentElement().normalize();
+
 
             this.transformerFactory = TransformerFactory.newInstance();
             this.transformer = transformerFactory.newTransformer();
