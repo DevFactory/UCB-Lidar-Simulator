@@ -181,8 +181,6 @@ public class FileReader {
                     setFourthAPD();
                     break;
             }
-
-
         } catch (
                 Exception e
                 )

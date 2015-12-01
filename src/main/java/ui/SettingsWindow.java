@@ -376,7 +376,6 @@ public class SettingsWindow extends javax.swing.JFrame {
                     + "Bulk Dark Current: Not defined \n"
                     + "Overlap Factor: Not defined");
         }
-
     }//GEN-LAST:event_opticalDetailsLabelMouseClicked
 
     private void atmosphereDetailsLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atmosphereDetailsLabelMouseClicked
@@ -480,7 +479,19 @@ public class SettingsWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_opticalSettingsButtonActionPerformed
 
     private void simulationDetailsLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simulationDetailsLabelMouseClicked
-
+        if (this.simulationController != null) {
+            this.detailsTextPane.setText("Simulation Details: \n" + "Ranges: \n" + "Hours Qty.: " + this.simulationController.getHoursQty() + "\n"
+                    + "Hours Range: " + "\n"
+                    + "Star Hour: " + this.simulationController.getStartingTime().getHours() + ":" + this.simulationController.getStartingTime().getMinutes() + "\n"
+                    + "End Hour: " + this.simulationController.getEndingTime().getHours() + ":" + this.simulationController.getEndingTime().getMinutes() + "\n"
+                    + "Samples Per Hour: " + this.simulationController.getSimulationsPerHour() + "\n");
+        } else {
+            this.detailsTextPane.setText("Simulation Details: \n" + "Ranges: \n" + "Hours Qty.: " + "Not defined" + "\n"
+                    + "Hours Range: " + "\n"
+                    + "Star Hour: " + "Not defined" + "\n"
+                    + "End Hour: " + "Not defined" + "\n"
+                    + "Samples Per Hour: " + "Not defined" + "\n");
+        }
     }//GEN-LAST:event_simulationDetailsLabelMouseClicked
 
     private void resultsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultsButtonActionPerformed
