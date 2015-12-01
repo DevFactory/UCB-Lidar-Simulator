@@ -1,5 +1,6 @@
 package files;
 
+import monochromator.Monochromator;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -46,6 +47,52 @@ public class FileReader {
         } else {
             return false;
         }
+    }
+
+    private void setFirstAPD(int wavelength) {
+        SimulationProject simulationProject = SimulationProject.getInstance();
+        double idb, rioAux = 0;
+        switch (wavelength) {
+            case 0:
+
+                rioAux = 30e-3;
+                break;
+            case 1:
+
+                rioAux = 55e-3;
+                break;
+        }
+        idb = 0.01e-9 / 7e5;
+        Monochromator monochromator = new Monochromator(7e5, 1.3, 0, rioAux, 0.01e-9, idb, 50, "R7400U-03");
+        simulationProject.getSimpleSimulation().setMonochromator(monochromator);
+    }
+
+    private void setSecondAPD(int wavelength) {
+        SimulationProject simulationProject = SimulationProject.getInstance();
+        double idb, rioAux = 0;
+        switch (wavelength) {
+            case 0:
+                rioAux = 30e-3;
+                break;
+            case 1:
+                rioAux = 55e-3;
+                break;
+        }
+        idb = 0.08e-9 / 1e6;
+        Monochromator monochromator = new Monochromator(1e6, 1.3, 0, rioAux, 0.08e-9, idb, 50, "R7400P-03");
+        simulationProject.getSimpleSimulation().setMonochromator(monochromator);
+    }
+
+    private void setThirdAPD() {
+        SimulationProject simulationProject = SimulationProject.getInstance();
+        Monochromator monochromator = new Monochromator(100, 4, 7.73e-8, 340e-3, 1.19e-10, 10e6, 7.2e-12, 11e3, "C30956E");
+        simulationProject.getSimpleSimulation().setMonochromator(monochromator);
+    }
+
+    private void setFourthAPD() {
+        SimulationProject simulationProject = SimulationProject.getInstance();
+        Monochromator monochromator = new Monochromator(150, 4.5, 7.64e-8, 240e-3, 3.10e-10, 0, 5e-12, 5750 * 20.3, "oldAPD");
+        simulationProject.getSimpleSimulation().setMonochromator(monochromator);
     }
 
 
@@ -113,8 +160,34 @@ public class FileReader {
                 simulationProject.getSimpleSimulation().getLaser().setEnergy(Double.parseDouble(current.getElementsByTagName("Energy").item(0).getTextContent()));
             }
 
+            NodeList monochromatorList = this.document.getElementsByTagName("Monochromator");
+            nNode = monochromatorList.item(0);
+            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                Element current = (Element) nNode;
+                simulationProject.getSimpleSimulation().getMonochromator().setApdName(current.getElementsByTagName("Type").item(0).getTextContent());
+            }
 
-        } catch (Exception e) {
+            switch (simulationProject.getSimpleSimulation().getMonochromator().getApdName()) {
+                case "R7400U-03":
+                    setFirstAPD((int) simulationProject.getSimpleSimulation().getLaser().getEmissionWavelength());
+                    break;
+                case "R7400P-03":
+                    setSecondAPD((int) simulationProject.getSimpleSimulation().getLaser().getEmissionWavelength());
+                    break;
+                case "C30956E":
+                    setThirdAPD();
+                    break;
+                case "oldAPD":
+                    setFourthAPD();
+                    break;
+            }
+
+
+        } catch (
+                Exception e
+                )
+
+        {
             e.printStackTrace();
         }
     }
