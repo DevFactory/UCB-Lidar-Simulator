@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import helpers.OpticalReturnPowerController;
 import helpers.SimulationController;
 import laser.Laser;
 import monochromator.Monochromator;
@@ -29,6 +30,7 @@ public class SimulationProject {
     private SimpleSimulation simpleSimulation = new SimpleSimulation();
     private CompleteSimulation completeSimulation = new CompleteSimulation();
     private SimulationController simulationController = new SimulationController();
+    private OpticalReturnPowerController opticalReturnPowerController = new OpticalReturnPowerController();
     FileWriter fileWriter = new FileWriter();
     FileReader fileReader = new FileReader();
     private ArrayList<Number> data;
@@ -218,6 +220,14 @@ public class SimulationProject {
 
     public void setSimulationController(SimulationController simulationController) {
         this.simulationController = simulationController;
+    }
+
+    public OpticalReturnPowerController getOpticalReturnPowerController() {
+        return opticalReturnPowerController;
+    }
+
+    public void setOpticalReturnPowerController(OpticalReturnPowerController opticalReturnPowerController) {
+        this.opticalReturnPowerController = opticalReturnPowerController;
     }
 }
 

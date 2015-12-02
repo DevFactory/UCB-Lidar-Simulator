@@ -5,33 +5,33 @@
  */
 package ui;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 import project.SimulationProject;
 
+import java.awt.*;
+
 /**
  * @author oscar_sgc
  */
-public class SimulationWindow extends javax.swing.JFrame {
+public class OpticalReturnPowerWindow extends javax.swing.JFrame {
 
     private SimulationProject simulationProject = SimulationProject.getInstance();
 
     /**
-     * Creates new form SimulationWindow
+     * Creates new form OpticalReturnPowerWindow
      */
-    public SimulationWindow() {
+    public OpticalReturnPowerWindow() {
         initComponents();
         makeFrameFullSize();
-        createSimulationTab();
+        createOpticalReturnPowerTab();
     }
 
-    private void createSimulationTab() {
-        this.completeSimulationPanel = new PlotPanel();
-        this.graphicsTabbedPane.setComponentAt(0, this.completeSimulationPanel);
+    private void createOpticalReturnPowerTab() {
+        this.opticalReturnPowerPanel = new OpticalReturnPowerPlotPanel();
+        this.jTabbedPane1.setComponentAt(0, this.opticalReturnPowerPanel);
 
     }
 
@@ -49,11 +49,10 @@ public class SimulationWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        buttonPanel = new javax.swing.JPanel();
-        backButton = new javax.swing.JButton();
-        graphicsTabbedPane = new javax.swing.JTabbedPane();
-        completeSimulationPanel = new javax.swing.JPanel();
+        opticalReturnPowerPanel = new javax.swing.JPanel();
         optionsMenuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         saveMenuItem = new javax.swing.JMenuItem();
@@ -67,45 +66,44 @@ public class SimulationWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        buttonPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("atmosphere/gui/Bundle"); // NOI18N
-        backButton.setText(bundle.getString("GraphicsVisualizer.backButton.text")); // NOI18N
-        backButton.setToolTipText(bundle.getString("GraphicsVisualizer.backButton.toolTipText")); // NOI18N
-        backButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        backButton.addActionListener(new java.awt.event.ActionListener() {
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("UI/Bundle"); // NOI18N
+        jButton1.setText(bundle.getString("OpticalReturnPowerWindow.jButton1.text")); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-        buttonPanel.add(backButton);
+        jPanel1.add(jButton1);
 
-        getContentPane().add(buttonPanel, java.awt.BorderLayout.PAGE_END);
+        getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_END);
 
-        graphicsTabbedPane.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jTabbedPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        completeSimulationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        opticalReturnPowerPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        javax.swing.GroupLayout completeSimulationPanelLayout = new javax.swing.GroupLayout(completeSimulationPanel);
-        completeSimulationPanel.setLayout(completeSimulationPanelLayout);
-        completeSimulationPanelLayout.setHorizontalGroup(
-            completeSimulationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 561, Short.MAX_VALUE)
+        javax.swing.GroupLayout opticalReturnPowerPanelLayout = new javax.swing.GroupLayout(opticalReturnPowerPanel);
+        opticalReturnPowerPanel.setLayout(opticalReturnPowerPanelLayout);
+        opticalReturnPowerPanelLayout.setHorizontalGroup(
+            opticalReturnPowerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 371, Short.MAX_VALUE)
         );
-        completeSimulationPanelLayout.setVerticalGroup(
-            completeSimulationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 295, Short.MAX_VALUE)
+        opticalReturnPowerPanelLayout.setVerticalGroup(
+            opticalReturnPowerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 181, Short.MAX_VALUE)
         );
 
-        graphicsTabbedPane.addTab("Signal To Noise Ratio", completeSimulationPanel);
+        jTabbedPane1.addTab(bundle.getString("OpticalReturnPowerWindow.opticalReturnPowerPanel.TabConstraints.tabTitle"), opticalReturnPowerPanel); // NOI18N
 
-        getContentPane().add(graphicsTabbedPane, java.awt.BorderLayout.CENTER);
+        getContentPane().add(jTabbedPane1, java.awt.BorderLayout.CENTER);
 
-        fileMenu.setText(bundle.getString("GraphicsVisualizer.fileMenu.text")); // NOI18N
+        java.util.ResourceBundle bundle1 = java.util.ResourceBundle.getBundle("atmosphere/gui/Bundle"); // NOI18N
+        fileMenu.setText(bundle1.getString("GraphicsVisualizer.fileMenu.text")); // NOI18N
 
         saveMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
-        saveMenuItem.setText(bundle.getString("GraphicsVisualizer.saveMenuItem.text")); // NOI18N
-        saveMenuItem.setToolTipText(bundle.getString("GraphicsVisualizer.saveMenuItem.toolTipText")); // NOI18N
+        saveMenuItem.setText(bundle1.getString("GraphicsVisualizer.saveMenuItem.text")); // NOI18N
+        saveMenuItem.setToolTipText(bundle1.getString("GraphicsVisualizer.saveMenuItem.toolTipText")); // NOI18N
         saveMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveMenuItemActionPerformed(evt);
@@ -114,8 +112,8 @@ public class SimulationWindow extends javax.swing.JFrame {
         fileMenu.add(saveMenuItem);
 
         saveAsMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        saveAsMenuItem.setText(bundle.getString("GraphicsVisualizer.saveAsMenuItem.text")); // NOI18N
-        saveAsMenuItem.setToolTipText(bundle.getString("GraphicsVisualizer.saveAsMenuItem.toolTipText")); // NOI18N
+        saveAsMenuItem.setText(bundle1.getString("GraphicsVisualizer.saveAsMenuItem.text")); // NOI18N
+        saveAsMenuItem.setToolTipText(bundle1.getString("GraphicsVisualizer.saveAsMenuItem.toolTipText")); // NOI18N
         saveAsMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveAsMenuItemActionPerformed(evt);
@@ -125,7 +123,7 @@ public class SimulationWindow extends javax.swing.JFrame {
         fileMenu.add(jSeparator2);
 
         exitMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
-        exitMenuItem.setText(bundle.getString("GraphicsVisualizer.exitMenuItem.text")); // NOI18N
+        exitMenuItem.setText(bundle1.getString("GraphicsVisualizer.exitMenuItem.text")); // NOI18N
         exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitMenuItemActionPerformed(evt);
@@ -135,12 +133,12 @@ public class SimulationWindow extends javax.swing.JFrame {
 
         optionsMenuBar.add(fileMenu);
 
-        editMenu.setText(bundle.getString("GraphicsVisualizer.editMenu.text")); // NOI18N
+        editMenu.setText(bundle1.getString("GraphicsVisualizer.editMenu.text")); // NOI18N
 
-        languageMenu.setLabel(bundle.getString("GraphicsVisualizer.languageMenu.label")); // NOI18N
+        languageMenu.setLabel(bundle1.getString("GraphicsVisualizer.languageMenu.label")); // NOI18N
 
-        englishMenuItem.setText(bundle.getString("GraphicsVisualizer.englishMenuItem.text")); // NOI18N
-        englishMenuItem.setToolTipText(bundle.getString("GraphicsVisualizer.englishMenuItem.toolTipText")); // NOI18N
+        englishMenuItem.setText(bundle1.getString("GraphicsVisualizer.englishMenuItem.text")); // NOI18N
+        englishMenuItem.setToolTipText(bundle1.getString("GraphicsVisualizer.englishMenuItem.toolTipText")); // NOI18N
         englishMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 englishMenuItemActionPerformed(evt);
@@ -148,8 +146,8 @@ public class SimulationWindow extends javax.swing.JFrame {
         });
         languageMenu.add(englishMenuItem);
 
-        spanishMenuItem.setText(bundle.getString("GraphicsVisualizer.spanishMenuItem.text")); // NOI18N
-        spanishMenuItem.setToolTipText(bundle.getString("GraphicsVisualizer.spanishMenuItem.toolTipText")); // NOI18N
+        spanishMenuItem.setText(bundle1.getString("GraphicsVisualizer.spanishMenuItem.text")); // NOI18N
+        spanishMenuItem.setToolTipText(bundle1.getString("GraphicsVisualizer.spanishMenuItem.toolTipText")); // NOI18N
         spanishMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 spanishMenuItemActionPerformed(evt);
@@ -201,10 +199,10 @@ public class SimulationWindow extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_spanishMenuItemActionPerformed
 
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
         new SettingsWindow().setVisible(true);
-    }//GEN-LAST:event_backButtonActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -220,36 +218,35 @@ public class SimulationWindow extends javax.swing.JFrame {
             System.setProperty("com.apple.mrj.application.apple.menu.about.name", "WikiTeX");
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SimulationWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OpticalReturnPowerWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SimulationWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OpticalReturnPowerWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SimulationWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OpticalReturnPowerWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SimulationWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OpticalReturnPowerWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SimulationWindow().setVisible(true);
+                new OpticalReturnPowerWindow().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton backButton;
-    private javax.swing.JPanel buttonPanel;
-    private javax.swing.JPanel completeSimulationPanel;
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenuItem englishMenuItem;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
-    private javax.swing.JTabbedPane graphicsTabbedPane;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JMenu languageMenu;
+    private javax.swing.JPanel opticalReturnPowerPanel;
     private javax.swing.JMenuBar optionsMenuBar;
     private javax.swing.JMenuItem saveAsMenuItem;
     private javax.swing.JMenuItem saveMenuItem;

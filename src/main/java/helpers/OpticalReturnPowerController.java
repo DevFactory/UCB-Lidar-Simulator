@@ -1,17 +1,13 @@
-
 package helpers;
 
 import simulation.SimpleSimulation;
 
 import java.awt.*;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 
-public class SimulationController {
+public class OpticalReturnPowerController {
 
     private ArrayList<SimpleSimulation> simpleSimulations = new ArrayList<SimpleSimulation>();
     private ArrayList<Content> container = new ArrayList<Content>();
@@ -25,7 +21,7 @@ public class SimulationController {
     private int simulationsPerHour;
     private ArrayList<Content> correctValues = new ArrayList<Content>();
 
-    public SimulationController() {
+    public OpticalReturnPowerController() {
     }
 
     public void setContentArrayForSimulationPlotting() {
@@ -36,8 +32,8 @@ public class SimulationController {
 
     public void setCorrectValuesArray() {
         for (int i = 0; i < this.simpleSimulations.size(); i++) {
-            for (int j = 0; j < this.simpleSimulations.get(i).getLinkBudget().getSNR0().size(); j = j + (this.simpleSimulations.get(i).getLinkBudget().getSNR0().size() / this.pixelsQty)) {
-                this.correctValues.add(new Content(this.simpleSimulations.get(i).getLinkBudget().getSNR0().get(j), this.simpleSimulations.get(i).getRangeValue()));
+            for (int j = 0; j < this.simpleSimulations.get(i).getLinkBudget().getPow0().size(); j = j + (this.simpleSimulations.get(i).getLinkBudget().getPow0().size() / this.pixelsQty)) {
+                this.correctValues.add(new Content(this.simpleSimulations.get(i).getLinkBudget().getPow0().get(j), this.simpleSimulations.get(i).getRangeValue()));
             }
         }
     }

@@ -6,6 +6,7 @@ import atmosphere.Rayleigh;
 import atmosphere.gui.GraphicsConfiguration;
 import atmosphere.gui.GraphicsVisualizer;
 import helpers.GraphicsController;
+import helpers.OpticalReturnPowerController;
 import helpers.SimulationController;
 import laser.Laser;
 import linkbudget.LinkBudget;
@@ -29,6 +30,7 @@ public class SettingsWindow extends javax.swing.JFrame {
      */
     SimulationProject simulationProject = SimulationProject.getInstance();
     SimulationController simulationController = this.simulationProject.getSimulationController();
+    OpticalReturnPowerController opticalReturnPowerController = this.simulationProject.getOpticalReturnPowerController();
 
     public SettingsWindow() {
         Locale.setDefault(new Locale(System.getProperty("user.language"), System.getProperty("user.country")));
@@ -64,7 +66,8 @@ public class SettingsWindow extends javax.swing.JFrame {
         detailsTextPane = new javax.swing.JTextPane();
         actionPanel = new javax.swing.JPanel();
         viewGraphicsButton = new javax.swing.JButton();
-        resultsButton = new javax.swing.JButton();
+        signalToNoiseRatioButton = new javax.swing.JButton();
+        opticalReturnPowerButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         saveMenuItem = new javax.swing.JMenuItem();
@@ -108,7 +111,7 @@ public class SettingsWindow extends javax.swing.JFrame {
             }
         });
         jPanel2.add(atmosphereDetailsLabel);
-        atmosphereDetailsLabel.setBounds(80, 10, 77, 16);
+        atmosphereDetailsLabel.setBounds(60, 10, 77, 16);
 
         opticalDetailsLabel.setForeground(new java.awt.Color(51, 51, 255));
         opticalDetailsLabel.setText(bundle.getString("SettingsWindow.opticalDetailsLabel.text")); // NOI18N
@@ -119,7 +122,7 @@ public class SettingsWindow extends javax.swing.JFrame {
             }
         });
         jPanel2.add(opticalDetailsLabel);
-        opticalDetailsLabel.setBounds(210, 10, 77, 16);
+        opticalDetailsLabel.setBounds(200, 10, 77, 16);
 
         simulationDetailsLabel.setForeground(new java.awt.Color(51, 51, 255));
         simulationDetailsLabel.setText(bundle.getString("SettingsWindow.simulationDetailsLabel.text")); // NOI18N
@@ -130,7 +133,7 @@ public class SettingsWindow extends javax.swing.JFrame {
             }
         });
         jPanel2.add(simulationDetailsLabel);
-        simulationDetailsLabel.setBounds(340, 10, 77, 16);
+        simulationDetailsLabel.setBounds(330, 10, 77, 16);
 
         configurationsPanel.add(jPanel2, java.awt.BorderLayout.PAGE_END);
 
@@ -145,7 +148,7 @@ public class SettingsWindow extends javax.swing.JFrame {
             }
         });
         jPanel3.add(atmosphereConfigurationButton);
-        atmosphereConfigurationButton.setBounds(90, 10, 60, 60);
+        atmosphereConfigurationButton.setBounds(70, 10, 60, 60);
 
         simulationSettingsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/simulation.png"))); // NOI18N
         simulationSettingsButton.setToolTipText(bundle.getString("SettingsWindow.simulationSettingsButton.toolTipText")); // NOI18N
@@ -156,7 +159,7 @@ public class SettingsWindow extends javax.swing.JFrame {
             }
         });
         jPanel3.add(simulationSettingsButton);
-        simulationSettingsButton.setBounds(350, 10, 60, 60);
+        simulationSettingsButton.setBounds(340, 10, 60, 60);
 
         opticalSettingsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/laser.png"))); // NOI18N
         opticalSettingsButton.setToolTipText(bundle.getString("SettingsWindow.opticalSettingsButton.toolTipText")); // NOI18N
@@ -167,7 +170,7 @@ public class SettingsWindow extends javax.swing.JFrame {
             }
         });
         jPanel3.add(opticalSettingsButton);
-        opticalSettingsButton.setBounds(220, 10, 60, 60);
+        opticalSettingsButton.setBounds(210, 10, 60, 60);
 
         configurationsPanel.add(jPanel3, java.awt.BorderLayout.CENTER);
 
@@ -182,17 +185,17 @@ public class SettingsWindow extends javax.swing.JFrame {
         javax.swing.GroupLayout detailsPanelLayout = new javax.swing.GroupLayout(detailsPanel);
         detailsPanel.setLayout(detailsPanelLayout);
         detailsPanelLayout.setHorizontalGroup(
-                detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(detailsPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(detailsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         detailsPanelLayout.setVerticalGroup(
-                detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(detailsPanelLayout.createSequentialGroup()
-                                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-                                .addContainerGap())
+            detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(detailsPanelLayout.createSequentialGroup()
+                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         actionPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("SettingsWindow.actionPanel.border.title"))); // NOI18N
@@ -205,35 +208,46 @@ public class SettingsWindow extends javax.swing.JFrame {
             }
         });
 
-        resultsButton.setText(bundle.getString("SettingsWindow.resultsButton.text")); // NOI18N
-        resultsButton.setToolTipText(bundle.getString("SettingsWindow.resultsButton.toolTipText")); // NOI18N
-        resultsButton.addActionListener(new java.awt.event.ActionListener() {
+        signalToNoiseRatioButton.setText(bundle.getString("SettingsWindow.signalToNoiseRatioButton.text")); // NOI18N
+        signalToNoiseRatioButton.setToolTipText(bundle.getString("SettingsWindow.signalToNoiseRatioButton.toolTipText")); // NOI18N
+        signalToNoiseRatioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                resultsButtonActionPerformed(evt);
+                signalToNoiseRatioButtonActionPerformed(evt);
+            }
+        });
+
+        opticalReturnPowerButton.setText(bundle.getString("SettingsWindow.opticalReturnPowerButton.text")); // NOI18N
+        opticalReturnPowerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opticalReturnPowerButtonActionPerformed(evt);
             }
         });
 
         javax.swing.GroupLayout actionPanelLayout = new javax.swing.GroupLayout(actionPanel);
         actionPanel.setLayout(actionPanelLayout);
         actionPanelLayout.setHorizontalGroup(
-                actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(actionPanelLayout.createSequentialGroup()
-                                .addGap(62, 62, 62)
-                                .addComponent(viewGraphicsButton)
-                                .addGap(56, 56, 56))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, actionPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(resultsButton)
-                                .addGap(42, 42, 42))
+            actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(actionPanelLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(actionPanelLayout.createSequentialGroup()
+                        .addComponent(viewGraphicsButton)
+                        .addGap(29, 29, 29))
+                    .addGroup(actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(opticalReturnPowerButton)
+                        .addComponent(signalToNoiseRatioButton)))
+                .addGap(23, 23, 23))
         );
         actionPanelLayout.setVerticalGroup(
-                actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(actionPanelLayout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(viewGraphicsButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(resultsButton)
-                                .addContainerGap(114, Short.MAX_VALUE))
+            actionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(actionPanelLayout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(viewGraphicsButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(opticalReturnPowerButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(signalToNoiseRatioButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         fileMenu.setText(bundle.getString("StartWindow.fileMenu.text")); // NOI18N
@@ -270,8 +284,8 @@ public class SettingsWindow extends javax.swing.JFrame {
 
         editMenu.setText(bundle.getString("StartWindow.editMenu.text")); // NOI18N
 
-        java.util.ResourceBundle bundle1 = java.util.ResourceBundle.getBundle("ui/Bundle"); // NOI18N
-        languageMenu.setLabel(bundle1.getString("StartWindow.languageMenu.label")); // NOI18N
+        
+        languageMenu.setLabel(bundle.getString("StartWindow.languageMenu.label")); // NOI18N
 
         englishMenuItem.setText(bundle.getString("StartWindow.englishMenuItem.text")); // NOI18N
         englishMenuItem.setToolTipText(bundle.getString("StartWindow.englishMenuItem.toolTipText")); // NOI18N
@@ -300,27 +314,27 @@ public class SettingsWindow extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(configurationsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(detailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(actionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addContainerGap())
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(configurationsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(detailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(actionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(configurationsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(detailsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(actionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addContainerGap())
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(configurationsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(detailsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(actionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -413,7 +427,6 @@ public class SettingsWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_viewGraphicsButtonActionPerformed
 
     private void launch() {
-
         JDialog calculatingDialog = new JDialog(this, "Computing...", true);
         JProgressBar progressBar = new JProgressBar(0, 30);
         progressBar.setIndeterminate(true);
@@ -433,13 +446,11 @@ public class SettingsWindow extends javax.swing.JFrame {
                 graphicsVisualizer.setVisible(true);
                 return null;
             }
-
             @Override
             protected void done() {
                 calculatingDialog.dispose();
             }
         };
-
         Thread thread = new Thread(new Runnable() {
             public void run() {
                 calculatingDialog.setVisible(true);
@@ -494,10 +505,97 @@ public class SettingsWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_simulationDetailsLabelMouseClicked
 
-    private void resultsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultsButtonActionPerformed
+    private void signalToNoiseRatioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signalToNoiseRatioButtonActionPerformed
         generateGraphics();
         createParams();
-    }//GEN-LAST:event_resultsButtonActionPerformed
+    }//GEN-LAST:event_signalToNoiseRatioButtonActionPerformed
+
+    private void opticalReturnPowerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opticalReturnPowerButtonActionPerformed
+        generateGraphics();
+        opticalReturnPowerParametrization();
+    }//GEN-LAST:event_opticalReturnPowerButtonActionPerformed
+
+    private void opticalReturnPowerParametrization() {
+        JDialog calculatingDialog = new JDialog(this, "Computing...", true);
+        JProgressBar progressBar = new JProgressBar(0, 30);
+        progressBar.setIndeterminate(true);
+        calculatingDialog.add(BorderLayout.CENTER, progressBar);
+        JPanel panel = new JPanel();
+        panel.add(BorderLayout.CENTER, new JLabel("Please wait while the system computes the data..."));
+        calculatingDialog.add(BorderLayout.NORTH, panel);
+        calculatingDialog.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        calculatingDialog.setSize(400, 100);
+        calculatingDialog.setLocationRelativeTo(this);
+
+        SwingWorker<Void, Void> sw = new SwingWorker<Void, Void>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                generateOpticalReturnPower();
+                return null;
+            }
+            @Override
+            protected void done() {
+                calculatingDialog.dispose();
+                OpticalReturnPowerWindow w = new OpticalReturnPowerWindow();
+                w.setVisible(true);
+            }
+        };
+        Thread thread = new Thread(new Runnable() {
+            public void run() {
+                calculatingDialog.setVisible(true);
+            }
+        });
+        sw.execute();
+        calculatingDialog.setVisible(true);
+    }
+
+    private void generateOpticalReturnPower() {
+        this.opticalReturnPowerController.getSimpleSimulations().clear();
+        Laser laser = this.simulationProject.getSimpleSimulation().getLaser();
+        Monochromator monochromator = this.simulationProject.getSimpleSimulation().getMonochromator();
+        Telescope telescope = this.simulationProject.getSimpleSimulation().getTelescope();
+        ArrayList<Number> altitudes = this.simulationProject.getSimpleSimulation().getAltitudes();
+        SimpleSimulation simpleSimulation;
+        Rayleigh rayleigh = this.simulationProject.getSimpleSimulation().getRayleigh();
+        for (int i = 0; i < this.opticalReturnPowerController.getSimulationsQty(); i++) {
+            simpleSimulation = new SimpleSimulation();
+            Mie mie = mieCreator(altitudes);
+            Atmosphere atmosphere = new Atmosphere(mie, rayleigh);
+            LinkBudget linkBudget = new LinkBudget(laser, monochromator, telescope,atmosphere,altitudes);
+            linkBudget.generateSignalToNoiseRatio();
+            simpleSimulation.setLinkBudget(linkBudget);
+            simpleSimulation.setRangeValue(i);
+            this.opticalReturnPowerController.getSimpleSimulations().add(simpleSimulation);
+        }
+        this.opticalReturnPowerController.generate();
+        this.simulationProject.setOpticalReturnPowerController(this.opticalReturnPowerController);
+        this.dispose();
+    }
+
+    private void generateSimulation() {
+        this.simulationController.getSimpleSimulations().clear();
+        Laser laser = this.simulationProject.getSimpleSimulation().getLaser();
+        Monochromator monochromator = this.simulationProject.getSimpleSimulation().getMonochromator();
+        Telescope telescope = this.simulationProject.getSimpleSimulation().getTelescope();
+        ArrayList<Number> altitudes = this.simulationProject.getSimpleSimulation().getAltitudes();
+        SimpleSimulation simpleSimulation;
+        Rayleigh rayleigh = this.simulationProject.getSimpleSimulation().getRayleigh();
+
+        for (int i = 0; i < this.simulationController.getSimulationsQty(); i++) {
+            simpleSimulation = new SimpleSimulation();
+            Mie mie = mieCreator(altitudes);
+            Atmosphere atmosphere = new Atmosphere(mie, rayleigh);
+            LinkBudget linkBudget = new LinkBudget(laser, monochromator, telescope, atmosphere, altitudes);
+            linkBudget.generate();
+            simpleSimulation.setLinkBudget(linkBudget);
+            simpleSimulation.setRangeValue(i);
+            this.simulationController.getSimpleSimulations().add(simpleSimulation);
+        }
+        this.simulationController.generate();
+        this.simulationProject.setSimulationController(this.simulationController);
+        this.dispose();
+    }
+
 
     private void generateGraphics() {
         GraphicsController controller = new GraphicsController();
@@ -519,10 +617,8 @@ public class SettingsWindow extends javax.swing.JFrame {
             @Override
             protected Void doInBackground() throws Exception {
                 generateSimulation();
-
                 return null;
             }
-
             @Override
             protected void done() {
                 calculatingDialog.dispose();
@@ -530,7 +626,6 @@ public class SettingsWindow extends javax.swing.JFrame {
                 w.setVisible(true);
             }
         };
-
         Thread thread = new Thread(new Runnable() {
             public void run() {
                 calculatingDialog.setVisible(true);
@@ -540,29 +635,7 @@ public class SettingsWindow extends javax.swing.JFrame {
         calculatingDialog.setVisible(true);
     }
 
-    private void generateSimulation() {
-        Laser laser = this.simulationProject.getSimpleSimulation().getLaser();
-        Monochromator monochromator = this.simulationProject.getSimpleSimulation().getMonochromator();
-        Telescope telescope = this.simulationProject.getSimpleSimulation().getTelescope();
-        ArrayList<Number> altitudes = this.simulationProject.getSimpleSimulation().getAltitudes();
-        SimpleSimulation simpleSimulation;
-        Rayleigh rayleigh = this.simulationProject.getSimpleSimulation().getRayleigh();
 
-        for (int i = 0; i < this.simulationController.getSimulationsQty(); i++) {
-            simpleSimulation = new SimpleSimulation();
-            Mie mie = mieCreator(altitudes);
-            Atmosphere atmosphere = new Atmosphere(mie, rayleigh);
-            LinkBudget linkBudget = new LinkBudget(laser, monochromator, telescope, atmosphere, altitudes);
-            linkBudget.generate();
-            simpleSimulation.setLinkBudget(linkBudget);
-            simpleSimulation.setRangeValue(i);
-            this.simulationController.getSimpleSimulations().add(simpleSimulation);
-        }
-        this.simulationController.generate();
-        this.simulationProject.setSimulationController(this.simulationController);
-        this.dispose();
-
-    }
 
     private Mie mieCreator(ArrayList<Number> altitudes) {
         Mie mie = new Mie(altitudes);
@@ -629,10 +702,11 @@ public class SettingsWindow extends javax.swing.JFrame {
     private javax.swing.JMenu languageMenu;
     private javax.swing.JLabel opticalDetailsLabel;
     private javax.swing.JLabel opticalLabel;
+    private javax.swing.JButton opticalReturnPowerButton;
     private javax.swing.JButton opticalSettingsButton;
-    private javax.swing.JButton resultsButton;
     private javax.swing.JMenuItem saveAsMenuItem;
     private javax.swing.JMenuItem saveMenuItem;
+    private javax.swing.JButton signalToNoiseRatioButton;
     private javax.swing.JLabel simulationDetailsLabel;
     private javax.swing.JButton simulationSettingsButton;
     private javax.swing.JMenuItem spanishMenuItem;

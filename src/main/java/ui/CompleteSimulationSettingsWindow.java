@@ -204,16 +204,21 @@ public class CompleteSimulationSettingsWindow extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Please Insert a valid samples value.", "Warning", JOptionPane.WARNING_MESSAGE);
                     } else {
                         this.simulationProject.getSimulationController().setHoursQty(Integer.parseInt(this.hoursQtyTextField.getText()));
+                        this.simulationProject.getOpticalReturnPowerController().setHoursQty(Integer.parseInt(this.hoursQtyTextField.getText()));
                         this.simulationProject.getSimulationController().setSimulationsPerHour(Integer.parseInt(this.samplesTextField.getText()));
+                        this.simulationProject.getOpticalReturnPowerController().setSimulationsPerHour(Integer.parseInt(this.samplesTextField.getText()));
                         try {
                             String str = this.startHourTextField.getText();
                             DateFormat formatter = new SimpleDateFormat("hh:mm");
                             Date date = formatter.parse(str);
                             this.simulationProject.getSimulationController().setStartingTime(date);
+                            this.simulationProject.getOpticalReturnPowerController().setStartingTime(date);
                             str = this.endHourTextField.getText();
                             date = formatter.parse(str);
                             this.simulationProject.getSimulationController().setEndingTime(date);
+                            this.simulationProject.getOpticalReturnPowerController().setEndingTime(date);
                             this.simulationProject.getSimulationController().obtainSimulationsQty();
+                            this.simulationProject.getOpticalReturnPowerController().obtainSimulationsQty();
                         } catch (ParseException e) {
                             JOptionPane.showMessageDialog(null, "Please Insert valid hours for the range.", "Warning", JOptionPane.WARNING_MESSAGE);
                             e.printStackTrace();

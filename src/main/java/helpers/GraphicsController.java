@@ -29,7 +29,6 @@ public class GraphicsController {
         prepairMieChartPanel();
         prepairRayleighPanels();
         prepairAtmospherePanels();
-        //prepairSNRPanels();
     }
 
     private void prepairTemperatureChartPanel() {
@@ -76,19 +75,6 @@ public class GraphicsController {
         atmosphere.generate();
         this.simulationProject.getSimpleSimulation().setAtmosphere(atmosphere);
         this.functionPlotter.setChart(atmosphere.generateChart(this.simulationProject.getColors().get(5)));
-        this.chartPanels.add(this.functionPlotter.getChartPanel());
-    }
-
-    private void prepairSNRPanels() {
-        Laser laser = this.simulationProject.getSimpleSimulation().getLaser();
-        Monochromator monochromator = this.simulationProject.getSimpleSimulation().getMonochromator();
-        Telescope telescope = this.simulationProject.getSimpleSimulation().getTelescope();
-        Atmosphere atmosphere = this.simulationProject.getSimpleSimulation().getAtmosphere();
-        ArrayList<Number> altitudes = this.simulationProject.getSimpleSimulation().getAltitudes();
-        LinkBudget linkBudget = new LinkBudget(laser, monochromator, telescope, atmosphere, altitudes);
-        linkBudget.generate();
-        this.simulationProject.getSimpleSimulation().setLinkBudget(linkBudget);
-        this.functionPlotter.setChart(linkBudget.generateChart(Color.RED));
         this.chartPanels.add(this.functionPlotter.getChartPanel());
     }
 

@@ -113,6 +113,13 @@ public class LinkBudget extends Function {
         elasticSNR();
     }
 
+    public void generateSignalToNoiseRatio(){
+        initializeComponents();
+        backgroundComponent();
+        rangeCalculations();
+        powerLevelCalculations();
+    }
+
     public void backgroundComponent() {
         this.L = 3.0e-11;
         this.dLambda0 = 10;
