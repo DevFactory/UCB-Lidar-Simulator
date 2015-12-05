@@ -228,6 +228,8 @@ public class GraphicsConfiguration extends javax.swing.JFrame {
             SettingsWindow w = new SettingsWindow();
             JOptionPane.showMessageDialog(null, "Atmosphere Values established!");
             this.dispose();
+            this.simulationProject.setInitialValue(initial);
+            this.simulationProject.setFinalValue(ending);
             this.simulationProject.setData(data);
             this.simulationProject.setColors(this.colors);
             this.simulationProject.saveProject();

@@ -35,8 +35,6 @@ public class PlotPanel extends JPanel {
         g.setColor(Color.BLACK);
         drawXAxis(g);
         drawYAxis(g);
-
-
     }
 
     private void drawYAxis(Graphics g) {
