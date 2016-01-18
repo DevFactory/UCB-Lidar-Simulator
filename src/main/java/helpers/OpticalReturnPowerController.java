@@ -19,21 +19,16 @@ public class OpticalReturnPowerController {
     private Date endingTime;
     private int hoursQty;
     private int simulationsPerHour;
-    private ArrayList<Content> correctValues = new ArrayList<Content>();
+    //private ArrayList<Content> correctValues = new ArrayList<Content>();
 
     public OpticalReturnPowerController() {
     }
 
-    public void setContentArrayForSimulationPlotting() {
-        for (int j = 0; j < this.correctValues.size(); j++) {
-            this.container.add(this.correctValues.get(j));
-        }
-    }
 
     public void setCorrectValuesArray() {
         for (int i = 0; i < this.simpleSimulations.size(); i++) {
             for (int j = 0; j < this.simpleSimulations.get(i).getLinkBudget().getPow0().size(); j = j + (this.simpleSimulations.get(i).getLinkBudget().getPow0().size() / this.pixelsQty)) {
-                this.correctValues.add(new Content(this.simpleSimulations.get(i).getLinkBudget().getPow0().get(j), this.simpleSimulations.get(i).getRangeValue()));
+                this.container.add(new Content(this.simpleSimulations.get(i).getLinkBudget().getPow0().get(j), this.simpleSimulations.get(i).getRangeValue()));
             }
         }
     }
@@ -43,14 +38,13 @@ public class OpticalReturnPowerController {
         setCorrectPixelsQty();
         obtainSimulationsQty();
         setCorrectValuesArray();
-        setContentArrayForSimulationPlotting();
+        //setContentArrayForSimulationPlotting();
         getMaximumValueFromContainer();
         getMinimumValueFromContainer();
     }
 
     private void emptyArrays() {
         this.container.clear();
-        this.correctValues.clear();
     }
 
     private void setCorrectPixelsQty() {
@@ -60,16 +54,16 @@ public class OpticalReturnPowerController {
 
     public void getMaximumValueFromContainer() {
         ArrayList<Double> aux = new ArrayList<Double>();
-        for (int j = 0; j < this.correctValues.size(); j++) {
-            aux.add(this.correctValues.get(j).getValue());
+        for (int j = 0; j < this.container.size(); j++) {
+            aux.add(this.container.get(j).getValue());
         }
         this.maxValue = Collections.max(aux);
     }
 
     public void getMinimumValueFromContainer() {
         ArrayList<Double> aux = new ArrayList<Double>();
-        for (int j = 0; j < this.correctValues.size(); j++) {
-            aux.add(this.correctValues.get(j).getValue());
+        for (int j = 0; j < this.container.size(); j++) {
+            aux.add(this.container.get(j).getValue());
         }
         this.minValue = Collections.min(aux);
     }

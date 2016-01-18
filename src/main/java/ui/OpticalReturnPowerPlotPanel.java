@@ -69,11 +69,12 @@ public class OpticalReturnPowerPlotPanel extends JPanel {
         }
         int x = 50;
         int y = this.getHeight() - 30;
-        System.out.println("value :" + this.thickness * this.opticalReturnPowerController.getSimulationsPerHour());
         for (int j = 0; j < times.size(); j++) {
             g.drawString(times.get(j), x, y);
             x = x + (this.thickness * this.opticalReturnPowerController.getSimulationsPerHour());
         }
+
+        g.drawString("Time (Hours)", (this.getWidth() - 150) / 2, this.getHeight() - 15);
     }
 
 
@@ -83,12 +84,19 @@ public class OpticalReturnPowerPlotPanel extends JPanel {
         minimum = 100;
         maximum = 500;
         height = 1;
+        int finalI = 0;
 
         for (int i = 0; i < (maximum - minimum); i++) {
             float f = 0.75f * i / (float) (maximum - minimum);
             g.setColor(Color.getHSBColor(0.75f - f, 1.0f, 1.0f));
             g.fillRect(getWidth() - 40, height * i + 50, 20, height);
+            finalI = i;
         }
+
+        g.setColor(Color.BLACK);
+        g.drawString(String.valueOf(this.opticalReturnPowerController.getMaxValue()), getWidth() - 60, 48); //Max Value
+        g.drawString(String.valueOf(this.opticalReturnPowerController.getMinValue()), getWidth() - 60, finalI + 63);// Min Value
+
     }
 
     public float colorForValue(double value) {
@@ -120,7 +128,6 @@ public class OpticalReturnPowerPlotPanel extends JPanel {
         for (int i = 0; i < this.opticalReturnPowerController.getContainer().size(); i++) {
             counter = this.opticalReturnPowerController.getContainer().get(i).getBelongingRange();
             if (counter != previousCounter) {
-                System.out.println(previousCounter + "-> Change -> " + counter);
                 previousCounter = counter;
                 x = x + this.thickness;
                 y = this.getHeight() - 53;
@@ -128,7 +135,6 @@ public class OpticalReturnPowerPlotPanel extends JPanel {
             drawPoint(g, this.opticalReturnPowerController.getContainer().get(i).getValue(), x, y);
             y--;
         }
-        System.out.println("Finished Draw");
     }
 
     public int getxPlotRange() {

@@ -212,13 +212,12 @@ public class GraphicsConfiguration extends javax.swing.JFrame {
         } else {
             double initial = Double.parseDouble(this.initialAltitudeTextField.getText());
             double ending = Double.parseDouble(this.finalAltitudeTextField.getText());
-            DecimalFormat df = new DecimalFormat("#.000");
-            double var = initial;
             ArrayList<Number> data = new ArrayList<Number>();
-            while (var <= ending) {
-                data.add(var);
-                var = var + 0.001;
+
+            for (double i = initial; i <= ending; i += 0.00375) {
+                data.add(i);
             }
+
             this.colors.add(0, obtainSelectedColor(this.temperatureColorComboBox));
             this.colors.add(1, obtainSelectedColor(this.pressureColorComboBox));
             this.colors.add(2, obtainSelectedColor(this.mieColorComboBox));

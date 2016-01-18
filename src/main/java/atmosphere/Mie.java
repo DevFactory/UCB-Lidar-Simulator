@@ -48,7 +48,7 @@ public class Mie extends Function {
     public Chart generateChart(Color color) {
         Chart chart = new Chart(10, 10);
         chart.setChartTitle(getName());
-        chart.setXAxisTitle("Altitude");
+        chart.setXAxisTitle("Altitude (Km.)");
         chart.setYAxisTitle("Mie");
         chart.getStyleManager().setPlotBackgroundColor(Color.WHITE);
         chart.getStyleManager().setPlotGridLinesColor(Color.GRAY);

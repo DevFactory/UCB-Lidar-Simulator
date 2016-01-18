@@ -113,7 +113,7 @@ public class LinkBudget extends Function {
         elasticSNR();
     }
 
-    public void generateSignalToNoiseRatio(){
+    public void generateSignalToNoiseRatio() {
         initializeComponents();
         backgroundComponent();
         rangeCalculations();
@@ -153,11 +153,6 @@ public class LinkBudget extends Function {
         this.NEP_0 = Math.sqrt(2 * this.q * (this.monochromator.getIds() + this.monochromator.getF() * (Math.pow(this.monochromator.getM(), 2)) * this.monochromator.getIdb())) / this.Ri;
         this.NEPs_0 = Math.sqrt(2 * this.q * (this.monochromator.getIds() + this.monochromator.getF() * (Math.pow(this.monochromator.getM(), 2)) * this.monochromator.getIdb()) + (this.monochromator.getNv() / Math.pow(this.monochromator.getGT(), 2))) / (this.Ri * this.loss0);
         this.SNR0 = snr0Generation();
-
-//        for (int i = 0; i < this.SNR0.size(); i++) {
-//            System.out.println("SNR: " + this.SNR0.get(i));
-//        }
-
     }
 
     private ArrayList<Double> snr0Generation() {
@@ -201,7 +196,7 @@ public class LinkBudget extends Function {
 
     public double opticalReturnPower(double altitude, double backscatterCoef) {
         double value = Math.pow(((this.k / Math.pow(altitude, 2)) * backscatterCoef), (-2 * this.integralSolver.integration(0.0, altitude
-        ) * this.ovf)); //this.monochromator.getOverlapFactor()));
+        ) * this.ovf));
         return value;
     }
 

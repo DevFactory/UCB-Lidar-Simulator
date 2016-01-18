@@ -99,7 +99,7 @@ public class SimulationProject {
     public void openProject(String fullFilePath) {
         this.fileReader.openFile(fullFilePath);
         this.data = new ArrayList<Number>();
-        for (double i = this.initialValue; i < this.finalValue; i += 0.001) {
+        for (double i = this.initialValue; i <= this.finalValue; i += 0.00375) {
             this.data.add(i);
         }
         colorsToString();

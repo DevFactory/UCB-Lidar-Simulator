@@ -146,7 +146,7 @@ public class Rayleigh extends Function {
         //return QuickChart.getChart(getName(), "Sigma", "Alfa Scattering", "Alfa(sigma)", this.sigma, this.alphaScattering);
         Chart chart = new Chart(10, 10);
         chart.setChartTitle(getName());
-        chart.setXAxisTitle("Altitude");
+        chart.setXAxisTitle("Altitude (Km.)");
         chart.setYAxisTitle("Alpha Scattering");
         chart.getStyleManager().setPlotBackgroundColor(Color.WHITE);
         chart.getStyleManager().setPlotGridLinesColor(Color.GRAY);
@@ -170,7 +170,7 @@ public class Rayleigh extends Function {
         //return QuickChart.getChart(getName(), "Alfa", "Beta Scattering", "Beta(Alfa)", this.alphaScattering, this.betaScattering);
         Chart chart = new Chart(10, 10);
         chart.setChartTitle(getName());
-        chart.setXAxisTitle("Altitude");
+        chart.setXAxisTitle("Altitude (Km.)");
         chart.setYAxisTitle("Beta Scattering");
         chart.getStyleManager().setPlotBackgroundColor(Color.WHITE);
         chart.getStyleManager().setPlotGridLinesColor(Color.GRAY);

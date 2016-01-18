@@ -7,8 +7,8 @@ package ui;
 
 import files.FileWriter;
 import java.util.Locale;
-import javax.swing.JFileChooser;
-import javax.swing.UIManager;
+import javax.swing.*;
+
 import project.SimulationProject;
 
 /**
@@ -136,7 +136,7 @@ public class ProjectConfigurationWindow extends javax.swing.JFrame {
         if (fileSaver.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             this.locationTextField.setText(fileSaver.getSelectedFile().toString() + "/");
         } else {
-            System.out.println("No Selection ");
+            JOptionPane.showMessageDialog(null, "No Directory Selected!");
         }
     }//GEN-LAST:event_browseButtonActionPerformed
 

@@ -22,9 +22,6 @@ public class Telescope {
         this.diameter = diameter;
     }
 
-
-
-
     public double getShadeDiameter() {
         return shadeDiameter;
     }

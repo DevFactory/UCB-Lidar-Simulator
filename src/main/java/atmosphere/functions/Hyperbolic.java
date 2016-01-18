@@ -28,13 +28,29 @@ public class Hyperbolic extends Function {
     }
 
     @Override
-    protected void generate() {
+    public void generate() {
         int j = 10;
         for (int i = 0; i < 20; i++) {
             yData.add(getY(j));
             xData.add(j);
             j++;
         }
+    }
+
+    public Collection<Number> getxData() {
+        return xData;
+    }
+
+    public void setxData(Collection<Number> xData) {
+        this.xData = xData;
+    }
+
+    public Collection<Number> getyData() {
+        return yData;
+    }
+
+    public void setyData(Collection<Number> yData) {
+        this.yData = yData;
     }
 }
 
