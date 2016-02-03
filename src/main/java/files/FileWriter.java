@@ -165,11 +165,11 @@ public class FileWriter {
 
     }
 
-    public static void main(String args[]) {
-        SimulationProject test = SimulationProject.getInstance();
-        test.setProjectName("Proyecto Prueba");
-        test.setProjectLocation("/Users/oscar_sgc/Desktop/");
-        new FileWriter().saveProject(test);
-
-    }
+//    public static void main(String args[]) {
+//        SimulationProject test = SimulationProject.getInstance();
+//        test.setProjectName("Proyecto Prueba");
+//        test.setProjectLocation("/Users/oscar_sgc/Desktop/");
+//        new FileWriter().saveProject(test);
+//
+//    }
 }
