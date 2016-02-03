@@ -272,7 +272,8 @@ public class StartWindow extends javax.swing.JFrame {
     private void tutorialButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tutorialButtonActionPerformed
         if (Desktop.isDesktopSupported()) {
             try {
-                File myFile = new File(this.getClass().getResource("/org/gonzalez/lidar/manual/Manual.pdf").getFile());
+                //File myFile = new File(this.getClass().getResource("/org/gonzalez/lidar/manual/Manual.pdf").getFile());
+                File myFile = new File("Manual.pdf");
                 Desktop.getDesktop().open(myFile);
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "manual not found!");
