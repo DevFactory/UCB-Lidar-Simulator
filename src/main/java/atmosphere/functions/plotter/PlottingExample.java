@@ -89,7 +89,4 @@ public class PlottingExample {
         this.sigmoid = sigmoid;
     }
 
-    public static void main(String args[]) {
-        PlottingExample plottingExample = new PlottingExample();
-    }
 }
